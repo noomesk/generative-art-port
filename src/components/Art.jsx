@@ -12,12 +12,22 @@ const ArtSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <motion.div 
           whileHover={{ scale: 1.02, y: -5 }}
-          className="aspect-square bg-temporal-bg border border-temporal-border flex items-center justify-center group overflow-hidden relative hover:border-temporal-accent/50 hover:shadow-[0_0_40px_rgba(51,255,153,0.15)] transition-all"
+          className="aspect-square bg-temporal-bg border border-temporal-border flex items-center justify-center group overflow-hidden relative hover:border-temporal-accent/50 hover:shadow-[0_0_40px_rgba(51,255,153,0.15)] transition-all cursor-pointer"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-temporal-accent/5 to-transparent group-hover:opacity-100 transition-opacity" />
-          <span className="text-temporal-muted/30 font-mono text-xs uppercase tracking-widest group-hover:text-temporal-accent transition-colors">
-            [ Piece 001 - Latent Growth ]
-          </span>
+          <img 
+            src="/seeds_fractal.gif" 
+            alt="Fractal Synthesis" 
+            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+            onError={(e) => {
+              e.target.style.display = 'none';
+              e.target.nextSibling.style.display = 'flex';
+            }}
+          />
+          <div className="absolute inset-0 flex items-center justify-center bg-temporal-bg" style={{ display: 'none' }}>
+             <span className="text-temporal-muted/30 font-mono text-xs uppercase tracking-widest group-hover:text-temporal-accent transition-colors">
+               [ Piece 001 - Fractal Synthesis ]
+             </span>
+          </div>
         </motion.div>
         <motion.div 
           whileHover={{ scale: 1.02, y: -5 }}

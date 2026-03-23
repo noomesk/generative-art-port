@@ -31,8 +31,9 @@ function _grad(h, x, y, z) {
 }
 
 function perlin(x, y, z) {
-  const X = Math.floor(x) & 255, Y = Math.floor(y) & 255, Z = Math.floor(z) & 255;
-  x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z);
+  // Ultra-fast positive floor operation using bitwise OR
+  const X = (x|0) & 255, Y = (y|0) & 255, Z = (z|0) & 255;
+  x -= x|0; y -= y|0; z -= z|0;
   const u = _fade(x), v = _fade(y), w = _fade(z);
   const A  = _perm[X]+Y,   AA = _perm[A]+Z,   AB = _perm[A+1]+Z;
   const B  = _perm[X+1]+Y, BA = _perm[B]+Z,   BB = _perm[B+1]+Z;
@@ -84,13 +85,13 @@ const PerlinWarp = ({ imgSrc }) => {
     let tick = 0;
     
     const CONFIG = {
-      displayWidth : 400, // Increased resolution slightly for quality, keeping performance
+      displayWidth : 520, // Higher resolution for crisp fine details
       amplitude    : 26,
       amplitude2   : 12,
       freq         : 0.0042,
       freq2        : 0.0018,
       timeSpeed    : 0.09,
-      octaves      : 3,
+      octaves      : 2,
       offset       : 5.1,
     };
 
@@ -132,13 +133,13 @@ const PerlinWarp = ({ imgSrc }) => {
           for (let x = 0; x < W; x++) {
             const xn = x * FREQ, xn2 = x * FREQ2;
 
-            // Primary high-frequency fBm warp
-            const dx1 = fbm(xn,       yn,       tz,  OCT) * AMP*2 - AMP;
-            const dy1 = fbm(xn+OFF,   yn+OFF,   tz,  OCT) * AMP*2 - AMP;
+            // Primary fBm warp
+            const dx1 = fbm(xn,     yn,     tz,  OCT) * AMP*2 - AMP;
+            const dy1 = fbm(xn+OFF, yn+OFF, tz,  OCT) * AMP*2 - AMP;
 
-            // Secondary slow breathing warp
-            const dx2 = fbm(xn2+10,   yn2,      tz2, 3)   * AMP2*2 - AMP2;
-            const dy2 = fbm(xn2,      yn2+10,   tz2, 3)   * AMP2*2 - AMP2;
+            // Secondary breathing warp (1 octave)
+            const dx2 = fbm(xn2+10, yn2,    tz2, 1)   * AMP2*2 - AMP2;
+            const dy2 = fbm(xn2,    yn2+10, tz2, 1)   * AMP2*2 - AMP2;
 
             sample(x + dx1 + dx2, y + dy1 + dy2, W, H, srcData, outBuf, (y*W+x)*4);
           }

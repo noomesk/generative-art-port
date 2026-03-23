@@ -38,9 +38,14 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          className="w-full md:w-1/2 flex justify-center items-center z-20 -mt-8 md:-mt-24"
+          className="w-full md:w-1/2 flex flex-col justify-center items-center z-20 -mt-8 md:-mt-24"
         >
           <PerlinWarp imgSrc="/p3.PNG" />
+          
+          <div className="mt-8 md:mt-24 text-[10px] md:text-xs uppercase tracking-[0.2em] text-temporal-muted/50 font-mono text-center max-w-[300px] md:max-w-md pointer-events-none">
+            Eulophia alta (Orchidaceae) seed micrograph<br/>
+            <span className="opacity-60 text-[9px] md:text-[10px]">0.9mm · Wind-dispersed honeycomb morphology</span>
+          </div>
         </motion.div>
       </div>
 

@@ -29,7 +29,7 @@ const About = () => {
                 My journey into development didn't start with building standard web applications. It began with a fascination for how simple computational rules can generate infinitely complex and beautiful patterns.
               </p>
               <p>
-                As a creative coder, I leverage technologies like WebGL, Three.js, React, and raw mathematical algorithms to craft interactive experiences that blur the line between utility and art.
+                As a creative coder, I leverage technologies like P5.js, WebGL, Three.js, React, and raw mathematical algorithms to craft interactive experiences that blur the line between utility and art.
               </p>
               <p>
                 I believe that well-architected software is intrinsically beautiful, and that aesthetic experiences can profoundly elevate the software we interact with daily. The minimalist approach reflects my deep appreciation for systems that are clean, transparent, and focused.

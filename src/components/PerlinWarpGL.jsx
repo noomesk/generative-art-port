@@ -59,23 +59,32 @@ const FRAG_SRC = `
   }
 
   void main() {
-    vec2 p = v_uv * 3.5;           // spatial scale of the warp
-    float t = u_time * 0.28;       // time speed (organic, breathing pace)
+    vec2 p  = v_uv * 3.5;          // spatial scale — high freq warp (fine texture detail)
+    vec2 p2 = v_uv * 1.2;          // spatial scale — low freq warp (large breathing undulations)
+    float t  = u_time * 0.30;      // primary speed
+    float t2 = u_time * 0.10;      // secondary breathing: much slower = more organic
 
-    // Primary warp
-    float dx1 = fbm(p               + vec2(0.0,   0.0)   + t);
-    float dy1 = fbm(p               + vec2(5.1,   5.1)   + t);
+    // ── Primary fine-detail warp (like water ripples on skin)
+    float dx1 = fbm(p  + vec2(0.0, 0.0) + t);
+    float dy1 = fbm(p  + vec2(5.1, 5.1) + t);
 
-    // Secondary slow breathing warp
-    float dx2 = fbm(p * 0.45 + vec2(10.0, 0.0)  + t * 0.35) * 0.45;
-    float dy2 = fbm(p * 0.45 + vec2(0.0,  10.0) + t * 0.35) * 0.45;
+    // ── Secondary BIG breathing warp (organ/lung contortion)
+    //    Low freq, very slow, very high amplitude → that "alive" feeling
+    float dx2 = fbm(p2 + vec2(10.0,  0.0) + t2) * 1.4;
+    float dy2 = fbm(p2 + vec2( 0.0, 10.0) + t2) * 1.4;
 
-    float amp = 0.055;             // warp amplitude (pixel displacement)
-    vec2 warpedUV = v_uv + vec2(dx1 + dx2, dy1 + dy2) * amp;
+    // ── Tertiary ultra-slow pulse (heartbeat-like global swell)
+    float pulse = sin(u_time * 0.18) * 0.012;
 
-    // Clamp to avoid edge artifacts (same as the JS padding trick but in GPU)
+    float ampFine    = 0.040;    // fine ripple amplitude
+    float ampBreath  = 0.095;   // breathing contortion amplitude
+
+    vec2 warpedUV = v_uv
+      + vec2(dx1, dy1) * ampFine
+      + vec2(dx2, dy2) * ampBreath
+      + pulse;
+
     warpedUV = clamp(warpedUV, 0.001, 0.999);
-
     gl_FragColor = texture2D(u_image, warpedUV);
   }
 `;

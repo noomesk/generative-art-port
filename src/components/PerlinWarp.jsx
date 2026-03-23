@@ -85,7 +85,7 @@ const PerlinWarp = ({ imgSrc }) => {
     let tick = 0;
     
     const CONFIG = {
-      displayWidth : 520, // Higher resolution for crisp fine details
+      displayWidth : 650, // Maximum sharpness — safe at 60fps with 2 octaves + bitwise ops
       amplitude    : 26,
       amplitude2   : 12,
       freq         : 0.0042,

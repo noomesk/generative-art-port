@@ -103,12 +103,21 @@ const MarqueeText = () => {
 
     return (
         <div className="relative flex overflow-x-hidden border-y border-temporal-border py-8 mb-16 select-none pointer-events-none">
-            <div className="flex whitespace-nowrap animate-marquee translate-z-0">
+            {/* Framer Motion marquee for ultra-fluid, sub-pixel precision */}
+            <motion.div 
+                className="flex whitespace-nowrap"
+                initial={{ x: 0 }}
+                animate={{ x: "-50%" }}
+                transition={{
+                    duration: 35, // Slightly slower for more "natural" feel
+                    ease: "linear",
+                    repeat: Infinity,
+                    repeatType: "loop"
+                }}
+            >
                 <Content />
                 <Content />
-                <Content />
-                <Content />
-            </div>
+            </motion.div>
         </div>
     );
 };

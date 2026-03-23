@@ -59,36 +59,35 @@ const FRAG_SRC = `
   }
 
   void main() {
-    // Increased safe zone to 16% to fully accommodate the high amplitudes of the "breathing" effect
-    float margin = 0.16;
-    vec2 safeUV = v_uv * (1.0 - 2.0 * margin) + margin;
+    float margin = 0.12; // 12% safety buffer on each side
+    // Map center of canvas to the 0..1 range of the texture, effectively shrinking it
+    vec2 centeredUV = (v_uv - margin) / (1.0 - 2.0 * margin);
 
-    vec2 p  = safeUV * 3.5;          // spatial scale — high freq warp (fine texture detail)
-    vec2 p2 = safeUV * 1.2;          // spatial scale — low freq warp (large breathing undulations)
-    float t  = u_time * 0.30;      // primary speed
-    float t2 = u_time * 0.10;      // secondary breathing: much slower = more organic
+    vec2 p  = centeredUV * 3.5;
+    vec2 p2 = centeredUV * 1.2;
+    float t  = u_time * 0.30;
+    float t2 = u_time * 0.10;
 
-    // ── Primary fine-detail warp (like water ripples on skin)
     float dx1 = fbm(p  + vec2(0.0, 0.0) + t);
     float dy1 = fbm(p  + vec2(5.1, 5.1) + t);
-
-    // ── Secondary BIG breathing warp (organ/lung contortion)
     float dx2 = fbm(p2 + vec2(10.0,  0.0) + t2) * 1.4;
     float dy2 = fbm(p2 + vec2( 0.0, 10.0) + t2) * 1.4;
-
-    // ── Tertiary ultra-slow pulse (heartbeat-like global swell)
     float pulse = sin(u_time * 0.18) * 0.012;
 
     float ampFine    = 0.040;
     float ampBreath  = 0.095;
 
-    vec2 warpedUV = safeUV
+    vec2 finalUV = centeredUV
       + vec2(dx1, dy1) * ampFine
       + vec2(dx2, dy2) * ampBreath
       + pulse;
 
-    warpedUV = clamp(warpedUV, 0.001, 0.999);
-    gl_FragColor = texture2D(u_image, warpedUV);
+    // Manual clipping: if the warped coordinate is outside [0,1], it's the "dead zone"
+    if (finalUV.x < 0.0 || finalUV.x > 1.0 || finalUV.y < 0.0 || finalUV.y > 1.0) {
+      gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+    } else {
+      gl_FragColor = texture2D(u_image, finalUV);
+    }
   }
 `;
 
@@ -206,7 +205,7 @@ const PerlinWarpGL = ({ imgSrc }) => {
   }, [imgSrc]);
 
   return (
-    <div className="relative inline-block w-full max-w-[650px] scale-100 md:scale-110 xl:scale-125 -translate-x-8 md:-translate-x-16 xl:-translate-x-24 flex items-center justify-center mix-blend-screen origin-center">
+    <div className="relative inline-block w-full max-w-[650px] scale-110 md:scale-125 xl:scale-150 -translate-x-8 md:-translate-x-16 xl:-translate-x-24 flex items-center justify-center mix-blend-screen origin-center">
       <canvas
         ref={canvasRef}
         className="block w-full h-auto rounded-md opacity-90 transition-opacity duration-1000 hover:opacity-100"

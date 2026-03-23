@@ -82,26 +82,32 @@ const Button = ({ children, onClick, type = "button", disabled, className = "" }
 // --- Marquee Text ---
 
 const MarqueeText = () => {
-    const marqueeContent = (
-        <div className="flex items-center px-4">
-            <span className="text-4xl md:text-5xl font-mono font-black mx-12 uppercase whitespace-nowrap tracking-tighter text-temporal-text">Systems Dreaming in Code</span>
-            <span className="text-4xl md:text-5xl font-mono font-light text-temporal-muted/30">/</span>
-            <span className="text-4xl md:text-5xl font-mono font-black mx-12 uppercase whitespace-nowrap tracking-tighter text-temporal-accent">Algorithmic Synergies</span>
-            <span className="text-4xl md:text-5xl font-mono font-light text-temporal-muted/30">/</span>
-            <span className="text-4xl md:text-5xl font-mono font-black mx-12 uppercase whitespace-nowrap tracking-tighter text-temporal-text">Collaborative Growth</span>
-            <span className="text-4xl md:text-5xl font-mono font-light text-temporal-muted/30">/</span>
+    const items = [
+        { text: "Systems Dreaming in Code", color: "text-temporal-text" },
+        { text: "Algorithmic Synergies", color: "text-temporal-accent" },
+        { text: "Collaborative Growth", color: "text-temporal-text" }
+    ];
+
+    const Content = () => (
+        <div className="flex items-center">
+            {items.map((item, i) => (
+                <React.Fragment key={i}>
+                    <span className={`text-4xl md:text-5xl font-mono font-black mx-12 uppercase whitespace-nowrap tracking-tighter ${item.color}`}>
+                        {item.text}
+                    </span>
+                    <span className="text-4xl md:text-5xl font-mono font-light text-temporal-muted/30">/</span>
+                </React.Fragment>
+            ))}
         </div>
     );
 
     return (
         <div className="relative flex overflow-x-hidden border-y border-temporal-border py-8 mb-16 select-none pointer-events-none">
-            <div className="flex whitespace-nowrap animate-marquee">
-                {marqueeContent}
-                {marqueeContent}
-            </div>
-             <div className="flex whitespace-nowrap animate-marquee absolute top-8 left-0" aria-hidden="true">
-                {marqueeContent}
-                {marqueeContent}
+            <div className="flex whitespace-nowrap animate-marquee translate-z-0">
+                <Content />
+                <Content />
+                <Content />
+                <Content />
             </div>
         </div>
     );

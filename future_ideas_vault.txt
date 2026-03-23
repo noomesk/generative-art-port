@@ -1,0 +1,13 @@
+Vault of future project concepts (temporarily swapped out for the main portfolio):
+
+1. Generative Topographies
+Interactive 3D landscapes generated through simplex noise and mathematical functions, reacting to audio input and user interactions.
+Tags: Three.js, React, Audio Processing
+
+2. Algorithmic Typography
+An exploration of letterforms procedurally generated using SDFs (Signed Distance Fields). Letters morph and respond to cursor proximity.
+Tags: Canvas API, Mathematics, Typography
+
+3. Crypto-Native Research Dashboard
+A data-heavy interface for visualizing transaction flows. Emphasizes clean, dark-mode data visualization and high information density.
+Tags: Next.js, Tailwind, D3.js

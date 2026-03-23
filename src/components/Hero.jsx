@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import PerlinWarp from './PerlinWarp';
+import PerlinWarpGL from './PerlinWarpGL';
 
 const Hero = () => {
   return (
@@ -40,7 +40,7 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="w-full md:w-1/2 flex flex-col justify-center items-center z-20 -mt-8 md:-mt-24"
         >
-          <PerlinWarp imgSrc="/p3.PNG" />
+          <PerlinWarpGL imgSrc="/p3.PNG" />
           
           <div className="mt-8 md:mt-24 text-[10px] md:text-xs uppercase tracking-[0.2em] text-temporal-muted/50 font-mono text-center max-w-[300px] md:max-w-md pointer-events-none">
             Eulophia alta (Orchidaceae) seed micrograph<br/>

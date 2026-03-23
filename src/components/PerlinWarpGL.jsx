@@ -59,8 +59,12 @@ const FRAG_SRC = `
   }
 
   void main() {
-    vec2 p  = v_uv * 3.5;          // spatial scale — high freq warp (fine texture detail)
-    vec2 p2 = v_uv * 1.2;          // spatial scale — low freq warp (large breathing undulations)
+    // Increased safe zone to 16% to fully accommodate the high amplitudes of the "breathing" effect
+    float margin = 0.16;
+    vec2 safeUV = v_uv * (1.0 - 2.0 * margin) + margin;
+
+    vec2 p  = safeUV * 3.5;          // spatial scale — high freq warp (fine texture detail)
+    vec2 p2 = safeUV * 1.2;          // spatial scale — low freq warp (large breathing undulations)
     float t  = u_time * 0.30;      // primary speed
     float t2 = u_time * 0.10;      // secondary breathing: much slower = more organic
 
@@ -69,17 +73,16 @@ const FRAG_SRC = `
     float dy1 = fbm(p  + vec2(5.1, 5.1) + t);
 
     // ── Secondary BIG breathing warp (organ/lung contortion)
-    //    Low freq, very slow, very high amplitude → that "alive" feeling
     float dx2 = fbm(p2 + vec2(10.0,  0.0) + t2) * 1.4;
     float dy2 = fbm(p2 + vec2( 0.0, 10.0) + t2) * 1.4;
 
     // ── Tertiary ultra-slow pulse (heartbeat-like global swell)
     float pulse = sin(u_time * 0.18) * 0.012;
 
-    float ampFine    = 0.040;    // fine ripple amplitude
-    float ampBreath  = 0.095;   // breathing contortion amplitude
+    float ampFine    = 0.040;
+    float ampBreath  = 0.095;
 
-    vec2 warpedUV = v_uv
+    vec2 warpedUV = safeUV
       + vec2(dx1, dy1) * ampFine
       + vec2(dx2, dy2) * ampBreath
       + pulse;

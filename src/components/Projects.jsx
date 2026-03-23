@@ -55,7 +55,8 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-temporal-bg p-8 md:p-12 hover:bg-temporal-border/20 transition-colors group cursor-pointer flex flex-col h-full"
+              whileHover={{ scale: 1.01, y: -5 }}
+              className="bg-temporal-bg p-8 md:p-12 border border-transparent hover:border-temporal-accent/50 hover:shadow-[0_0_30px_rgba(51,255,153,0.1)] transition-all group cursor-pointer flex flex-col h-full relative z-10"
             >
               <div className="flex justify-between items-start mb-6">
                 <h4 className="text-2xl text-temporal-text font-medium group-hover:text-temporal-accent transition-colors">

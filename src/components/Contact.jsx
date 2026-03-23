@@ -141,11 +141,14 @@ export function ContactSection() {
     >
       <MarqueeText />
       
-      <div className="max-w-xl mx-auto relative">
-        <div className="absolute -inset-1 bg-gradient-to-r from-temporal-accent/20 to-transparent blur-xl opacity-30 pointer-events-none" />
-        
-        <Card className="relative z-10">
-          <CardHeader>
+      <div className="max-w-xl mx-auto relative group">
+        <motion.div 
+          whileHover={{ scale: 1.02, y: -5 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          className="relative z-10"
+        >
+          <Card className="transition-all duration-300 group-hover:shadow-[0_0_50px_rgba(51,255,153,0.15)] group-hover:border-temporal-accent/50">
+            <CardHeader>
             <CardTitle className="uppercase tracking-tighter">Inquiry Terminal</CardTitle>
             <CardDescription>
               Complete the fields below to send a secure transmission.
@@ -206,9 +209,10 @@ export function ContactSection() {
             </form>
           </CardContent>
         </Card>
-      </div>
-    </Section>
-  );
+      </motion.div>
+    </div>
+  </Section>
+);
 }
 
 export default ContactSection;

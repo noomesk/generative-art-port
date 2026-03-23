@@ -1,16 +1,33 @@
-# React + Vite
+# Angie Plazas — Generative Art Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Personal & Private Project** — All rights reserved.
 
-Currently, two official plugins are available:
+This is the source code for my personal creative portfolio. It is not open source and is not licensed for reuse, redistribution, or modification by third parties.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## About
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+A personal portfolio built at the intersection of **generative art**, **creative coding**, and modern web engineering. The site explores digital aesthetics through mathematics, algorithms, and GPU-accelerated graphics.
 
-## Expanding the ESLint configuration
+**Tech stack:** React · Vite · Tailwind CSS · WebGL / GLSL · Framer Motion
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Generative Art & Imagery
+
+All visual assets, generative art pieces, and scientific imagery displayed on this site were **created or curated by Angie Plazas**. The animated piece in the hero section features an original micrograph of *Eulophia alta* (Orchidaceae), a tropical orchid seed, processed and animated via a custom GLSL fBm warp shader.
+
+Unauthorized use of any imagery or creative assets is strictly prohibited.
+
+---
+
+## License
+
+**© Angie Plazas. All rights reserved.**
+
+This codebase is private. No part of this project may be copied, reproduced, distributed, or used in derivative works without explicit written permission from the author.
+
+---
+
+*This README will be updated as the project evolves.*

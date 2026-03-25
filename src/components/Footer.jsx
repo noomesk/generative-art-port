@@ -15,7 +15,7 @@ const Footer = () => {
           <a href="https://www.linkedin.com/in/angie-paola-plazas-a008202a0/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-temporal-text transition-colors">
             <Linkedin size={20} />
           </a>
-          <a href="mailto:aplazasn@unal.edu.co" aria-label="Email" className="hover:text-temporal-text transition-colors">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aplazasn@unal.edu.co" target="_blank" rel="noopener noreferrer" aria-label="Email" className="hover:text-temporal-text transition-colors">
             <Mail size={20} />
           </a>
         </div>

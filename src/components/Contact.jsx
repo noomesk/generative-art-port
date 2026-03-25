@@ -83,9 +83,10 @@ const Button = ({ children, onClick, type = "button", disabled, className = "" }
 
 const MarqueeText = () => {
     const items = [
-        { text: "Systems Dreaming in Code", color: "text-temporal-text" },
-        { text: "Algorithmic Synergies", color: "text-temporal-accent" },
-        { text: "Collaborative Growth", color: "text-temporal-text" }
+        { text: "SYSTEMS DREAMING IN CODE", color: "text-temporal-text" },
+        { text: "DO ANDROIDS DREAM OF ELECTRIC SHEEP?", color: "text-temporal-accent" },
+        { text: "ALGORITHMIC SERENDIPITY", color: "text-temporal-text" },
+        { text: "COMPLEXITY THAT BREATHES", color: "text-temporal-accent" }
     ];
 
     const Content = () => (
@@ -109,7 +110,7 @@ const MarqueeText = () => {
                 initial={{ x: 0 }}
                 animate={{ x: "-50%" }}
                 transition={{
-                    duration: 35, // Slightly slower for more "natural" feel
+                    duration: 40, // Adjusted for full text cycle
                     ease: "linear",
                     repeat: Infinity,
                     repeatType: "loop"
@@ -151,8 +152,8 @@ export function ContactSection() {
   return (
     <Section
       id="contact"
-      title="Initiate Connection"
-      description="Whether you have a latent project in mind or wish to discuss the intersection of art and code, your message starts here."
+      title="Start a connection"
+      description="Whether you have a latent project in mind, want to discuss the intersection of art and code, or simply feel like exploring complex and stimulating ideas — your message starts here."
     >
       <MarqueeText />
       
@@ -162,17 +163,17 @@ export function ContactSection() {
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
           className="relative z-10"
         >
-          <Card className="transition-all duration-300 group-hover:shadow-[0_0_50px_rgba(51,255,153,0.15)] group-hover:border-temporal-accent/50">
+          <Card className="transition-all duration-300 group-hover:shadow-[0_0_50_px_rgba(51,255,153,0.15)] group-hover:border-temporal-accent/50">
             <CardHeader>
-            <CardTitle className="uppercase tracking-tighter">Inquiry Terminal</CardTitle>
+            <CardTitle className="uppercase tracking-tighter">Query Terminal</CardTitle>
             <CardDescription>
-              Complete the fields below to send a secure transmission.
+              Fill in the fields below to send a secure transmission.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} noValidate className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name">Full name</Label>
                 <Input id="name" name="name" placeholder="Agent Name" required />
                 <ValidationError 
                   prefix="Name" 
@@ -183,7 +184,7 @@ export function ContactSection() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email">Email address</Label>
                 <Input id="email" name="email" type="email" placeholder="contact@domain.com" required />
                 <ValidationError 
                   prefix="Email" 
@@ -216,7 +217,7 @@ export function ContactSection() {
                   </>
                 ) : (
                   <>
-                    Send Signal
+                    Send signal
                     <Send className="ml-2 h-4 w-4" />
                   </>
                 )}

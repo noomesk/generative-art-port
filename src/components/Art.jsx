@@ -28,7 +28,7 @@ const ArtPiece = memo(({ id, title, webmPath, mp4Path, description, subtitle }) 
         {/* Floating Bio-Art Badge */}
         <div className="absolute top-4 right-4 z-20">
           <span className="bg-temporal-bg/80 backdrop-blur-sm border border-temporal-border px-2 py-1 text-[8px] font-mono text-temporal-accent uppercase tracking-widest">
-            Bio Arte Informático
+            Bio-Inspired Generative Art
           </span>
         </div>
       </div>
@@ -57,22 +57,22 @@ const ArtSection = () => {
     <Section 
       id="art" 
       title="Generative Art" 
-      description="Exploring the boundaries of digital growth, biological patterns, and algorithmic serendipity."
+      description="Exploring the edges of digital growth, biological patterns, and algorithmic serendipity."
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <ArtPiece 
           id="Piece 001"
           title="Fractal Growth"
-          subtitle="Seeds of Cleome gynandra (Capparaceae) mixed with Delphinium peregrinum (Ranunculaceae)."
-          description="Algorithmic exploration of plant morphology and generative seed distribution patterns."
+          subtitle="Seeds of Cleome gynandra (Capparaceae) mixed with Delphinium peregrinum (Ranunculaceae). Algorithmic exploration of plant morphology and generative seed distribution patterns."
+          description="[ Piece 001 ] — Biologically inspired generative art"
           webmPath="/seeds_fractal.webm"
           mp4Path="/seeds_fractal.mp4"
         />
         <ArtPiece 
           id="Piece 002"
-          title="Neural Flux"
-          subtitle="Pterois volitans (Lionfish) in motion."
-          description="Simulated movement using Mandelbrot sets to calculate rhythmic fading and emergence cycles."
+          title="Neural Flow"
+          subtitle="Pterois volitans (lionfish) in motion. Movement simulated using Mandelbrot sets to calculate rhythmic cycles of fading and emergence. Hardware-accelerated decoder · Bio-Art Sync v5.0"
+          description="[ Piece 002 ] — Biologically inspired generative art"
           webmPath="/fish_bw.webm"
           mp4Path="/fish_bw.mp4"
         />

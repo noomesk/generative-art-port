@@ -5,26 +5,38 @@ import { ArrowUpRight } from 'lucide-react';
 const projects = [
   {
     title: 'Cellular Automata Engine',
-    description: 'A high-performance WebGL cellular automata simulator capable of rendering millions of cells in real-time. Explores emergent behaviors through customized rule sets.',
+    description: 'A high-performance WebGL cellular automata simulator capable of rendering millions of cells in real time. Explore emergent behaviors through custom rule sets.',
     tags: ['WebGL', 'GLSL', 'TypeScript'],
     link: '#'
   },
   {
-    title: 'Bioacoustics Soundscapes',
-    description: 'A sound data processing tool visualizing spectrograms and acoustic landscapes to analyze biodiversity via sound.',
+    title: 'Bioacoustic Soundscapes',
+    description: 'A sound data processing tool that visualizes spectrograms and acoustic landscapes to analyze biodiversity through sound.',
     tags: ['React', 'Python', 'Audio Processing'],
     link: '#'
   },
   {
     title: 'Genome Cleaner',
-    description: 'A high-efficiency processor for cleaning and formatting FASTA and FASTQ biological sequence strings, streamlining bioinformatics workflows.',
+    description: 'A high-efficiency processor for cleaning and formatting biological sequence strings in FASTA and FASTQ formats, streamlining bioinformatic workflows.',
     tags: ['Node.js', 'CLI', 'Bioinformatics'],
     link: '#'
   },
   {
     title: 'AI Code Assistant',
-    description: 'A custom, intelligent development tool designed to automate repetitive coding tasks and provide contextual, codebase-aware suggestions.',
-    tags: ['LLMs', 'OpenAI API', 'TypeScript'],
+    description: 'A custom, intelligent development tool designed to automate repetitive coding tasks and provide contextual suggestions that are aware of the entire codebase.',
+    tags: ['LLM', 'OpenAI API', 'TypeScript'],
+    link: '#'
+  },
+  {
+    title: 'Interactive Fashion Gallery',
+    description: 'A visual e-commerce platform where users explore styles, browse collections, and shop. Designed around visual experience and fluid navigation.',
+    tags: ['React', 'Node.js', 'REST API', 'TypeScript'],
+    link: '#'
+  },
+  {
+    title: 'Anxiety Companion',
+    description: 'An emotional support app designed to be used between therapy sessions. It combines an LLM-powered empathetic chatbot, automatic crisis detection, guided therapeutic exercises, and contextual user memory — all built on a FastAPI + React architecture ready to scale.',
+    tags: ['FastAPI', 'React', 'SQLite', 'Groq API', 'JWT', 'TypeScript'],
     link: '#'
   }
 ];
@@ -36,7 +48,7 @@ const Projects = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
           <div>
             <h2 className="text-sm font-mono text-temporal-accent uppercase tracking-widest mb-4">
-              02 // Selected Works
+              02. Selected works
             </h2>
             <h3 className="text-4xl text-temporal-text font-medium tracking-tight">
               Projects & Interfaces

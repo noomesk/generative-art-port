@@ -13,14 +13,14 @@ const Hero = () => {
           className="w-full md:w-1/2 z-20"
         >
           <div className="font-mono text-temporal-accent mb-6 tracking-wide text-sm md:text-base uppercase">
-            Creative Developer & Artist
+            AP — Creative developer & artist
           </div>
           <h1 className="text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-mono tracking-tighter text-temporal-text mb-8 leading-[1.1]">
-            I write the rules.<br />
+            I define the rules.<br />
             <span className="text-temporal-muted">The systems dream.</span>
           </h1>
           <p className="text-lg md:text-xl text-temporal-muted max-w-xl leading-relaxed mb-12">
-            Hey! I'm <strong>Angie Plazas</strong>, a developer operating at the intriguing intersection of generative art, creative coding, and modern web engineering. Exploring digital aesthetics through mathematics.
+            Hey. I'm <strong>Angie Plazas</strong>, a transdisciplinary dev operating at the intersection of generative art, creative coding, mathematics, and modern web engineering. I explore digital aesthetics the way one studies a living organism — with curiosity, with code, and with a bit of chaos.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">

@@ -81,7 +81,7 @@ const HollowMetaballs = () => {
   }, []);
 
   return (
-    <div className="w-full h-full relative overflow-hidden bg-[#E8E4D9] rounded-sm">
+    <div className="w-full h-full relative overflow-hidden bg-temporal-bg rounded-sm border border-temporal-border">
       <div 
         ref={containerRef} 
         className="w-full h-full absolute inset-0"
@@ -99,8 +99,8 @@ const HollowMetaballs = () => {
               <feFuncA type="discrete" tableValues="0 1 0 1 0 1 0 1 0 1 0 1 0 1 0" />
             </feComponentTransfer>
 
-            <feFlood floodColor="#1A1A1A" result="blackFill" />
-            <feComposite in="blackFill" in2="rings" operator="in" />
+            <feFlood floodColor="#EAEAEA" result="whiteFill" />
+            <feComposite in="whiteFill" in2="rings" operator="in" />
           </filter>
         </defs>
       </svg>

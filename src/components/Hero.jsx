@@ -20,7 +20,7 @@ const Hero = () => {
             <span className="text-temporal-muted">The systems dream.</span>
           </h1>
           <p className="text-lg md:text-xl text-temporal-muted max-w-xl leading-relaxed mb-12">
-            Hey. I'm <strong>Angie Plazas</strong>, a transdisciplinary dev operating at the intersection of generative art, creative coding, mathematics, and modern web engineering. I explore digital aesthetics the way one studies a living organism — with curiosity, with code, and with a bit of chaos.
+            Hey. I'm <strong>Angie Plazas</strong>, a transdisciplinary Fullstack Developer operating at the intersection of generative art, creative coding, mathematics, and modern web engineering. I explore digital aesthetics the way one studies a living organism — with curiosity, with code, and with a bit of chaos.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">

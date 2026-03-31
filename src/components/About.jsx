@@ -8,8 +8,10 @@ const About = () => {
       <div className="container mx-auto px-6 sm:border-x border-temporal-border h-full relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           
-          <div className="md:col-span-4 h-[300px] md:h-auto min-h-[400px] relative">
-            <HollowMetaballs />
+          <div className="md:col-span-4 relative min-h-[300px] flex">
+            <div className="w-full flex-grow relative">
+              <HollowMetaballs />
+            </div>
           </div>
           
           <motion.div 

@@ -22,6 +22,15 @@ const projects = [
     focusCategories: ['cr', 'ai']
   },
   {
+    title: 'AI Code Assistant',
+    description: 'An AI-powered development tool that analyzes React components and provides real-time refactoring suggestions to align code with design systems like Tailwind CSS and Material UI, set within an immersive environment featuring an interactive 3D point-cloud wasp.',
+    tags: ['React', 'Next.js', 'Groq API', 'Llama 3.1'],
+    link: 'https://asesor-de-codigo.vercel.app/ai-code-advisor.html',
+    github: 'https://github.com/noomesk/asesor-de-codigo',
+    status: 'live',
+    focusCategories: ['ai', 'fs']
+  },
+  {
     title: 'Genome Cleaner',
     description: 'A high-efficiency processor for cleaning and formatting biological sequence strings in FASTA and FASTQ formats, streamlining bioinformatic workflows.',
     tags: ['Node.js', 'CLI', 'Bioinformatics'],
@@ -29,15 +38,6 @@ const projects = [
     github: 'https://github.com/noomesk/genome-cleaner',
     status: 'live',
     focusCategories: ['fs']
-  },
-  {
-    title: 'AI Code Assistant',
-    description: 'A custom, intelligent development tool designed to automate repetitive coding tasks and provide contextual suggestions that are aware of the entire codebase.',
-    tags: ['LLM', 'OpenAI API', 'TypeScript'],
-    link: '#',
-    github: '#',
-    status: 'in-progress',
-    focusCategories: ['ai', 'fs']
   },
   {
     title: 'Interactive Fashion Gallery',

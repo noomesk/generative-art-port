@@ -115,22 +115,22 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="w-full md:w-1/2 flex flex-col justify-center items-center z-10 -mt-8 md:-mt-24 md:pl-6 md:pr-6 lg:pr-12 relative"
         >
-          {/* PREGUNTA CON EFECTO HUMO - ARRIBA */}
+          {/* PREGUNTA CON EFECTO HUMO - Al nivel de "yo defino" */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.6 }}
-            className="absolute -top-20 md:-top-28 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
+            className="absolute top-32 md:top-24 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
           >
             <SmokePhrase text="¿Pueden soñar los sistemas?" />
           </motion.div>
 
-          {/* RESPUESTA CON EFECTO WAVE - ARRIBA PEQUEÑO (más traslúcido) */}
+          {/* RESPUESTA CON EFECTO WAVE - Un poco más arriba */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.8 }}
-            className="absolute -top-8 md:-top-12 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-29 px-4"
+            className="absolute top-48 md:top-40 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-29 px-4"
           >
             <div className="text-center max-w-md">
               <WavePhrase text="Los humanos somos sistemas. Biológicos, sí. Pero al fin: sistemas!" />

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import HollowMetaballs from './HollowMetaballs';
 import { useTranslation } from '../i18n/LanguageContext';
 
 const About = () => {
   const { t } = useTranslation();
-  const [expandedCreative, setExpandedCreative] = useState(false);
   
   return (
     <section id="about" className="py-32 border-b border-temporal-border bg-temporal-bg relative overflow-hidden">
@@ -35,34 +34,7 @@ const About = () => {
             <div className="space-y-6 text-temporal-muted text-lg leading-relaxed max-w-3xl">
               <p>{t('about.p1')}</p>
               <p>{t('about.p2')}</p>
-              
-              {/* Living code system description - similar to seed description */}
-              <div className="mt-8 pt-6">
-                <button
-                  onClick={() => setExpandedCreative(!expandedCreative)}
-                  className="group cursor-pointer inline-flex items-baseline gap-1 mb-4 hover:text-temporal-text transition-colors"
-                >
-                  <span className="text-xs font-mono text-temporal-muted/50 uppercase tracking-widest group-hover:text-temporal-muted transition-colors">
-                    {expandedCreative ? '[−]' : '[+]'} {t('about.creativeLens')}
-                  </span>
-                </button>
-                
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ 
-                    opacity: expandedCreative ? 1 : 0,
-                    height: expandedCreative ? 'auto' : 0,
-                    marginTop: expandedCreative ? 12 : 0
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="overflow-hidden"
-                >
-                  <div className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-temporal-muted/40 font-mono text-left max-w-2xl pointer-events-none">
-                    {t('about.p3')}<br />
-                    <span className="opacity-60 text-[9px] md:text-[10px]">{t('about.p3Meta')}</span>
-                  </div>
-                </motion.div>
-              </div>
+              <p>{t('about.p3')}</p>
             </div>
             
             <div className="mt-16 pt-16 border-t border-temporal-border">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PerlinWarpGL from './PerlinWarpGL';
 import { useTranslation } from '../i18n/LanguageContext';
@@ -21,9 +21,9 @@ const DreamPhrase = ({ text }) => {
 
   return (
     <div className="relative flex items-center justify-center min-h-12">
-      {/* Smoke appearance phase - main text */}
+      {/* Smoke appearance phase with water wave - main text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-        <div className="font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/25 animate-smoke-appear whitespace-nowrap">
+        <div className="font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/25 animate-water-wave whitespace-nowrap">
           {text}
         </div>
       </div>
@@ -53,6 +53,8 @@ const DreamPhrase = ({ text }) => {
 
 const Hero = () => {
   const { t } = useTranslation();
+  const [expandedCreative, setExpandedCreative] = useState(false);
+
   return (
     <section id="hero" className="relative flex flex-col justify-center min-h-[85vh] overflow-hidden border-b border-temporal-border pt-16">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 sm:border-x border-temporal-border flex-grow flex flex-col md:flex-row items-center relative z-10 gap-10 md:gap-16">
@@ -74,6 +76,34 @@ const Hero = () => {
           <p className="text-lg md:text-xl text-temporal-muted max-w-xl leading-relaxed mb-12">
             {t('hero.desc')}
           </p>
+
+          {/* Expandable creative process section - moved to hero */}
+          <div className="mb-12 pt-8 border-t border-temporal-border/30">
+            <button
+              onClick={() => setExpandedCreative(!expandedCreative)}
+              className="group cursor-pointer inline-flex items-baseline gap-1 mb-4 hover:text-temporal-text transition-colors"
+            >
+              <span className="text-xs font-mono text-temporal-muted/50 uppercase tracking-widest group-hover:text-temporal-muted transition-colors">
+                {expandedCreative ? '[−]' : '[+]'} {t('about.creativeLens')}
+              </span>
+            </button>
+            
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ 
+                opacity: expandedCreative ? 1 : 0,
+                height: expandedCreative ? 'auto' : 0,
+                marginTop: expandedCreative ? 12 : 0
+              }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <div className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-temporal-muted/40 font-mono text-left max-w-2xl pointer-events-none">
+                {t('about.p3')}<br />
+                <span className="opacity-60 text-[9px] md:text-[10px]">{t('about.p3Meta')}</span>
+              </div>
+            </motion.div>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <a href="#projects" className="px-8 py-4 bg-temporal-text text-temporal-bg font-mono font-bold text-sm hover:bg-temporal-accent transition-colors text-center inline-block">

@@ -113,6 +113,58 @@
   animation: smoke-appear 8s ease-in-out infinite;
 }
 
+@keyframes water-wave {
+  0%, 100% {
+    transform: translateY(0px) translateX(-80px) scaleX(0.9);
+  }
+  25% {
+    transform: translateY(-2px) translateX(-60px) scaleX(0.95);
+  }
+  50% {
+    transform: translateY(0px) translateX(0px) scaleX(1);
+  }
+  75% {
+    transform: translateY(2px) translateX(60px) scaleX(0.95);
+  }
+}
+
+@keyframes water-wave-blur {
+  0%, 100% {
+    filter: blur(8px);
+  }
+  15% {
+    filter: blur(6px);
+  }
+  50% {
+    filter: blur(1px);
+  }
+  85% {
+    filter: blur(1px);
+  }
+}
+
+@keyframes water-wave-opacity {
+  0%, 100% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.8;
+  }
+}
+
+.animate-water-wave {
+  animation: 
+    water-wave 8s ease-in-out infinite,
+    water-wave-blur 8s ease-in-out infinite,
+    water-wave-opacity 8s ease-in-out infinite;
+}
+
 @layer components {
   .art-piece-container {
     @apply aspect-square bg-temporal-bg border border-temporal-border relative overflow-hidden transition-all duration-300 cursor-pointer;

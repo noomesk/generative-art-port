@@ -23,22 +23,25 @@ const WavePhrase = ({ text }) => {
   
   return (
     <div className="relative flex items-center justify-center min-h-max">
-      {/* WAVE EFFECT - Letras ondulantes (se curvan) */}
+      {/* WAVE EFFECT - Frase completa con opacidad tenue que se intensifica */}
       <div className="absolute inset-0 flex items-center justify-center whitespace-pre-wrap pointer-events-none">
-        {letters.map((letter, idx) => (
-          <span
-            key={`wave-${idx}`}
-            className="inline-block font-mono text-[10px] md:text-[12px] uppercase tracking-[0.08em] text-temporal-muted/40 animate-letter-wave"
-            style={{
-              animationDelay: `${idx * 0.08}s`,
-              animationDuration: '8s',
-              animationIterationCount: 'infinite',
-              perspective: '1000px'
-            }}
-          >
-            {letter === ' ' ? '\u00A0' : letter}
-          </span>
-        ))}
+        {/* Contenedor con entrada tenue de opacidad */}
+        <div className="opacity-50 hover:opacity-100 transition-opacity duration-1000">
+          {letters.map((letter, idx) => (
+            <span
+              key={`wave-${idx}`}
+              className="inline-block font-mono text-[10px] md:text-[12px] uppercase tracking-[0.08em] text-temporal-muted/40 animate-letter-wave"
+              style={{
+                animationDelay: `${idx * 0.08}s`,
+                animationDuration: '12s',
+                animationIterationCount: 'infinite',
+                perspective: '1000px'
+              }}
+            >
+              {letter === ' ' ? '\u00A0' : letter}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -115,12 +118,12 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="w-full md:w-1/2 flex flex-col justify-center items-center z-10 -mt-8 md:-mt-24 md:pl-6 md:pr-6 lg:pr-12 relative"
         >
-          {/* PREGUNTA CON EFECTO HUMO - Al nivel de "yo defino" ARRIBA */}
+          {/* PREGUNTA CON EFECTO HUMO - Al nivel de "yo defino" ARRIBA - 1cm MÁS ARRIBA */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.6 }}
-            className="absolute -top-32 md:-top-40 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
+            className="absolute -top-36 md:-top-44 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
           >
             <SmokePhrase text="¿Pueden soñar los sistemas?" />
           </motion.div>

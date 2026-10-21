@@ -3,35 +3,8 @@ import { motion } from 'framer-motion';
 import PerlinWarpGL from './PerlinWarpGL';
 import { useTranslation } from '../i18n/LanguageContext';
 
-// Componente para el efecto de ondas (WAVE)
-const WavePhrase = ({ text }) => {
-  const letters = text.split('');
-  
-  return (
-    <div className="relative flex items-center justify-center min-h-12">
-      {/* Letter wave motion - letters curve/wave */}
-      <div className="absolute inset-0 flex items-center justify-center whitespace-nowrap pointer-events-none">
-        {letters.map((letter, idx) => (
-          <span
-            key={`wave-${idx}`}
-            className="inline-block font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30 animate-letter-wave"
-            style={{
-              animationDelay: `${idx * 0.08}s`,
-              animationDuration: '8s',
-              animationIterationCount: 'infinite',
-              perspective: '1000px'
-            }}
-          >
-            {letter === ' ' ? '\u00A0' : letter}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// Componente para el efecto de caída (FALLING)
-const FallingPhrase = ({ text }) => {
+// Componente único que combina todos los efectos
+const DreamPhrase = ({ text }) => {
   const letters = text.split('');
   
   // Randomize fall characteristics for each letter
@@ -49,7 +22,32 @@ const FallingPhrase = ({ text }) => {
 
   return (
     <div className="relative flex items-center justify-center min-h-12">
-      {/* Falling letters phase */}
+      {/* SMOKE EFFECT - Aparece difuminado, se aclara, desaparece (fondo) */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+        <div className="font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30 animate-smoke-appear-wave whitespace-nowrap">
+          {text}
+        </div>
+      </div>
+
+      {/* WAVE EFFECT - Letras ondulantes (se curvan) */}
+      <div className="absolute inset-0 flex items-center justify-center whitespace-nowrap pointer-events-none">
+        {letters.map((letter, idx) => (
+          <span
+            key={`wave-${idx}`}
+            className="inline-block font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30 animate-letter-wave"
+            style={{
+              animationDelay: `${idx * 0.08}s`,
+              animationDuration: '8s',
+              animationIterationCount: 'infinite',
+              perspective: '1000px'
+            }}
+          >
+            {letter === ' ' ? '\u00A0' : letter}
+          </span>
+        ))}
+      </div>
+
+      {/* FALLING EFFECT - Letras caen en desorden (con delays aleatorios) */}
       <div className="absolute inset-0 flex items-center justify-center whitespace-nowrap pointer-events-none">
         {letters.map((letter, idx) => (
           <span
@@ -143,30 +141,14 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="w-full md:w-1/2 flex flex-col justify-center items-center z-10 -mt-8 md:-mt-24 md:pl-6 md:pr-6 lg:pr-12 relative"
         >
-          {/* WAVE EFFECT - Separated UP */}
+          {/* COMBINED DREAM PHRASE - Todos los efectos juntos */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.6 }}
-            className="absolute -top-28 md:-top-40 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
+            className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
           >
-            <div className="text-center">
-              <p className="text-xs font-mono text-temporal-muted/50 mb-2">[WAVE EFFECT]</p>
-              <WavePhrase text="¿Pueden soñar los sistemas?" />
-            </div>
-          </motion.div>
-
-          {/* FALLING EFFECT - Separated DOWN */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.6, delay: 0.6 }}
-            className="absolute -top-4 md:-top-8 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-29"
-          >
-            <div className="text-center">
-              <p className="text-xs font-mono text-temporal-muted/50 mb-2">[FALLING EFFECT]</p>
-              <FallingPhrase text="¿Pueden soñar los sistemas?" />
-            </div>
+            <DreamPhrase text="¿Pueden soñar los sistemas?" />
           </motion.div>
 
           <PerlinWarpGL imgSrc="/p3.PNG" />

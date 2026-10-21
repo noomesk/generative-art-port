@@ -18,7 +18,7 @@ const SmokePhrase = ({ text }) => {
 };
 
 // Componente para el efecto WAVE (ondulante)
-const WavePhrase = ({ text }) => {
+const WavePhrase = ({ text, smaller = false }) => {
   const letters = text.split('');
   
   return (
@@ -30,12 +30,13 @@ const WavePhrase = ({ text }) => {
           {letters.map((letter, idx) => (
             <span
               key={`wave-${idx}`}
-              className="inline-block font-mono text-[10px] md:text-[12px] uppercase tracking-[0.08em] text-temporal-muted/40 animate-letter-wave"
+              className={`inline-block font-mono ${smaller ? 'text-[7px] md:text-[8px]' : 'text-[10px] md:text-[12px]'} uppercase tracking-[0.08em] text-temporal-muted/40 animate-letter-wave`}
               style={{
                 animationDelay: `${idx * 0.08}s`,
                 animationDuration: '12s',
                 animationIterationCount: 'infinite',
-                perspective: '1000px'
+                perspective: '1000px',
+                transform: 'translateX(0)',
               }}
             >
               {letter === ' ' ? '\u00A0' : letter}
@@ -133,11 +134,9 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.8 }}
-            className="absolute -top-16 md:-top-24 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-29 px-4"
+            className="absolute -top-16 md:-top-24 right-2 md:right-8 flex justify-end w-auto z-29 pointer-events-none select-none"
           >
-            <div className="text-center max-w-md">
-              <WavePhrase text="Los humanos somos sistemas. Biológicos, sí. Pero al fin: sistemas!" />
-            </div>
+            <WavePhrase text="Los humanos también somos sistemas" smaller={true} />
           </motion.div> */}
 
           {/* RESPUESTA CON EFECTO WAVE - Un poco más arriba */}

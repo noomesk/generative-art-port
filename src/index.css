@@ -125,30 +125,30 @@
 
 @keyframes letter-wave {
   0% {
-    transform: translateY(0) translateX(-80px) rotateX(0deg);
+    transform: translateY(0) rotateX(0deg);
   }
   15% {
-    transform: translateY(-2px) translateX(-60px) rotateX(5deg);
+    transform: translateY(-2px) rotateX(5deg);
   }
   30% {
-    transform: translateY(-4px) translateX(-30px) rotateX(8deg);
+    transform: translateY(-4px) rotateX(8deg);
   }
   50% {
-    transform: translateY(0) translateX(0) rotateX(0deg);
+    transform: translateY(0) rotateX(0deg);
   }
   70% {
-    transform: translateY(4px) translateX(30px) rotateX(-8deg);
+    transform: translateY(4px) rotateX(-8deg);
   }
   85% {
-    transform: translateY(2px) translateX(60px) rotateX(-5deg);
+    transform: translateY(2px) rotateX(-5deg);
   }
   100% {
-    transform: translateY(0) translateX(80px) rotateX(0deg);
+    transform: translateY(0) rotateX(0deg);
   }
 }
 
 .animate-letter-wave {
-  animation: letter-wave 8s ease-in-out infinite;
+  animation: letter-wave 12s ease-in-out infinite;
 }
 
 @layer components {

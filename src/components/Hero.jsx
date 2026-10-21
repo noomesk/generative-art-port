@@ -21,13 +21,6 @@ const DreamPhrase = ({ text }) => {
 
   return (
     <div className="relative flex items-center justify-center min-h-12">
-      {/* Smoke appearance phase with wavy motion - main text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-        <div className="font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30 animate-smoke-appear-wave whitespace-nowrap">
-          {text}
-        </div>
-      </div>
-
       {/* Letter wave motion - letters curve/wave */}
       <div className="absolute inset-0 flex items-center justify-center whitespace-nowrap pointer-events-none">
         {letters.map((letter, idx) => (

@@ -3,22 +3,10 @@ import { motion } from 'framer-motion';
 import PerlinWarpGL from './PerlinWarpGL';
 import { useTranslation } from '../i18n/LanguageContext';
 
-const DreamPhrase = ({ text }) => {
+// Componente para el efecto de ondas (WAVE)
+const WavePhrase = ({ text }) => {
   const letters = text.split('');
   
-  // Randomize fall characteristics for each letter
-  const letterProps = letters.map((_, idx) => {
-    const randomFall = Math.random() * 12 - 6; // -6 to 6 for random drift
-    const randomRot = Math.random() * 20 - 10; // -10 to 10 degrees
-    const randomDelay = Math.random() * 0.6; // 0 to 0.6s random delay
-    
-    return {
-      fallX: randomFall,
-      fallRot: randomRot,
-      delay: randomDelay
-    };
-  });
-
   return (
     <div className="relative flex items-center justify-center min-h-12">
       {/* Letter wave motion - letters curve/wave */}
@@ -38,7 +26,29 @@ const DreamPhrase = ({ text }) => {
           </span>
         ))}
       </div>
+    </div>
+  );
+};
 
+// Componente para el efecto de caída (FALLING)
+const FallingPhrase = ({ text }) => {
+  const letters = text.split('');
+  
+  // Randomize fall characteristics for each letter
+  const letterProps = letters.map((_, idx) => {
+    const randomFall = Math.random() * 12 - 6; // -6 to 6 for random drift
+    const randomRot = Math.random() * 20 - 10; // -10 to 10 degrees
+    const randomDelay = Math.random() * 0.6; // 0 to 0.6s random delay
+    
+    return {
+      fallX: randomFall,
+      fallRot: randomRot,
+      delay: randomDelay
+    };
+  });
+
+  return (
+    <div className="relative flex items-center justify-center min-h-12">
       {/* Falling letters phase */}
       <div className="absolute inset-0 flex items-center justify-center whitespace-nowrap pointer-events-none">
         {letters.map((letter, idx) => (
@@ -133,14 +143,32 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="w-full md:w-1/2 flex flex-col justify-center items-center z-10 -mt-8 md:-mt-24 md:pl-6 md:pr-6 lg:pr-12 relative"
         >
+          {/* WAVE EFFECT - Separated UP */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.6 }}
-            className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
+            className="absolute -top-28 md:-top-40 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
           >
-            <DreamPhrase text="¿Pueden soñar los sistemas?" />
+            <div className="text-center">
+              <p className="text-xs font-mono text-temporal-muted/50 mb-2">[WAVE EFFECT]</p>
+              <WavePhrase text="¿Pueden soñar los sistemas?" />
+            </div>
           </motion.div>
+
+          {/* FALLING EFFECT - Separated DOWN */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.6, delay: 0.6 }}
+            className="absolute -top-4 md:-top-8 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-29"
+          >
+            <div className="text-center">
+              <p className="text-xs font-mono text-temporal-muted/50 mb-2">[FALLING EFFECT]</p>
+              <FallingPhrase text="¿Pueden soñar los sistemas?" />
+            </div>
+          </motion.div>
+
           <PerlinWarpGL imgSrc="/p3.PNG" />
 
           <div className="mt-8 md:mt-24 text-[10px] md:text-xs uppercase tracking-[0.2em] text-temporal-muted/50 font-mono text-center max-w-[300px] md:max-w-md pointer-events-none">

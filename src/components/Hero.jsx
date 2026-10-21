@@ -134,7 +134,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.8 }}
-            className="absolute top-8 md:top-12 right-0 md:right-4 flex justify-end w-auto z-29 pointer-events-none select-none"
+            className="absolute top-14 md:top-18 -right-4 md:-right-8 flex justify-end w-auto z-29 pointer-events-none select-none"
           >
             <div className="opacity-40 hover:opacity-100 transition-opacity duration-500">
               <WavePhrase text="Los humanos somos sistemas" smaller={true} />

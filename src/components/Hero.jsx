@@ -120,10 +120,20 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.6 }}
-            className="absolute -top-32 md:-top-40 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
+            className="absolute -top-[40px] md:-top-[56px] right-0 md:right-0 flex justify-end w-full pr-6 md:pr-12 z-30 pointer-events-none select-none"
           >
             <SmokePhrase text="¿Pueden soñar los sistemas?" />
           </motion.div>
+
+          {/* RESPUESTA CON EFECTO WAVE - COMENTADA POR AHORA */}
+          {/* <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.6, delay: 0.8 }}
+            className="absolute -top-[12px] md:-top-[20px] right-0 md:right-0 flex justify-end w-full pr-6 z-29"
+          >
+            <WavePhrase text="Los humanos somos sistemas. Biológicos, sí. Pero al fin: sistemas!" />
+          </motion.div> */}
 
           {/* RESPUESTA CON EFECTO WAVE - Un poco más arriba */}
           <motion.div

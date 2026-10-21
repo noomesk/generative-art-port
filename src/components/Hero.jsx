@@ -21,19 +21,37 @@ const DreamPhrase = ({ text }) => {
 
   return (
     <div className="relative flex items-center justify-center min-h-12">
-      {/* Smoke appearance phase with water wave - main text */}
+      {/* Smoke appearance phase with wavy motion - main text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-        <div className="font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/25 animate-water-wave whitespace-nowrap">
+        <div className="font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30 animate-smoke-appear-wave whitespace-nowrap">
           {text}
         </div>
+      </div>
+
+      {/* Letter wave motion - letters curve/wave */}
+      <div className="absolute inset-0 flex items-center justify-center whitespace-nowrap pointer-events-none">
+        {letters.map((letter, idx) => (
+          <span
+            key={`wave-${idx}`}
+            className="inline-block font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30 animate-letter-wave"
+            style={{
+              animationDelay: `${idx * 0.08}s`,
+              animationDuration: '8s',
+              animationIterationCount: 'infinite',
+              perspective: '1000px'
+            }}
+          >
+            {letter === ' ' ? '\u00A0' : letter}
+          </span>
+        ))}
       </div>
 
       {/* Falling letters phase */}
       <div className="absolute inset-0 flex items-center justify-center whitespace-nowrap pointer-events-none">
         {letters.map((letter, idx) => (
           <span
-            key={idx}
-            className="animate-hacker-fall inline-block font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/25"
+            key={`fall-${idx}`}
+            className="animate-hacker-fall inline-block font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30"
             style={{
               '--fall-x': `${letterProps[idx].fallX}px`,
               '--fall-rot': `${letterProps[idx].fallRot}deg`,
@@ -84,7 +102,7 @@ const Hero = () => {
               className="group cursor-pointer inline-flex items-baseline gap-1 mb-4 hover:text-temporal-text transition-colors"
             >
               <span className="text-xs font-mono text-temporal-muted/50 uppercase tracking-widest group-hover:text-temporal-muted transition-colors">
-                {expandedCreative ? '[−]' : '[+]'} {t('about.creativeLens')}
+                {expandedCreative ? '[−]' : '[+]'} {t('about.creativeLens')}?
               </span>
             </button>
             
@@ -126,7 +144,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.6 }}
-            className="absolute -top-24 md:-top-32 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
+            className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
           >
             <DreamPhrase text="¿Pueden soñar los sistemas?" />
           </motion.div>

@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="font-mono text-xs sm:text-sm">
           &copy; {new Date().getFullYear()} Developed by noomesk. All rights reserved. ©
         </div>
-        <div className="flex space-x-6">
+        <div className="flex items-center space-x-6">
           <a href="https://github.com/noomesk" target="_blank" rel="noopener noreferrer" aria-label="Github" className="hover:text-temporal-text transition-colors">
             <Github size={20} />
           </a>
@@ -17,6 +17,9 @@ const Footer = () => {
           </a>
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aplazasn@unal.edu.co" target="_blank" rel="noopener noreferrer" aria-label="Email" className="hover:text-temporal-text transition-colors">
             <Mail size={20} />
+          </a>
+          <a href="/lab" className="font-mono text-xs hover:text-temporal-accent transition-colors">
+            Lab ↗
           </a>
         </div>
       </div>

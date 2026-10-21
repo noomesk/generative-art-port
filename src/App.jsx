@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import AIEngineering from './components/AIEngineering';
+import PortfolioAgent from './components/PortfolioAgent';
 import Projects from './components/Projects';
 import ArtSection from './components/Art';
 import ContactSection from './components/Contact';
@@ -14,6 +16,8 @@ function App() {
       <main className="flex-grow">
         <Hero />
         <About />
+        <AIEngineering />
+        <PortfolioAgent />
         <Projects />
         <ArtSection />
         <ContactSection />

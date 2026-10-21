@@ -1,67 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-
-const projects = [
-  {
-    title: 'Cellular Automata Engine',
-    description: 'A high-performance WebGL cellular automata simulator capable of rendering millions of cells in real time. Explore emergent behaviors through custom rule sets.',
-    tags: ['WebGL', 'GLSL', 'TypeScript'],
-    link: 'https://cellular-automata-audio.vercel.app/',
-    github: 'https://github.com/noomesk/cellular_automata_engine',
-    status: 'live',
-    focusCategories: ['cr', 'fs']
-  },
-  {
-    title: 'Bioacoustic Soundscapes',
-    description: 'A sound data processing tool that visualizes spectrograms and acoustic landscapes to analyze biodiversity through sound.',
-    tags: ['React', 'Python', 'Audio Processing'],
-    link: '#',
-    github: '#',
-    status: 'in-progress',
-    focusCategories: ['cr', 'ai']
-  },
-  {
-    title: 'AI Code Assistant',
-    description: 'An AI-powered development tool that analyzes React components and provides real-time refactoring suggestions to align code with design systems like Tailwind CSS and Material UI, set within an immersive environment featuring an interactive 3D point-cloud wasp.',
-    tags: ['React', 'Next.js', 'Groq API', 'Llama 3.1'],
-    link: 'https://asesor-de-codigo.vercel.app/ai-code-advisor.html',
-    github: 'https://github.com/noomesk/asesor-de-codigo',
-    status: 'live',
-    focusCategories: ['ai', 'fs']
-  },
-  {
-    title: 'Genome Cleaner',
-    description: 'A high-efficiency processor for cleaning and formatting biological sequence strings in FASTA and FASTQ formats, streamlining bioinformatic workflows.',
-    tags: ['Node.js', 'CLI', 'Bioinformatics'],
-    link: 'https://genomecleaner.streamlit.app/',
-    github: 'https://github.com/noomesk/genome-cleaner',
-    status: 'live',
-    focusCategories: ['fs']
-  },
-  {
-    title: 'Interactive Fashion Gallery',
-    description: 'A visual e-commerce platform where users explore styles, browse collections, and shop. Designed around visual experience and fluid navigation.',
-    tags: ['React', 'Node.js', 'REST API', 'TypeScript'],
-    link: 'https://endmoda.vercel.app/',
-    github: 'https://github.com/noomesk/Endmoda',
-    status: 'live',
-    focusCategories: ['fs', 'cr']
-  },
-  {
-    title: 'Anxiety Companion',
-    description: 'An emotional support app designed to be used between therapy sessions. It combines an LLM-powered empathetic chatbot, automatic crisis detection, guided therapeutic exercises, and contextual user memory — all built on a FastAPI + React architecture ready to scale.',
-    tags: ['FastAPI', 'React', 'SQLite', 'Groq API', 'JWT', 'TypeScript'],
-    link: 'https://app-anxiety-frontend.onrender.com/',
-    github: 'https://github.com/noomesk/app_anxiety',
-    status: 'live',
-    focusCategories: ['ai', 'fs']
-  }
-];
+import { projects } from '../data/projects';
+import ProjectModal from './ProjectModal';
 
 const Projects = () => {
   const [sortedProjects, setSortedProjects] = useState(projects);
   const [activeFocus, setActiveFocus] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -141,10 +87,17 @@ const Projects = () => {
                   </div>
                 )}
 
-                <div className="flex justify-between items-start mb-6">
-                  <h4 className="text-2xl text-temporal-text font-medium group-hover:text-temporal-accent transition-colors">
-                    {project.title}
-                  </h4>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h4 className="text-2xl text-temporal-text font-medium group-hover:text-temporal-accent transition-colors">
+                      {project.title}
+                    </h4>
+                    {project.role && (
+                      <p className="text-xs font-mono text-temporal-accent uppercase tracking-widest mt-2">
+                        {project.role}
+                      </p>
+                    )}
+                  </div>
 
                   {project.status === 'live' && (
                     <a
@@ -158,9 +111,29 @@ const Projects = () => {
                   )}
                 </div>
 
-                <p className="text-temporal-muted text-base leading-relaxed mb-10 flex-grow">
-                  {project.description}
-                </p>
+                <div className="mb-10 flex-grow space-y-6">
+                  {project.problem && (
+                    <div>
+                      <p className="text-xs font-mono text-temporal-text uppercase tracking-widest mb-2">Problem</p>
+                      <p className="text-temporal-muted text-base leading-relaxed">
+                        {project.problem}
+                      </p>
+                    </div>
+                  )}
+                  {project.solution && (
+                    <div>
+                      <p className="text-xs font-mono text-temporal-text uppercase tracking-widest mb-2">Solution</p>
+                      <p className="text-temporal-muted text-base leading-relaxed">
+                        {project.solution}
+                      </p>
+                    </div>
+                  )}
+                  {!project.problem && !project.solution && project.description && (
+                    <p className="text-temporal-muted text-base leading-relaxed">
+                      {project.description}
+                    </p>
+                  )}
+                </div>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map(tag => (
@@ -170,9 +143,15 @@ const Projects = () => {
                   ))}
                 </div>
 
-                {/* LINKS */}
-                {project.status === 'live' && (
-                  <div className="flex gap-4 mt-auto">
+                {/* LINKS + CASE STUDY */}
+                <div className="flex flex-wrap gap-3 mt-auto">
+                  <button
+                    onClick={() => setSelectedProject(project)}
+                    className="text-xs font-mono text-temporal-text border border-temporal-accent/60 px-3 py-1 rounded-full hover:bg-temporal-accent hover:text-black transition"
+                  >
+                    View Case Study
+                  </button>
+                  {project.status === 'live' && project.link && project.link !== '#' && (
                     <a
                       href={project.link}
                       target="_blank"
@@ -181,6 +160,8 @@ const Projects = () => {
                     >
                       Live
                     </a>
+                  )}
+                  {project.github && project.github !== '#' && (
                     <a
                       href={project.github}
                       target="_blank"
@@ -189,13 +170,15 @@ const Projects = () => {
                     >
                       Code
                     </a>
-                  </div>
-                )}
+                  )}
+                </div>
 
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
+
+        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
 
         <a
           href="https://github.com/noomesk"

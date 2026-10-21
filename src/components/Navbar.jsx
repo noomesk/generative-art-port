@@ -1,7 +1,11 @@
 import React from 'react';
 import { Menu } from 'lucide-react';
+import { useTranslation } from '../i18n/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar = () => {
+  const { t } = useTranslation();
+
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-temporal-border bg-temporal-bg/80 backdrop-blur-md">
       <div className="container mx-auto px-6 h-16 flex items-center justify-between sm:border-x border-temporal-border">
@@ -10,11 +14,14 @@ const Navbar = () => {
         </div>
         
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-8 text-sm font-mono text-temporal-muted">
-          <a href="#about" className="hover:text-temporal-text transition-colors">About</a>
-          <a href="#projects" className="hover:text-temporal-text transition-colors">Projects</a>
-          <a href="#art" className="hover:text-temporal-text transition-colors">Art</a>
-          <a href="#contact" className="hover:text-temporal-text transition-colors">Contact</a>
+        <div className="hidden md:flex items-center space-x-6 text-sm font-mono text-temporal-muted">
+          <a href="#about" className="hover:text-temporal-text transition-colors">{t('nav.about')}</a>
+          <a href="#projects" className="hover:text-temporal-text transition-colors">{t('nav.projects')}</a>
+          <a href="#art" className="hover:text-temporal-text transition-colors">{t('nav.art')}</a>
+          <a href="#contact" className="hover:text-temporal-text transition-colors">{t('nav.contact')}</a>
+          <div className="pl-4 border-l border-temporal-border">
+            <LanguageSwitcher />
+          </div>
         </div>
 
         {/* Mobile menu button */}

@@ -3,63 +3,37 @@ import { motion } from 'framer-motion';
 import PerlinWarpGL from './PerlinWarpGL';
 import { useTranslation } from '../i18n/LanguageContext';
 
-// Componente único que combina todos los efectos
-const DreamPhrase = ({ text }) => {
-  const letters = text.split('');
-  
-  // Randomize fall characteristics for each letter
-  const letterProps = letters.map((_, idx) => {
-    const randomFall = Math.random() * 12 - 6; // -6 to 6 for random drift
-    const randomRot = Math.random() * 20 - 10; // -10 to 10 degrees
-    const randomDelay = Math.random() * 0.6; // 0 to 0.6s random delay
-    
-    return {
-      fallX: randomFall,
-      fallRot: randomRot,
-      delay: randomDelay
-    };
-  });
-
+// Componente para el efecto de HUMO (smoke appear-wave)
+const SmokePhrase = ({ text }) => {
   return (
     <div className="relative flex items-center justify-center min-h-12">
-      {/* SMOKE EFFECT - Aparece difuminado, se aclara, desaparece (fondo) */}
+      {/* SMOKE EFFECT - Aparece difuminado, se aclara, desaparece */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
         <div className="font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30 animate-smoke-appear-wave whitespace-nowrap">
           {text}
         </div>
       </div>
+    </div>
+  );
+};
 
+// Componente para el efecto WAVE (ondulante)
+const WavePhrase = ({ text }) => {
+  const letters = text.split('');
+  
+  return (
+    <div className="relative flex items-center justify-center min-h-max">
       {/* WAVE EFFECT - Letras ondulantes (se curvan) */}
-      <div className="absolute inset-0 flex items-center justify-center whitespace-nowrap pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center whitespace-pre-wrap pointer-events-none">
         {letters.map((letter, idx) => (
           <span
             key={`wave-${idx}`}
-            className="inline-block font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30 animate-letter-wave"
+            className="inline-block font-mono text-[10px] md:text-[12px] uppercase tracking-[0.08em] text-temporal-muted/40 animate-letter-wave"
             style={{
               animationDelay: `${idx * 0.08}s`,
               animationDuration: '8s',
               animationIterationCount: 'infinite',
               perspective: '1000px'
-            }}
-          >
-            {letter === ' ' ? '\u00A0' : letter}
-          </span>
-        ))}
-      </div>
-
-      {/* FALLING EFFECT - Letras caen en desorden (con delays aleatorios) */}
-      <div className="absolute inset-0 flex items-center justify-center whitespace-nowrap pointer-events-none">
-        {letters.map((letter, idx) => (
-          <span
-            key={`fall-${idx}`}
-            className="animate-hacker-fall inline-block font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30"
-            style={{
-              '--fall-x': `${letterProps[idx].fallX}px`,
-              '--fall-rot': `${letterProps[idx].fallRot}deg`,
-              animationDelay: `${4 + letterProps[idx].delay}s`,
-              animationDuration: '3s',
-              animationIterationCount: 'infinite',
-              animationFillMode: 'forwards'
             }}
           >
             {letter === ' ' ? '\u00A0' : letter}
@@ -141,14 +115,26 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="w-full md:w-1/2 flex flex-col justify-center items-center z-10 -mt-8 md:-mt-24 md:pl-6 md:pr-6 lg:pr-12 relative"
         >
-          {/* COMBINED DREAM PHRASE - Todos los efectos juntos */}
+          {/* PREGUNTA CON EFECTO HUMO - ARRIBA */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.6 }}
-            className="absolute -top-12 md:-top-16 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
+            className="absolute -top-20 md:-top-28 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
           >
-            <DreamPhrase text="¿Pueden soñar los sistemas?" />
+            <SmokePhrase text="¿Pueden soñar los sistemas?" />
+          </motion.div>
+
+          {/* RESPUESTA CON EFECTO WAVE - ARRIBA PEQUEÑO (más traslúcido) */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.6, delay: 0.8 }}
+            className="absolute -top-8 md:-top-12 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-29 px-4"
+          >
+            <div className="text-center max-w-md">
+              <WavePhrase text="Los humanos somos sistemas. Biológicos, sí. Pero al fin: sistemas!" />
+            </div>
           </motion.div>
 
           <PerlinWarpGL imgSrc="/p3.PNG" />

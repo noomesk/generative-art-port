@@ -9,16 +9,18 @@
     "tag": "AP — Frontend Engineer · Creative Coder · AI Explorer",
     "line1": "Yo defino las reglas.",
     "line2": "Los sistemas sueñan.",
-    "desc": "Hola. Soy Angie Plazas, dev frontend transdisciplinaria. Me muevo entre el arte generativo, la programación creativa, las matemáticas y la ingeniería web moderna; desde ahí construyo experiencias digitales inmersivas que traducen ideas en interacción. Me interesa pensar el código como un sistema vivo: poder seguir sus patrones, alterar sus reglas y dejar espacio para explorar qué puede emerger más allá de lo que fue planeado. En esa pequeña deriva, casi entrópica, suelo encontrar parte de mi proceso creativo.",
+    "desc": "Hola. Soy Angie Plazas, dev frontend transdisciplinaria. Me muevo entre el arte generativo, la programación creativa, las matemáticas y la ingeniería web moderna; desde ahí construyo experiencias digitales inmersivas que traducen ideas en interacción.",
     "ctaProjects": "Ver Proyectos",
     "ctaContact": "Contacto"
   },
   "about": {
     "title": "01 // TRAYECTORIA",
     "heading": "Uniendo la lógica rígida con la expresión orgánica.",
-    "p1": "Mi camino hacia el desarrollo no empezó con el boom tecnológico ni con la idea de crear apps convencionales. Empezó hace mucho tiempo, con un interés genuino por entender cómo reglas computacionales simples pueden generar patrones infinitamente complejos y hermosos.",
+    "p1": "Hola. Soy Angie Plazas, dev frontend transdisciplinaria. Me muevo entre el arte generativo, la programación creativa, las matemáticas y la ingeniería web moderna; desde ahí construyo experiencias digitales inmersivas que traducen ideas en interacción.",
     "p2": "Como creative coder, trabajo con JavaScript, P5.js, WebGL, Three.js, React y algoritmos matemáticos; también exploro agentes, sistemas generativos y material científico para crear experiencias interactivas que difuminan la línea entre utilidad y arte.",
-    "p3": "Me considero una exploradora de la complejidad: tomo sistemas abstractos y les doy una forma sensible, visual y, a veces, interactiva. Mi enfoque es limpio, modular y vivo: busco claridad en la estructura y libertad creativa. Creo que el software bien diseñado tiene algo intrínsecamente atractivo, y que las experiencias estéticas pueden elevar enormemente lo que usamos a diario.",
+    "p3": "Me interesa pensar el código como un sistema vivo: poder seguir sus patrones, alterar sus reglas y dejar espacio para explorar qué puede emerger más allá de lo que fue planeado. En esa pequeña deriva, casi entrópica, suelo encontrar parte de mi proceso creativo.",
+    "p3Meta": "Sistemas vivos · Emergencia · Algoritmos orgánicos",
+    "creativeLens": "Cómo pienso el código",
     "coreStack": "Core stack & tools"
   }
 }

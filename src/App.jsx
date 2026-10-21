@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,6 +10,14 @@ import ContactSection from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
+  useEffect(() => {
+    // Scroll to hero on page load
+    const heroElement = document.getElementById('hero');
+    if (heroElement) {
+      heroElement.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col font-sans bg-temporal-bg text-temporal-text selection:bg-temporal-accent selection:text-temporal-bg">
       <Navbar />

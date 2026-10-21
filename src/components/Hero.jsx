@@ -3,6 +3,54 @@ import { motion } from 'framer-motion';
 import PerlinWarpGL from './PerlinWarpGL';
 import { useTranslation } from '../i18n/LanguageContext';
 
+const DreamPhrase = ({ text }) => {
+  const letters = text.split('');
+  
+  // Randomize fall characteristics for each letter
+  const letterProps = letters.map((_, idx) => {
+    const randomFall = Math.random() * 12 - 6; // -6 to 6 for random drift
+    const randomRot = Math.random() * 20 - 10; // -10 to 10 degrees
+    const randomDelay = Math.random() * 0.6; // 0 to 0.6s random delay
+    
+    return {
+      fallX: randomFall,
+      fallRot: randomRot,
+      delay: randomDelay
+    };
+  });
+
+  return (
+    <div className="relative flex items-center justify-center min-h-12">
+      {/* Smoke appearance phase - main text */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+        <div className="font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/25 animate-smoke-appear whitespace-nowrap">
+          {text}
+        </div>
+      </div>
+
+      {/* Falling letters phase */}
+      <div className="absolute inset-0 flex items-center justify-center whitespace-nowrap pointer-events-none">
+        {letters.map((letter, idx) => (
+          <span
+            key={idx}
+            className="animate-hacker-fall inline-block font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/25"
+            style={{
+              '--fall-x': `${letterProps[idx].fallX}px`,
+              '--fall-rot': `${letterProps[idx].fallRot}deg`,
+              animationDelay: `${4 + letterProps[idx].delay}s`,
+              animationDuration: '3s',
+              animationIterationCount: 'infinite',
+              animationFillMode: 'forwards'
+            }}
+          >
+            {letter === ' ' ? '\u00A0' : letter}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Hero = () => {
   const { t } = useTranslation();
   return (
@@ -48,11 +96,9 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.6 }}
-            className="absolute -top-16 md:-top-20 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
+            className="absolute -top-24 md:-top-32 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
           >
-            <div className="font-mono text-[7px] md:text-[8px] uppercase tracking-[0.8em] text-temporal-muted/25 animate-smoke-fade whitespace-nowrap">
-              ¿Pueden soñar los sistemas?
-            </div>
+            <DreamPhrase text="¿Pueden soñar los sistemas?" />
           </motion.div>
           <PerlinWarpGL imgSrc="/p3.PNG" />
 

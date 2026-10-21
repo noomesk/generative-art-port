@@ -129,26 +129,14 @@ const Hero = () => {
             <SmokePhrase text="¿Pueden soñar los sistemas?" />
           </motion.div>
 
-          {/* RESPUESTA CON EFECTO WAVE - Un poco más arriba - COMENTADA */}
-          {/* <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.6, delay: 0.8 }}
-            className="absolute -top-16 md:-top-24 right-2 md:right-8 flex justify-end w-auto z-29 pointer-events-none select-none"
-          >
-            <WavePhrase text="Los humanos también somos sistemas" smaller={true} />
-          </motion.div> */}
-
           {/* RESPUESTA CON EFECTO WAVE - Un poco más arriba */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.8 }}
-            className="absolute -top-16 md:-top-24 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-29 px-4"
+            className="absolute -top-16 md:-top-24 right-2 md:right-12 flex justify-end w-auto z-29 pointer-events-none select-none"
           >
-            <div className="text-center max-w-md">
-              <WavePhrase text="Los humanos somos sistemas. Biológicos, sí. Pero al fin: sistemas!" />
-            </div>
+            <WavePhrase text="Los humanos también somos sistemas" smaller={true} />
           </motion.div>
 
           <PerlinWarpGL imgSrc="/p3.PNG" />

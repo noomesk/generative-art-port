@@ -11,7 +11,13 @@ import Footer from './components/Footer';
 
 function App() {
   useEffect(() => {
-    // Scroll to hero on page load
+    // Disable automatic browser scroll restoration on refresh
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    // Force immediate scroll to top (Hero) on page mount
+    window.scrollTo(0, 0);
+
     const heroElement = document.getElementById('hero');
     if (heroElement) {
       heroElement.scrollIntoView({ behavior: 'auto', block: 'start' });

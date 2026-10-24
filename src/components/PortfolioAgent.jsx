@@ -37,7 +37,10 @@ const PortfolioAgent = () => {
   }, [language]);
 
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Only scroll to bottom if there are user messages or active thinking to avoid jumping on load
+    if (messages.length > 1 || thinking) {
+      endRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [messages, thinking]);
 
   const handleSubmit = (e) => {

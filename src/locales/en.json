@@ -37,7 +37,7 @@
     "tags": {
       "visual": ["React", "Three.js", "WebGL", "GLSL", "P5.js", "Framer Motion"],
       "dev": ["TypeScript", "Next.js", "Tailwind CSS", "Node.js", "REST APIs", "Web Components (Lit)"],
-      "ai": ["LLMs", "Groq API", "Vercel AI SDK", "Autonomous Agents", "Tool Calling", "RAG", "Prompt Engineering", "Local AI (Ollama)"],
+      "ai": ["LLMs", "Groq API", "Vercel AI SDK", "Autonomous Agents (Tool Calling)", "RAG", "CLI Automation Tools", "Model Context Protocol (MCP)", "Local & open-source AI (Ollama)"],
       "science": ["Bioinformatics", "Audio processing", "Python"],
       "other": ["Cybersecurity (fundamentals)", "Networking"]
     }
@@ -157,7 +157,7 @@
   "contact": {
     "title": "Start a connection",
     "description": "Whether you have a latent project in mind, want to discuss the intersection of art and code, or simply feel like exploring complex and stimulating ideas — your message starts here.",
-    "marquee": ["SYSTEMS DREAMING IN CODE", "DO ANDROIDS DREAM OF ELECTRIC SHEEP?", "ALGORITHMIC SERENDIPITY", "COMPLEXITY THAT BREATHES"],
+    "marquee": ["SYSTEMS DREAMING IN CODE", "DO ANDROIDS DREAM OF ELECTRIC SHEEP?", "Can a few lines of code (acting together and interacting) become as complex as a brain?", "COMPLEXITY THAT BREATHES"],
     "queryTitle": "Query Terminal",
     "queryDesc": "Fill in the fields below to send a secure transmission.",
     "name": "Full name",

@@ -10,22 +10,172 @@
     "line1": "Yo defino las reglas.",
     "line2": "Los sistemas sueñan.",
     "desc": "Hola. Soy Angie Plazas, dev frontend transdisciplinaria. Me muevo entre el arte generativo, la programación creativa, las matemáticas y la ingeniería web moderna; desde ahí construyo experiencias digitales inmersivas que traducen ideas en interacción.",
-    "ctaProjects": "Ver Proyectos",
-    "ctaContact": "Contacto"
-  },
-  "ai": {
-    "title": "01.5 // Enfoque de Ingeniería IA",
-    "heading": "Agentes, RAG y IA aplicada",
-    "desc": "Diseño y despliegue de sistemas de IA prácticos: desde agentes que llaman a herramientas hasta asistentes con recuperación de contexto. El objetivo no es \"charlar con todo\", sino resolver un problema específico con el contexto adecuado."
+    "ctaProjects": "Ver proyectos",
+    "ctaContact": "Contacto",
+    "smoke": "¿Pueden soñar los sistemas?",
+    "wave": "Los humanos somos sistemas",
+    "caption": "Micrografía de semilla de Eulophia alta (Orchidaceae)",
+    "captionMeta": "0.9 mm · Morfología alveolar dispersada por el viento"
   },
   "about": {
     "title": "01 // TRAYECTORIA",
     "heading": "Uniendo la lógica rígida con la expresión orgánica.",
     "p1": "Mi camino hacia el desarrollo no empezó con el boom tecnológico ni con la idea de crear apps convencionales. Empezó hace mucho tiempo, con un interés genuino por entender cómo reglas computacionales simples pueden generar patrones infinitamente complejos y hermosos.",
-    "p2": "Como creative coder, trabajo con JavaScript, P5.js, WebGL, Three.js, React y algoritmos matemáticos; también exploro agentes, sistemas generativos y material científico para crear experiencias interactivas que difuminan la línea entre utilidad y arte. Me considero una exploradora de la complejidad: tomo sistemas abstractos, les doy una forma sensible, visual y, a veces, interactiva.",
-    "p3": "", 
-    "p3Meta": "Unificando lógica y expresión",
+    "p2": "Como creative coder, trabajo con JavaScript, P5.js, WebGL, Three.js, React y algoritmos matemáticos (Python); también exploro agentes, sistemas generativos y material científico para crear experiencias interactivas que difuminan la línea entre utilidad y arte. Me considero una exploradora de la complejidad: tomo sistemas abstractos, les doy una forma sensible, visual y, a veces, interactiva.",
+    "focus": "Mi enfoque es limpio, modular y vivo: busco claridad en la estructura y libertad creativa. Creo que el software bien diseñado tiene algo intrínsecamente atractivo, y que las experiencias estéticas pueden elevar enormemente lo que usamos a diario.",
+    "p3": "Me parece interesante ver el código como un sistema vivo: poder seguir sus patrones, alterar sus reglas y dejar espacio para que se produzca algo que no estaba completamente planeado. En esa pequeña deriva, casi entrópica, es donde suelo encontrar lo creativo.",
+    "p3Meta": "Sistemas vivos · Emergencia · Algoritmos orgánicos",
     "creativeLens": "Cómo pienso el código",
-    "coreStack": "Core stack & tools"
+    "coreStack": "Stack principal y herramientas",
+    "groups": {
+      "visual": "Visual y generativo",
+      "dev": "Desarrollo y arquitectura",
+      "ai": "IA y automatización",
+      "science": "Ciencia y datos",
+      "other": "Otras áreas"
+    },
+    "tags": {
+      "visual": ["React", "Three.js", "WebGL", "GLSL", "P5.js", "Framer Motion"],
+      "dev": ["TypeScript", "Next.js", "Tailwind CSS", "Node.js", "APIs REST", "Web Components (Lit)"],
+      "ai": ["LLMs", "Groq API", "Vercel AI SDK", "Agentes autónomos", "Llamadas a herramientas", "RAG", "Ingeniería de prompts", "IA local (Ollama)"],
+      "science": ["Bioinformática", "Procesamiento de audio", "Python"],
+      "other": ["Ciberseguridad (fundamentos)", "Redes"]
+    }
+  },
+  "ai": {
+    "title": "01.5 // Enfoque en ingeniería de IA",
+    "heading": "Agentes, RAG e IA aplicada",
+    "desc": "Diseño y despliegue de sistemas de IA prácticos: desde agentes que llaman a herramientas hasta asistentes con recuperación de contexto. El objetivo no es \u201Cchatear con todo\u201D, sino resolver un problema específico con el contexto adecuado.",
+    "items": [
+      {
+        "title": "Sistemas agénticos",
+        "desc": "Agentes orientados a objetivos con llamadas a herramientas, salidas estructuradas, memoria y guardarraíles pragmáticos para tareas reales."
+      },
+      {
+        "title": "RAG y contexto",
+        "desc": "Fundamentar LLMs con datos curados de proyectos y repositorios mediante embeddings, chunking inteligente y recuperación para respuestas precisas y útiles."
+      },
+      {
+        "title": "MCP y uso de herramientas",
+        "desc": "Explorando Model Context Protocol para conectar agentes de forma segura a herramientas reales (archivos, APIs, repositorios) en vez de solo conversar."
+      },
+      {
+        "title": "Productos de IA aplicada",
+        "desc": "Convertir ideas agénticas en apps útiles y orientadas a producto, con UX limpia, orquestación y lógica trazable."
+      }
+    ],
+    "learning": "Aprendiendo y construyendo con:",
+    "learningStack": "Vercel AI SDK • Model Context Protocol • Embeddings • Vector Stores • Tool Calling • IA local y open source (Ollama)"
+  },
+  "projects": {
+    "title": "02. Obras seleccionadas",
+    "heading": "Proyectos e interfaces",
+    "autoSorted": "Ordenado automáticamente para",
+    "viewAll": "Ver todos los repositorios en GitHub",
+    "focusNames": {
+      "cr": "Creativo",
+      "fs": "Fullstack",
+      "ai": "IA / Agente de IA"
+    },
+    "problem": "Problema",
+    "solution": "Solución",
+    "caseStudy": "Ver caso de estudio",
+    "live": "Demo",
+    "code": "Código",
+    "inProgress": "🚧 En progreso"
+  },
+  "modal": {
+    "problem": "Problema",
+    "solution": "Solución",
+    "highlights": "Puntos destacados",
+    "stack": "Stack tecnológico",
+    "viewDemo": "Ver demo en vivo",
+    "viewSource": "Ver código fuente",
+    "inProgress": "🚧 En progreso",
+    "close": "Cerrar caso de estudio"
+  },
+  "agent": {
+    "kicker": "02 // Agente Q&A del portafolio",
+    "heading": "Pregúntale al agente sobre mi trabajo",
+    "introA": "Un agente de terminal minimalista",
+    "hl1": "inspirado en RAG",
+    "introB": "basado en mi portafolio, CV y proyectos. Diseñado para demostrar",
+    "hl2": "contexto + recuperación",
+    "introC": "frente a un chat genérico.",
+    "tags": "Agentes • RAG • Herramientas",
+    "ready": "portfolio-agent:~$ listo. Pregúntame lo que quieras sobre Angie Plazas: stack, proyectos, trabajo en IA, experiencia...",
+    "retrieving": "recuperando contexto...",
+    "placeholder": "pregunta sobre stack, proyectos, IA, experiencia...",
+    "send": "Enviar mensaje",
+    "disclaimer": "*Respuesta simulada para demo. Intercambiable por Groq + embeddings para RAG real.",
+    "fallback": "Basado en mi portafolio: me enfoco en Frontend + IA (agentes, RAG, llamadas a herramientas). Pregunta por stack, proyectos, trabajo en IA, experiencia o contacto.",
+    "kb": [
+      {
+        "q": ["quién", "quien", "sobre", "angie"],
+        "a": "Soy Angie Plazas, ingeniera transdisciplinaria de Frontend e IA. Construyo en la intersección entre arte generativo, creative coding, matemáticas, ingeniería web e IA aplicada (agentes, RAG, llamadas a herramientas)."
+      },
+      {
+        "q": ["stack", "tecnolog", "habilidad", "skills"],
+        "a": "Núcleo: TypeScript, Next.js, React, Tailwind CSS, Node.js. Creativo: WebGL/GLSL, Three.js, P5.js. IA: LLMs, Groq API, Vercel AI SDK, agentes, RAG, llamadas a herramientas, MCP e IA local con Ollama. También exploro bioinformática y procesamiento de audio."
+      },
+      {
+        "q": ["proyecto", "trabajo", "project", "work"],
+        "a": "Destacados: Motor de autómatas celulares (WebGL/GLSL), Asistente de código con IA (Groq + Llama + Three.js), Compañero contra la ansiedad (FastAPI + React + LLM con guardarraíles), Genome Cleaner (CLI de bioinformática), Endmoda (galería de moda)."
+      },
+      {
+        "q": ["experiencia", "epam", "neoris", "experience"],
+        "a": "Junior Software Engineer (Trainee) en EPAM Systems / NEORIS (jun–oct 2026). Enfoque: Web Components con Lit/LitElement, Shadow DOM, ecosistema Cells, mixins, i18n y software seguro + IA agéntica aplicada a flujos de desarrollo."
+      },
+      {
+        "q": ["ia", "agente", "rag", "ai", "agent"],
+        "a": "Trabajo activamente con agentes, llamadas a herramientas, RAG, MCP e IA local/open source. Enfoque: convertir flujos manuales en herramientas agénticas útiles con el contexto correcto (fundamentar > chatear por todo)."
+      },
+      {
+        "q": ["contacto", "contratar", "disponible", "contact", "hire"],
+        "a": "Abierta a roles de Frontend/IA. Escríbeme desde el formulario de contacto o a aplazasn@unal.edu.co. Portafolio: https://noomesk.vercel.app/"
+      }
+    ]
+  },
+  "art": {
+    "title": "Arte generativo",
+    "description": "Explorando los bordes del crecimiento digital, los patrones biológicos y la serendipia algorítmica.",
+    "badge": "Arte generativo de inspiración biológica",
+    "footer": "Decodificador acelerado por hardware • Bio-Art Sync v5.0",
+    "piece1": {
+      "id": "Pieza 001",
+      "title": "Crecimiento fractal",
+      "subtitle": "Semillas de Cleome gynandra (Capparaceae) mezcladas con Delphinium peregrinum (Ranunculaceae). Exploración algorítmica de la morfología vegetal y de patrones generativos de distribución de semillas.",
+      "caption": "[ Pieza 001 ] — Arte generativo de inspiración biológica"
+    },
+    "piece2": {
+      "id": "Pieza 002",
+      "title": "Flujo neuronal",
+      "subtitle": "Pterois volitans (pez león) en movimiento. Movimiento simulado con conjuntos de Mandelbrot para calcular ciclos rítmicos de desvanecimiento y emergencia. Decodificador por hardware · Bio-Art Sync v5.0",
+      "caption": "[ Pieza 002 ] — Arte generativo de inspiración biológica"
+    }
+  },
+  "contact": {
+    "title": "Iniciar una conexión",
+    "description": "Ya sea que tengas un proyecto en mente, quieras conversar sobre la intersección entre arte y código, o simplemente explorar ideas complejas y estimulantes, tu mensaje empieza aquí.",
+    "marquee": ["SISTEMAS SOÑANDO EN CÓDIGO", "¿SUEÑAN LOS ANDROIDES CON OVEJAS ELÉCTRICAS?", "SERENDIPIA ALGORÍTMICA", "COMPLEJIDAD QUE RESPIRA"],
+    "queryTitle": "Terminal de consulta",
+    "queryDesc": "Completa los campos para enviar una transmisión segura.",
+    "name": "Nombre completo",
+    "namePlaceholder": "Nombre del agente",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "contacto@dominio.com",
+    "message": "Mensaje",
+    "messagePlaceholder": "Describe tu visión...",
+    "errorName": "Nombre",
+    "errorEmail": "Correo",
+    "errorMessage": "Mensaje",
+    "send": "Enviar señal",
+    "sending": "Transmitiendo...",
+    "successTitle": "Conexión sincronizada",
+    "successDesc": "Tu mensaje llegó al sistema. Te responderé pronto.",
+    "again": "Enviar otra señal"
+  },
+  "footer": {
+    "copy": "© {year} Desarrollado por noomesk. Todos los derechos reservados. ©"
   }
 }

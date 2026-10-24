@@ -7,7 +7,6 @@ import { useTranslation } from '../i18n/LanguageContext';
 const SmokePhrase = ({ text }) => {
   return (
     <div className="relative flex items-center justify-center min-h-12">
-      {/* SMOKE EFFECT - Aparece difuminado, se aclara, desaparece */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
         <div className="font-mono text-[14px] md:text-[18px] uppercase tracking-[0.08em] text-temporal-muted/30 animate-smoke-appear-wave whitespace-nowrap">
           {text}
@@ -20,12 +19,10 @@ const SmokePhrase = ({ text }) => {
 // Componente para el efecto WAVE (ondulante)
 const WavePhrase = ({ text, smaller = false }) => {
   const letters = text.split('');
-  
+
   return (
     <div className="relative flex items-center justify-center min-h-max">
-      {/* WAVE EFFECT - Frase completa con opacidad tenue que se intensifica */}
       <div className="absolute inset-0 flex items-center justify-center whitespace-pre-wrap pointer-events-none">
-        {/* Contenedor con entrada tenue de opacidad */}
         <div className="opacity-50 hover:opacity-100 transition-opacity duration-1000">
           {letters.map((letter, idx) => (
             <span
@@ -74,7 +71,7 @@ const Hero = () => {
             {t('hero.desc')}
           </p>
 
-          {/* Expandable creative process section - moved to hero */}
+          {/* Expandable creative process section */}
           <div className="mb-12 pt-8 border-t border-temporal-border/30">
             <button
               onClick={() => setExpandedCreative(!expandedCreative)}
@@ -84,10 +81,10 @@ const Hero = () => {
                 {expandedCreative ? '[−]' : '[+]'} {t('about.creativeLens')}?
               </span>
             </button>
-            
+
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ 
+              animate={{
                 opacity: expandedCreative ? 1 : 0,
                 height: expandedCreative ? 'auto' : 0,
                 marginTop: expandedCreative ? 12 : 0
@@ -95,9 +92,9 @@ const Hero = () => {
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <div className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-temporal-muted/40 font-mono text-left max-w-2xl pointer-events-none">
+              <div className="text-sm md:text-base text-temporal-muted/80 text-left max-w-2xl leading-relaxed pointer-events-none">
                 {t('about.p3')}<br />
-                <span className="opacity-60 text-[9px] md:text-[10px]">{t('about.p3Meta')}</span>
+                <span className="opacity-60 text-[10px] md:text-xs uppercase tracking-[0.2em] font-mono">{t('about.p3Meta')}</span>
               </div>
             </motion.div>
           </div>
@@ -119,17 +116,15 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="w-full md:w-1/2 flex flex-col justify-center items-center z-10 -mt-8 md:-mt-24 md:pl-6 md:pr-6 lg:pr-12 relative"
         >
-          {/* PREGUNTA CON EFECTO HUMO - Al nivel de "yo defino" ARRIBA - 1cm MÁS ARRIBA */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.6, delay: 0.6 }}
             className="absolute -top-36 md:-top-44 left-1/2 -translate-x-1/2 w-full flex justify-center pointer-events-none select-none z-30"
           >
-            <SmokePhrase text="¿Pueden soñar los sistemas?" />
+            <SmokePhrase text={t('hero.smoke')} />
           </motion.div>
 
-          {/* RESPUESTA CON EFECTO WAVE - Un poco más arriba */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -137,15 +132,15 @@ const Hero = () => {
             className="absolute top-14 md:top-18 -right-4 md:-right-8 flex justify-end w-auto z-29 pointer-events-none select-none"
           >
             <div className="opacity-40 hover:opacity-100 transition-opacity duration-500">
-              <WavePhrase text="Los humanos somos sistemas" smaller={true} />
+              <WavePhrase text={t('hero.wave')} smaller={true} />
             </div>
           </motion.div>
 
           <PerlinWarpGL imgSrc="/p3.PNG" />
 
           <div className="mt-8 md:mt-24 text-[10px] md:text-xs uppercase tracking-[0.2em] text-temporal-muted/50 font-mono text-center max-w-[300px] md:max-w-md pointer-events-none">
-            Eulophia alta (Orchidaceae) seed micrograph<br />
-            <span className="opacity-60 text-[9px] md:text-[10px]">0.9mm · Wind-dispersed honeycomb morphology</span>
+            {t('hero.caption')}<br />
+            <span className="opacity-60 text-[9px] md:text-[10px]">{t('hero.captionMeta')}</span>
           </div>
         </motion.div>
       </div>

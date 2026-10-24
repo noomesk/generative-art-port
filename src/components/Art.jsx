@@ -1,8 +1,11 @@
 import React, { memo } from 'react';
 import { Section } from './Section';
+import { useTranslation } from '../i18n/LanguageContext';
 
 // Separate piece component with zero-JS interaction and hardware-accelerated video
 const ArtPiece = memo(({ id, title, webmPath, mp4Path, description, subtitle }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col gap-4">
       <div className="art-piece-container">
@@ -28,7 +31,7 @@ const ArtPiece = memo(({ id, title, webmPath, mp4Path, description, subtitle }) 
         {/* Floating Bio-Art Badge */}
         <div className="absolute top-4 right-4 z-20">
           <span className="bg-temporal-bg/80 backdrop-blur-sm border border-temporal-border px-2 py-1 text-[8px] font-mono text-temporal-accent uppercase tracking-widest">
-            Bio-Inspired Generative Art
+            {t('art.badge')}
           </span>
         </div>
       </div>
@@ -53,33 +56,35 @@ const ArtPiece = memo(({ id, title, webmPath, mp4Path, description, subtitle }) 
 ArtPiece.displayName = 'ArtPiece';
 
 const ArtSection = () => {
+  const { t } = useTranslation();
+
   return (
     <Section 
       id="art" 
-      title="Generative Art" 
-      description="Exploring the edges of digital growth, biological patterns, and algorithmic serendipity."
+      title={t('art.title')} 
+      description={t('art.description')}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <ArtPiece 
           id="Piece 001"
-          title="Fractal Growth"
-          subtitle="Seeds of Cleome gynandra (Capparaceae) mixed with Delphinium peregrinum (Ranunculaceae). Algorithmic exploration of plant morphology and generative seed distribution patterns."
-          description="[ Piece 001 ] — Biologically inspired generative art"
+          title={t('art.piece1.title')}
+          subtitle={t('art.piece1.subtitle')}
+          description={t('art.piece1.caption')}
           webmPath="/seeds_fractal.webm"
           mp4Path="/seeds_fractal.mp4"
         />
         <ArtPiece 
           id="Piece 002"
-          title="Neural Flow"
-          subtitle="Pterois volitans (lionfish) in motion. Movement simulated using Mandelbrot sets to calculate rhythmic cycles of fading and emergence. Hardware-accelerated decoder · Bio-Art Sync v5.0"
-          description="[ Piece 002 ] — Biologically inspired generative art"
+          title={t('art.piece2.title')}
+          subtitle={t('art.piece2.subtitle')}
+          description={t('art.piece2.caption')}
           webmPath="/fish_bw.webm"
           mp4Path="/fish_bw.mp4"
         />
       </div>
       
       <div className="mt-16 text-center text-temporal-muted/30 font-mono text-[9px] uppercase tracking-[0.3em]">
-        <span>Hardware Accelerated Decoder • Bio-Art Sync v5.0</span>
+        <span>{t('art.footer')}</span>
       </div>
     </Section>
   );

@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import en from '../locales/en.json';
 import es from '../locales/es.json';
-import pt from '../locales/pt.json';
 
-const translations = { en, es, pt };
+const translations = { en, es };
 
 const LanguageContext = createContext();
 
@@ -14,7 +13,6 @@ export const LanguageProvider = ({ children }) => {
       if (saved && translations[saved]) return saved;
       const browser = navigator.language?.slice(0, 2);
       if (browser === 'es') return 'es';
-      if (browser === 'pt') return 'pt';
     }
     return 'en';
   });
@@ -22,7 +20,7 @@ export const LanguageProvider = ({ children }) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('lang', language);
-      document.documentElement.lang = language === 'pt' ? 'pt-BR' : language;
+      document.documentElement.lang = language;
     }
   }, [language]);
 
@@ -34,12 +32,12 @@ export const LanguageProvider = ({ children }) => {
       if (value === undefined) break;
     }
     if (value === undefined) {
-      let fallback = translations['en'];
+      let fallback = translations.en;
       for (let i = 0; i < keys.length; i++) {
         fallback = fallback?.[keys[i]];
         if (fallback === undefined) break;
       }
-      return fallback || key;
+      return fallback ?? key;
     }
     return value;
   };

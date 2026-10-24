@@ -1,9 +1,17 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight, Github } from 'lucide-react';
+import { useTranslation } from '../i18n/LanguageContext';
 
 const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
+  const { language, t } = useTranslation();
+
+  const currentCopy = project.copy?.[language] || project.copy?.['en'] || {};
+  const role = currentCopy.role || project.role;
+  const problem = currentCopy.problem || project.problem;
+  const solution = currentCopy.solution || project.solution;
+  const highlights = currentCopy.highlights || project.highlights || [];
 
   return (
     <AnimatePresence>
@@ -23,9 +31,11 @@ const ProjectModal = ({ project, onClose }) => {
         >
           <div className="flex items-start justify-between border-b border-temporal-border p-6 md:p-8">
             <div>
-              <p className="font-mono text-xs text-temporal-accent uppercase tracking-widest mb-2">
-                {project.role}
-              </p>
+              {role && (
+                <p className="font-mono text-xs text-temporal-accent uppercase tracking-widest mb-2">
+                  {role}
+                </p>
+              )}
               <h3 className="text-3xl md:text-4xl text-temporal-text font-medium tracking-tight">
                 {project.title}
               </h3>
@@ -37,8 +47,8 @@ const ProjectModal = ({ project, onClose }) => {
             </div>
             <button
               onClick={onClose}
-              className="p-2 text-temporal-muted hover:text-temporal-text transition-colors"
-              aria-label="Close case study"
+              className="p-2 text-temporal-muted hover:text-temporal-text transition-colors cursor-pointer"
+              aria-label={t('modal.close')}
             >
               <X size={20} />
             </button>
@@ -46,33 +56,37 @@ const ProjectModal = ({ project, onClose }) => {
 
           <div className="p-6 md:p-8 space-y-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div>
-                <h4 className="font-mono text-xs text-temporal-text uppercase tracking-widest mb-3">
-                  Problem
-                </h4>
-                <p className="text-temporal-muted leading-relaxed">
-                  {project.problem}
-                </p>
-              </div>
-              <div>
-                <h4 className="font-mono text-xs text-temporal-text uppercase tracking-widest mb-3">
-                  Solution
-                </h4>
-                <p className="text-temporal-muted leading-relaxed">
-                  {project.solution}
-                </p>
-              </div>
+              {problem && (
+                <div>
+                  <h4 className="font-mono text-xs text-temporal-text uppercase tracking-widest mb-3">
+                    {t('modal.problem')}
+                  </h4>
+                  <p className="text-temporal-muted leading-relaxed">
+                    {problem}
+                  </p>
+                </div>
+              )}
+              {solution && (
+                <div>
+                  <h4 className="font-mono text-xs text-temporal-text uppercase tracking-widest mb-3">
+                    {t('modal.solution')}
+                  </h4>
+                  <p className="text-temporal-muted leading-relaxed">
+                    {solution}
+                  </p>
+                </div>
+              )}
             </div>
 
-            {project.highlights && project.highlights.length > 0 && (
+            {highlights && highlights.length > 0 && (
               <div>
                 <h4 className="font-mono text-xs text-temporal-text uppercase tracking-widest mb-3">
-                  Highlights
+                  {t('modal.highlights')}
                 </h4>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {project.highlights.map((item) => (
+                  {highlights.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-temporal-muted">
-                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-temporal-accent/80" />
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-temporal-accent/80 flex-shrink-0" />
                       <span className="leading-relaxed">{item}</span>
                     </li>
                   ))}
@@ -82,7 +96,7 @@ const ProjectModal = ({ project, onClose }) => {
 
             <div>
               <h4 className="font-mono text-xs text-temporal-text uppercase tracking-widest mb-3">
-                Tech Stack
+                {t('modal.stack')}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
@@ -104,7 +118,7 @@ const ProjectModal = ({ project, onClose }) => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-temporal-text text-temporal-bg font-mono text-sm hover:bg-temporal-accent transition-colors"
                 >
-                  View Live Demo
+                  {t('modal.viewDemo')}
                   <ArrowUpRight size={16} />
                 </a>
               )}
@@ -115,13 +129,13 @@ const ProjectModal = ({ project, onClose }) => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-temporal-border text-temporal-text font-mono text-sm hover:border-temporal-accent hover:text-white transition-colors"
                 >
-                  View Source
+                  {t('modal.viewSource')}
                   <Github size={16} />
                 </a>
               )}
               {project.status === 'in-progress' && (
                 <span className="inline-flex items-center justify-center px-6 py-3 border border-temporal-border text-temporal-muted font-mono text-sm">
-                  🚧 In Progress
+                  {t('modal.inProgress')}
                 </span>
               )}
             </div>

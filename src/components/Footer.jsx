@@ -1,12 +1,17 @@
 import React from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
+import { useTranslation } from '../i18n/LanguageContext';
 
 const Footer = () => {
+  const { t } = useTranslation();
+  const currentYear = new Date().getFullYear().toString();
+  const copyText = t('footer.copy').replace('{year}', currentYear);
+
   return (
     <footer className="border-t border-temporal-border py-12 text-temporal-muted bg-temporal-bg">
       <div className="container mx-auto px-6 sm:border-x border-temporal-border flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
         <div className="font-mono text-xs sm:text-sm">
-          &copy; {new Date().getFullYear()} Developed by noomesk. All rights reserved. ©
+          {copyText}
         </div>
         <div className="flex items-center space-x-6">
           <a href="https://github.com/noomesk" target="_blank" rel="noopener noreferrer" aria-label="Github" className="hover:text-temporal-text transition-colors">

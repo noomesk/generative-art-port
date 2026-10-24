@@ -11,16 +11,171 @@
     "line2": "The systems dream.",
     "desc": "Hey. I'm Angie Plazas, a transdisciplinary Fullstack Developer operating at the intersection of generative art, creative coding, mathematics, and modern web engineering. I explore digital aesthetics the way one studies a living organism — with curiosity, with code, and with a bit of chaos.",
     "ctaProjects": "View Projects",
-    "ctaContact": "Get in Touch"
+    "ctaContact": "Get in Touch",
+    "smoke": "Can systems dream?",
+    "wave": "Humans are systems too",
+    "caption": "Eulophia alta (Orchidaceae) seed micrograph",
+    "captionMeta": "0.9mm · Wind-dispersed honeycomb morphology"
   },
   "about": {
     "title": "01 // Background",
     "heading": "Closing the gap between rigid logic and organic expression.",
     "p1": "My path into development didn't start with the tech boom or the desire to build standard apps. It started long ago, with a genuine interest in how simple computational rules can generate infinitely complex and beautiful patterns.",
-    "p2": "As a creative coder, I work with JavaScript, P5.js, WebGL, Three.js, and React, alongside raw mathematical algorithms and scientific material from my lab and surroundings, to build interactive experiences that blur the line between utility and art. I think of myself as an explorer of complexity: I take difficult systems and make them creative. I'm gradually integrating agents and generative AI into this approach. My approach is clean in structure, but alive in visuals — because what interests me isn't minimalism for its own sake, but the kind of clarity that lets complexity breathe.",
-    "p3": "",
+    "p2": "As a creative coder, I work with JavaScript, P5.js, WebGL, Three.js, and React, along with mathematical algorithms (Python); I also explore agents, generative systems and scientific material to build interactive experiences that blur the line between utility and art. I think of myself as an explorer of complexity: I take abstract systems and give them a sensitive, visual and, at times, interactive form.",
+    "focus": "My approach is clean, modular and alive: I look for clarity in structure and creative freedom. I believe well-designed software has something intrinsically attractive, and that aesthetic experiences can greatly elevate what we use every day.",
+    "p3": "I find it interesting to see code as a living system: being able to follow its patterns, alter its rules and leave room for something not fully planned to emerge. In that small, almost entropic drift is where I tend to find the creative.",
     "p3Meta": "Living systems · Emergence · Organic algorithms",
     "creativeLens": "How I think about code",
-    "coreStack": "Core stack & tools"
+    "coreStack": "Core stack & tools",
+    "groups": {
+      "visual": "Visual & generative",
+      "dev": "Development & architecture",
+      "ai": "AI & automation",
+      "science": "Science & data",
+      "other": "Other areas"
+    },
+    "tags": {
+      "visual": ["React", "Three.js", "WebGL", "GLSL", "P5.js", "Framer Motion"],
+      "dev": ["TypeScript", "Next.js", "Tailwind CSS", "Node.js", "REST APIs", "Web Components (Lit)"],
+      "ai": ["LLMs", "Groq API", "Vercel AI SDK", "Autonomous Agents", "Tool Calling", "RAG", "Prompt Engineering", "Local AI (Ollama)"],
+      "science": ["Bioinformatics", "Audio processing", "Python"],
+      "other": ["Cybersecurity (fundamentals)", "Networking"]
+    }
+  },
+  "ai": {
+    "title": "01.5 // AI Engineering Focus",
+    "heading": "Agents, RAG & Applied AI",
+    "desc": "I design and ship practical AI systems: from tool-calling agents to retrieval-augmented assistants. The goal isn't \u201Cchat with everything\u201D, it's solving a specific problem with the right context.",
+    "items": [
+      {
+        "title": "Agentic Systems",
+        "desc": "Goal-oriented agents with tool calling, structured outputs, memory and pragmatic guardrails for real tasks."
+      },
+      {
+        "title": "RAG & Context",
+        "desc": "Grounding LLMs with curated project/repo data via embeddings, smart chunking and retrieval to keep answers precise and useful."
+      },
+      {
+        "title": "MCP & Tool Use",
+        "desc": "Exploring the Model Context Protocol to safely connect agents to real tools (files, APIs, repos) instead of just chatting."
+      },
+      {
+        "title": "Applied AI Products",
+        "desc": "Turning agentic ideas into usable, product-focused apps with clean UX, orchestration and traceable logic."
+      }
+    ],
+    "learning": "Actively learning & building with:",
+    "learningStack": "Vercel AI SDK • Model Context Protocol • Embeddings • Vector Stores • Tool Calling • Local & open-source AI (Ollama)"
+  },
+  "projects": {
+    "title": "02. Selected works",
+    "heading": "Projects & Interfaces",
+    "autoSorted": "Auto-sorted for",
+    "viewAll": "View all Github repositories",
+    "focusNames": {
+      "cr": "Creative",
+      "fs": "Fullstack",
+      "ai": "AI / AI Agent"
+    },
+    "problem": "Problem",
+    "solution": "Solution",
+    "caseStudy": "View Case Study",
+    "live": "Live",
+    "code": "Code",
+    "inProgress": "🚧 In Progress"
+  },
+  "modal": {
+    "problem": "Problem",
+    "solution": "Solution",
+    "highlights": "Highlights",
+    "stack": "Tech Stack",
+    "viewDemo": "View Live Demo",
+    "viewSource": "View Source",
+    "inProgress": "🚧 In Progress",
+    "close": "Close case study"
+  },
+  "agent": {
+    "kicker": "02 // Portfolio Q&A Agent",
+    "heading": "Ask the agent about my work",
+    "introA": "A minimal",
+    "hl1": "RAG-inspired",
+    "introB": "terminal agent grounded on my portfolio, CV and projects. Built to demonstrate",
+    "hl2": "context + retrieval",
+    "introC": "over generic chat.",
+    "tags": "Agents • RAG • Tooling",
+    "ready": "portfolio-agent:~$ ready. Ask me anything about Angie Plazas — stack, projects, AI work, experience...",
+    "retrieving": "retrieving context...",
+    "placeholder": "ask about stack, projects, ai, experience...",
+    "send": "Send message",
+    "disclaimer": "*Mock grounded response for demo. Swappable to Groq + embeddings for live RAG.",
+    "fallback": "Grounded in my portfolio: I focus on Frontend + AI (agents, RAG, tool calling). Ask about stack, projects, AI work, experience or contact.",
+    "kb": [
+      {
+        "q": ["who", "about", "angie"],
+        "a": "I'm Angie Plazas — a transdisciplinary Frontend & AI Engineer. I build at the intersection of generative art, creative coding, mathematics, web engineering and applied AI (agents, RAG, tool calling)."
+      },
+      {
+        "q": ["stack", "tech", "skills"],
+        "a": "Core: TypeScript, Next.js, React, Tailwind CSS, Node.js. Creative: WebGL/GLSL, Three.js, P5.js. AI: LLMs, Groq API, Vercel AI SDK, Agents, RAG, Tool Calling, MCP, local AI with Ollama. Also exploring bioinformatics & audio processing."
+      },
+      {
+        "q": ["projects", "work"],
+        "a": "Featured: Cellular Automata Engine (WebGL/GLSL), AI Code Assistant (Groq + Llama + Three.js), Anxiety Companion (FastAPI + React + LLM with guardrails), Genome Cleaner (bioinformatics CLI), Endmoda (fashion gallery)."
+      },
+      {
+        "q": ["ai", "agent", "rag"],
+        "a": "Actively building with agents, tool calling, RAG, MCP and local/open-source AI. Focus: turn manual flows into useful agentic tools with the right context (grounding > chat for everything)."
+      },
+      {
+        "q": ["contact", "hire", "available"],
+        "a": "Open to Frontend/AI-leaning roles. Reach me via the contact form or aplazasn@unal.edu.co. Portfolio: https://noomesk.vercel.app/"
+      },
+      {
+        "q": ["experience", "epam", "neoris"],
+        "a": "Junior Software Engineer (Trainee) at EPAM Systems / NEORIS (Jun–Oct 2026). Focus: Web Components with Lit/LitElement, Shadow DOM, Cells ecosystem, mixins, i18n and secure software + agentic AI applied to dev workflows."
+      }
+    ]
+  },
+  "art": {
+    "title": "Generative Art",
+    "description": "Exploring the edges of digital growth, biological patterns, and algorithmic serendipity.",
+    "badge": "Bio-Inspired Generative Art",
+    "footer": "Hardware Accelerated Decoder • Bio-Art Sync v5.0",
+    "piece1": {
+      "id": "Piece 001",
+      "title": "Fractal Growth",
+      "subtitle": "Seeds of Cleome gynandra (Capparaceae) mixed with Delphinium peregrinum (Ranunculaceae). Algorithmic exploration of plant morphology and generative seed distribution patterns.",
+      "caption": "[ Piece 001 ] — Biologically inspired generative art"
+    },
+    "piece2": {
+      "id": "Piece 002",
+      "title": "Neural Flow",
+      "subtitle": "Pterois volitans (lionfish) in motion. Movement simulated using Mandelbrot sets to calculate rhythmic cycles of fading and emergence. Hardware-accelerated decoder · Bio-Art Sync v5.0",
+      "caption": "[ Piece 002 ] — Biologically inspired generative art"
+    }
+  },
+  "contact": {
+    "title": "Start a connection",
+    "description": "Whether you have a latent project in mind, want to discuss the intersection of art and code, or simply feel like exploring complex and stimulating ideas — your message starts here.",
+    "marquee": ["SYSTEMS DREAMING IN CODE", "DO ANDROIDS DREAM OF ELECTRIC SHEEP?", "ALGORITHMIC SERENDIPITY", "COMPLEXITY THAT BREATHES"],
+    "queryTitle": "Query Terminal",
+    "queryDesc": "Fill in the fields below to send a secure transmission.",
+    "name": "Full name",
+    "namePlaceholder": "Agent Name",
+    "email": "Email address",
+    "emailPlaceholder": "contact@domain.com",
+    "message": "Message",
+    "messagePlaceholder": "Describe your vision...",
+    "errorName": "Name",
+    "errorEmail": "Email",
+    "errorMessage": "Message",
+    "send": "Send signal",
+    "sending": "Transmitting...",
+    "successTitle": "Connection Synchronized",
+    "successDesc": "Your message has permeated the system. I will respond to your signal shortly.",
+    "again": "Transmit Another Signal"
+  },
+  "footer": {
+    "copy": "© {year} Developed by noomesk. All rights reserved. ©"
   }
 }

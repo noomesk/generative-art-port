@@ -3,31 +3,19 @@ import { useTranslation } from '../i18n/LanguageContext';
 import { motion } from 'framer-motion';
 import { Cpu, Database, Workflow, PlugZap } from 'lucide-react';
 
-const items = [
-  {
-    icon: <Workflow size={18} />,
-    title: 'Agentic Systems',
-    desc: 'Goal-oriented agents with tool calling, structured outputs, memory and pragmatic guardrails for real tasks.'
-  },
-  {
-    icon: <Database size={18} />,
-    title: 'RAG & Context',
-    desc: 'Grounding LLMs with curated project/repo data via embeddings, smart chunking and retrieval to keep answers precise and useful.'
-  },
-  {
-    icon: <PlugZap size={18} />,
-    title: 'MCP & Tool Use',
-    desc: 'Exploring the Model Context Protocol to safely connect agents to real tools (files, APIs, repos) instead of just chatting.'
-  },
-  {
-    icon: <Cpu size={18} />,
-    title: 'Applied AI Products',
-    desc: 'Turning agentic ideas into usable, product-focused apps with clean UX, orchestration and traceable logic.'
-  }
+const icons = [
+  <Workflow size={18} />,
+  <Database size={18} />,
+  <PlugZap size={18} />,
+  <Cpu size={18} />
 ];
 
 const AIEngineering = () => {
   const { t } = useTranslation();
+  
+  const itemsTranslation = t('ai.items');
+  const items = Array.isArray(itemsTranslation) ? itemsTranslation : [];
+
   return (
     <section id="ai-engineering" className="py-32 border-b border-temporal-border bg-temporal-bg relative overflow-hidden">
       <div className="container mx-auto px-6 sm:border-x border-temporal-border relative z-10">
@@ -48,7 +36,7 @@ const AIEngineering = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-temporal-border border border-temporal-border overflow-hidden">
           {items.map((item, index) => (
             <motion.div
-              key={item.title}
+              key={item.title || index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
@@ -56,7 +44,7 @@ const AIEngineering = () => {
               className="bg-temporal-bg p-8 group hover:bg-temporal-bg/80 transition-colors flex flex-col h-full"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="text-temporal-accent">{item.icon}</div>
+                <div className="text-temporal-accent">{icons[index % icons.length]}</div>
                 <h4 className="text-temporal-text font-medium group-hover:text-temporal-accent transition-colors">
                   {item.title}
                 </h4>
@@ -70,9 +58,9 @@ const AIEngineering = () => {
 
         <div className="mt-10">
           <p className="font-mono text-xs text-temporal-muted uppercase tracking-widest">
-            Actively learning & building with:{' '}
+            {t('ai.learning')}{' '}
             <span className="text-temporal-accent">
-              Vercel AI SDK • Model Context Protocol • Embeddings • Vector Stores • Tool Calling
+              {t('ai.learningStack')}
             </span>
           </p>
         </div>

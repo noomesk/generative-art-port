@@ -205,7 +205,7 @@ const PerlinWarpGL = ({ imgSrc }) => {
   }, [imgSrc]);
 
   return (
-    <div className="relative inline-block w-full max-w-[650px] scale-110 md:scale-125 xl:scale-150 -translate-x-8 md:-translate-x-16 xl:-translate-x-24 flex items-center justify-center mix-blend-screen origin-center">
+    <div className="relative inline-block w-full max-w-[650px] scale-[1.25] md:scale-[1.40] xl:scale-[1.65] -translate-x-8 md:-translate-x-16 xl:-translate-x-24 flex items-center justify-center mix-blend-screen origin-center">
       <canvas
         ref={canvasRef}
         className="block w-full h-auto rounded-md opacity-90 transition-opacity duration-1000 hover:opacity-100"

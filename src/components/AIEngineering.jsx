@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '../i18n/LanguageContext';
 import { motion } from 'framer-motion';
 import { Cpu, Database, Workflow, PlugZap } from 'lucide-react';
 
@@ -26,21 +27,20 @@ const items = [
 ];
 
 const AIEngineering = () => {
+  const { t } = useTranslation();
   return (
     <section id="ai-engineering" className="py-32 border-b border-temporal-border bg-temporal-bg relative overflow-hidden">
       <div className="container mx-auto px-6 sm:border-x border-temporal-border relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
           <div>
             <h2 className="text-sm font-mono text-temporal-accent uppercase tracking-widest mb-4">
-              01.5 // AI Engineering Focus
+              {t('ai.title')}
             </h2>
             <h3 className="text-4xl md:text-5xl text-temporal-text font-medium tracking-tight mb-6">
-              Agents, RAG & Applied AI
+              {t('ai.heading')}
             </h3>
             <p className="text-lg md:text-xl text-temporal-muted max-w-2xl leading-relaxed">
-              I design and ship practical AI systems: from <span className="text-temporal-text">tool-calling agents</span> to{' '}
-              <span className="text-temporal-text">retrieval-augmented assistants</span>. The goal isn't "chat with everything", it's{' '}
-              <span className="text-temporal-accent">solving a specific problem with the right context</span>.
+              {t('ai.desc')}
             </p>
           </div>
         </div>

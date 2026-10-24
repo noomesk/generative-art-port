@@ -13,12 +13,18 @@
     "ctaProjects": "Ver Proyectos",
     "ctaContact": "Contacto"
   },
+  "ai": {
+    "title": "01.5 // Enfoque de Ingeniería IA",
+    "heading": "Agentes, RAG y IA aplicada",
+    "desc": "Diseño y despliegue de sistemas de IA prácticos: desde agentes que llaman a herramientas hasta asistentes con recuperación de contexto. El objetivo no es \"charlar con todo\", sino resolver un problema específico con el contexto adecuado."
+  },
   "about": {
     "title": "01 // TRAYECTORIA",
     "heading": "Uniendo la lógica rígida con la expresión orgánica.",
     "p1": "Mi camino hacia el desarrollo no empezó con el boom tecnológico ni con la idea de crear apps convencionales. Empezó hace mucho tiempo, con un interés genuino por entender cómo reglas computacionales simples pueden generar patrones infinitamente complejos y hermosos.",
-    "p2": "Como creative coder, trabajo con JavaScript, P5.js, WebGL, Three.js, React y algoritmos matemáticos; también exploro agentes, sistemas generativos y material científico para crear experiencias interactivas que difuminan la línea entre utilidad y arte. Me considero una exploradora de la complejidad: tomo sistemas abstractos, les doy una forma sensible, visual y, a veces, interactiva. Mi enfoque es limpio, modular y vivo: busco claridad en la estructura y libertad creativa. Creo que el software bien diseñado tiene algo intrínsecamente atractivo, y que las experiencias estéticas pueden elevar enormemente lo que usamos a diario.",
-    "p3Meta": "Sistemas vivos · Emergencia · Algoritmos orgánicos",
+    "p2": "Como creative coder, trabajo con JavaScript, P5.js, WebGL, Three.js, React y algoritmos matemáticos; también exploro agentes, sistemas generativos y material científico para crear experiencias interactivas que difuminan la línea entre utilidad y arte. Me considero una exploradora de la complejidad: tomo sistemas abstractos, les doy una forma sensible, visual y, a veces, interactiva.",
+    "p3": "", 
+    "p3Meta": "Unificando lógica y expresión",
     "creativeLens": "Cómo pienso el código",
     "coreStack": "Core stack & tools"
   }

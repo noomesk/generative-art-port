@@ -34,7 +34,6 @@ const About = () => {
             <div className="space-y-6 text-temporal-muted text-lg leading-relaxed max-w-3xl">
               <p>{t('about.p1')}</p>
               <p>{t('about.p2')}</p>
-              <p>{t('about.p3')}</p>
             </div>
             
             <div className="mt-16 pt-16 border-t border-temporal-border">

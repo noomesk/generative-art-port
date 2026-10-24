@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Terminal, Send, Sparkles } from 'lucide-react';
 
-const knowledge = [
+  const knowledge = [
   {
     q: ['who', 'about', 'angie'],
     a: "I'm Angie Plazas — a transdisciplinary Frontend & AI Engineer. I build at the intersection of generative art, creative coding, mathematics, web engineering and applied AI (agents, RAG, tool calling)."

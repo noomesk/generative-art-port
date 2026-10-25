@@ -51,7 +51,10 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className="w-full mt-12 pt-6 px-4 pb-4 bg-[#0a0a0a] relative select-none">
+    <div
+      className="w-full mt-12 pt-6 px-4 pb-4 bg-[#0a0a0a] relative select-none"
+      style={{ transform: 'rotate(3deg)' }}
+    >
       {/* Filtro de humo para el borde: ruido animado que desplaza los píxeles del marco */}
       <svg width="0" height="0" className="absolute" aria-hidden="true">
         <filter id="edge-smoke" x="-5%" y="-5%" width="110%" height="110%">

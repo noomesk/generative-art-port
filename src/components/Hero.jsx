@@ -115,7 +115,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          className="w-full md:w-1/2 flex flex-col justify-center items-center z-10 -mt-8 md:-mt-24 md:pl-6 md:pr-6 lg:pr-12 relative"
+          className="w-full md:w-1/2 flex flex-col justify-center items-center z-10 -mt-8 md:-mt-24 md:pl-6 md:pr-6 lg:pr-12 relative top-[3cm]"
         >
           <motion.div
             initial={{ opacity: 0 }}

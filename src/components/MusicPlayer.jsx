@@ -51,7 +51,24 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className="w-full mt-12 pt-6 px-4 pb-4 bg-[#0a0a0a] border border-temporal-border/40 relative select-none">
+    <div className="w-full mt-12 pt-6 px-4 pb-4 bg-[#0a0a0a] relative select-none">
+      {/* Filtro de humo para el borde: ruido animado que desplaza los píxeles del marco */}
+      <svg width="0" height="0" className="absolute" aria-hidden="true">
+        <filter id="edge-smoke" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="noise">
+            <animate attributeName="baseFrequency" values="0.035;0.05;0.035" dur="9s" repeatCount="indefinite" />
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
+
+      {/* Marco con distorsión: capa separada para que solo el borde se mueva, no el contenido */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 border border-temporal-border/40"
+        style={{ filter: 'url(#edge-smoke)' }}
+      />
+
       {/* Grano analógico: ruido SVG superpuesto */}
       <div
         aria-hidden="true"

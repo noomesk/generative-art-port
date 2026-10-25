@@ -114,11 +114,13 @@ const MusicPlayer = () => {
 
           <div className="flex-1 min-w-0">
             <div className="text-[10px] uppercase tracking-[0.2em] truncate">
-              {hasTracks
-                ? error
+              {!hasTracks
+                ? 'Sin pistas'
+                : error
                   ? 'Archivo no disponible'
-                  : `${track.title} — ${track.artist}`
-                : 'Sin pistas'}
+                  : track.artist
+                    ? `${track.title} — ${track.artist}`
+                    : track.title}
             </div>
             <div
               role="progressbar"

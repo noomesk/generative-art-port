@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PerlinWarpGL from './PerlinWarpGL';
+import MusicPlayer from './MusicPlayer';
 import { useTranslation } from '../i18n/LanguageContext';
 
 // Componente para el efecto de HUMO (smoke appear-wave)
@@ -141,6 +142,10 @@ const Hero = () => {
           <div className="mt-8 md:mt-24 text-[10px] md:text-xs uppercase tracking-[0.2em] text-temporal-muted/50 font-mono text-center max-w-[300px] md:max-w-md pointer-events-none">
             {t('hero.caption')}<br />
             <span className="opacity-60 text-[9px] md:text-[10px]">{t('hero.captionMeta')}</span>
+          </div>
+
+          <div className="w-full max-w-md mt-[calc(2rem+3cm)]">
+            <MusicPlayer />
           </div>
         </motion.div>
       </div>

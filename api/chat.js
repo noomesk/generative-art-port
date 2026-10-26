@@ -1,7 +1,7 @@
 // Función serverless (Vercel) que responde preguntas sobre el portafolio con Groq.
 // La API key vive en la variable de entorno GROQ_API_KEY; nunca llega al navegador.
 
-const MODEL = 'llama-3.3-70b-versatile';
+const MODEL = 'openai/gpt-oss-20b';
 const MAX_QUESTION_CHARS = 500;
 
 const PROFILE = `
@@ -66,6 +66,8 @@ export default async function handler(req, res) {
     });
 
     if (!upstream.ok) {
+      const detail = await upstream.text();
+      console.error('Groq error', upstream.status, detail);
       return res.status(502).json({ error: 'Upstream error' });
     }
 

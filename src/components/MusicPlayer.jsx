@@ -7,6 +7,8 @@ const formatTime = (s) => (Number.isFinite(s) ? `${pad(s / 60)}:${pad(s % 60)}` 
 
 const MusicPlayer = () => {
   const audioRef = useRef(null);
+  // Indica si el usuario quiere que suene (no cambia al terminar una pista)
+  const wantsPlayRef = useRef(false);
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [current, setCurrent] = useState(0);
@@ -26,7 +28,13 @@ const MusicPlayer = () => {
     if (!audio || !track) return;
     setError(false);
     audio.load();
-    if (playing) audio.play().catch(() => setPlaying(false));
+    // Solo reproduce la nueva pista si el usuario ya había dado play
+    if (wantsPlayRef.current) {
+      audio.play().catch(() => {
+        wantsPlayRef.current = false;
+        setPlaying(false);
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
@@ -34,9 +42,11 @@ const MusicPlayer = () => {
     const audio = audioRef.current;
     if (!audio || !track) return;
     if (playing) {
+      wantsPlayRef.current = false;
       audio.pause();
       setPlaying(false);
     } else {
+      wantsPlayRef.current = true;
       audio.play().then(() => setPlaying(true)).catch(() => setError(true));
     }
   };
@@ -170,7 +180,10 @@ const MusicPlayer = () => {
           onTimeUpdate={(e) => setCurrent(e.currentTarget.currentTime)}
           onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
           onEnded={() => go(1)}
-          onPause={() => setPlaying(false)}
+          onPause={() => {
+            // Al terminar una pista el navegador también dispara pause; no lo tomamos como pausa del usuario
+            if (!audioRef.current?.ended) setPlaying(false);
+          }}
           onError={() => setError(true)}
         />
       )}

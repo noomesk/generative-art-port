@@ -137,45 +137,6 @@ const SandTitle = ({ line1, line2, className = '' }) => {
         return;
       }
 
-      // Dibujar efectos de overlay en el canvas (como el círculo naranja de foco sobre la 'o')
-      const style = getComputedStyle(text);
-      const fontSize = parseFloat(style.fontSize);
-      const family = style.fontFamily;
-      const weight = style.fontWeight;
-      const letterSpacing = style.letterSpacing;
-      const lineHeight = fontSize * 1.1;
-
-      ctx.font = `${weight} ${fontSize}px ${family}`;
-      ctx.textBaseline = 'top';
-      ctx.letterSpacing = letterSpacing;
-
-      wrappedLines.lines.forEach((line, i) => {
-        let currentX = 0;
-        const lineY = i * lineHeight;
-
-        for (let j = 0; j < line.length; j++) {
-          const char = line[j];
-          const charWidth = ctx.measureText(char).width;
-
-          if (i === 0 && j === 1 && char.toLowerCase() === 'o' && line.toLowerCase().startsWith('yo')) {
-            const radius = ctx.measureText('M').width * 0.65;
-            const centerX = currentX + charWidth / 2;
-            const centerY = lineY + radius * 0.85;
-
-            // Círculo translúcido naranja-rojo detrás de la letra o para dar el foco
-            ctx.fillStyle = 'rgba(236, 94, 63, 0.8)';
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Dibujar la 'o' calada en negro encima del círculo
-            ctx.fillStyle = '#050505';
-            ctx.fillText(char, currentX, lineY);
-          }
-          currentX += charWidth;
-        }
-      });
-
       // Dibujar las partículas de arena volando
       for (const p of particles) {
         p.life -= p.decay;

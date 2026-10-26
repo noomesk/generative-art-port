@@ -75,34 +75,34 @@ export const projects = [
   },
   {
     id: 'ai-code-assistant',
-    title: 'AI Code Assistant',
-    tags: ['Next.js', 'React', 'Groq API', 'Llama 3.1', 'Three.js'],
-    link: 'https://asesor-de-codigo.vercel.app/ai-code-advisor.html',
-    github: 'https://github.com/noomesk/asesor-de-codigo',
+    title: 'Lit Component Forge',
+    tags: ['Lit', 'Web Components', 'MCP', 'Groq API', 'TypeScript'],
+    link: 'https://lit-component-forge.vercel.app',
+    github: 'https://github.com/noomesk/lit-component-forge',
     status: 'live',
     focusCategories: ['ai', 'fs'],
-    year: '2025',
+    year: '2026',
     copy: {
       en: {
         role: 'AI Engineer • Frontend',
-        problem: 'Speed up component refactoring by surfacing actionable suggestions aligned to an existing design system.',
-        solution: 'Integrated Groq + Llama 3.1 with component analysis to suggest Tailwind/Material UI-aligned refactors, wrapped in an immersive 3D WebGL experience.',
-        description: 'An AI-powered development tool that analyzes React components and provides real-time refactoring suggestions to align code with design systems like Tailwind CSS and Material UI, set within an immersive environment featuring an interactive 3D point-cloud wasp.',
+        problem: 'Teams need consistent Web Components, and generating them by hand is slow and error-prone.',
+        solution: 'An MCP server and web demo that generate Lit components from a plain-language description, following team conventions: Shadow DOM, typed props, custom events and accessibility.',
+        description: 'Model Context Protocol server that generates Lit components with team conventions, plus a web demo where you describe a component and see the generated code and a live preview.',
         highlights: [
-          'LLM orchestration with real-time suggestions',
-          'Design-system aware prompting',
-          'Immersive 3D UI built with Three.js'
+          'MCP tools for validation and component generation',
+          'Team conventions exposed as a resource for agents',
+          'Live preview of generated Lit components'
         ]
       },
       es: {
         role: 'Ingeniero de IA • Frontend',
-        problem: 'Acelerar el refactor de componentes mostrando sugerencias accionables alineadas con un design system existente.',
-        solution: 'Integré Groq + Llama 3.1 con análisis de componentes para sugerir refactors alineados a Tailwind/Material UI, dentro de una experiencia inmersiva en 3D con WebGL.',
-        description: 'Herramienta de desarrollo con IA que analiza componentes React y entrega sugerencias de refactor en tiempo real para alinear el código con design systems como Tailwind CSS y Material UI, dentro de un entorno inmersivo con una avispa 3D de nube de puntos interactiva.',
+        problem: 'Los equipos necesitan Web Components consistentes, y escribirlos a mano es lento y propenso a errores.',
+        solution: 'Un servidor MCP y una demo web que generan componentes Lit a partir de una descripción en lenguaje natural, siguiendo convenciones de equipo: Shadow DOM, props tipadas, eventos personalizados y accesibilidad.',
+        description: 'Servidor de Model Context Protocol que genera componentes Lit con convenciones de equipo, y una demo web donde describes un componente y ves el código generado y una vista previa en vivo.',
         highlights: [
-          'Orquestación de LLM con sugerencias en tiempo real',
-          'Prompts conscientes del design system',
-          'UI 3D inmersiva construida con Three.js'
+          'Herramientas MCP para validación y generación de componentes',
+          'Convenciones de equipo expuestas como recurso para agentes',
+          'Vista previa en vivo de componentes Lit generados'
         ]
       }
     }

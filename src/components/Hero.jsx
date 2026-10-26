@@ -66,7 +66,8 @@ const Hero = () => {
             </div>
           </div>
           <SandTitle 
-            lines={[t('hero.line1'), t('hero.line2')]} 
+            line1={t('hero.line1')}
+            line2={t('hero.line2')}
             className="text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-mono tracking-tighter text-temporal-text mb-8 leading-[1.1]" 
           />
           <p className="text-lg md:text-xl text-temporal-muted max-w-xl leading-relaxed mb-12">

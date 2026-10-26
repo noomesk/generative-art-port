@@ -1,16 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 /**
- * SandTitle - Un componente que mantiene el texto HTML original 100% visible y legible,
- * y superpone un canvas que emite continuamente partículas de arena/humo granulado
- * que se difuminan con el viento (hacia la izquierda y ligeramente hacia abajo),
- * logrando un efecto muy similar a la referencia visual sin comprometer el tamaño o la legibilidad.
+ * SandTitle - Un componente que mantiene el texto HTML original 100% visible, legible
+ * y del tamaño original, garantizando la consistencia del salto de línea entre el HTML
+ * y el Canvas de partículas mediante un algoritmo de word-wrap unificado.
  */
-const SandTitle = ({ lines, className = '' }) => {
+const SandTitle = ({ line1, line2, className = '' }) => {
   const wrapRef = useRef(null);
   const textRef = useRef(null);
   const canvasRef = useRef(null);
-  const key = lines.join('|');
+
+  // Guardamos las líneas formateadas en el estado para que el HTML se redibuje al redimensionar
+  const [wrappedLines, setWrappedLines] = useState({ lines: [line1, line2], line1Count: 1 });
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -26,46 +27,80 @@ const SandTitle = ({ lines, className = '' }) => {
     let height = 0;
 
     const build = () => {
-      const rect = wrap.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      width = rect.width;
-      height = rect.height;
+      // 1. Obtener estilos del elemento del DOM
+      const style = getComputedStyle(text);
+      const fontSize = parseFloat(style.fontSize);
+      const family = style.fontFamily;
+      const weight = style.fontWeight;
+      const letterSpacing = style.letterSpacing;
 
-      // Sincronizar dimensiones de canvas con alta densidad de píxeles
+      // Medir el ancho disponible para el contenedor
+      width = wrap.clientWidth;
+      if (width <= 0) return;
+
+      // Crear contexto de medición
+      const measurer = document.createElement('canvas').getContext('2d');
+      const fontStr = `${weight} ${fontSize}px ${family}`;
+      measurer.font = fontStr;
+
+      // Función de ajuste de línea (greedy word-wrap)
+      const wrapText = (txt) => {
+        const words = txt.split(' ');
+        const result = [];
+        let currentLine = words[0] || '';
+
+        for (let i = 1; i < words.length; i++) {
+          const word = words[i];
+          const testLine = currentLine + ' ' + word;
+          const testWidth = measurer.measureText(testLine).width;
+          if (testWidth < width) {
+            currentLine = testLine;
+          } else {
+            result.push(currentLine);
+            currentLine = word;
+          }
+        }
+        if (currentLine) result.push(currentLine);
+        return result;
+      };
+
+      const wrappedL1 = wrapText(line1);
+      const wrappedL2 = wrapText(line2);
+      const finalLines = [...wrappedL1, ...wrappedL2];
+
+      // Actualizar el estado para que el HTML renderice exactamente las mismas líneas
+      setWrappedLines({ lines: finalLines, line1Count: wrappedL1.length });
+
+      // Configurar dimensiones de canvas con soporte para alta densidad (DPR)
+      const dpr = window.devicePixelRatio || 1;
+      const lineHeight = fontSize * 1.1;
+      height = finalLines.length * lineHeight;
+
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Obtener estilos reales del elemento del DOM para clonarlos en el muestreo
-      const style = getComputedStyle(text);
-      const fontSize = parseFloat(style.fontSize);
-      const family = style.fontFamily;
-      const weight = style.fontWeight;
-      const letterSpacing = style.letterSpacing;
-      const lineHeight = parseFloat(style.lineHeight) || fontSize * 1.1;
-
-      // Crear canvas offscreen para dibujar el texto y leer la silueta de los píxeles
+      // 2. Dibujar en el canvas offscreen para muestrear los píxeles de las letras
       const off = document.createElement('canvas');
       off.width = width;
       off.height = height;
       const octx = off.getContext('2d');
 
-      octx.font = `${weight} ${fontSize}px ${family}`;
+      octx.font = fontStr;
       octx.fillStyle = '#ffffff';
       octx.textBaseline = 'top';
       octx.letterSpacing = letterSpacing;
 
-      lines.forEach((line, i) => {
+      finalLines.forEach((line, i) => {
         octx.fillText(line, 0, i * lineHeight);
       });
 
-      // Leer píxeles del texto renderizado
+      // Leer píxeles para el muestreo de las partículas
       const imgData = octx.getImageData(0, 0, off.width, off.height).data;
       textPixels = [];
 
-      // Muestrear píxeles con un paso de 2 para tener suficiente densidad
       for (let y = 0; y < off.height; y += 2) {
         for (let x = 0; x < off.width; x += 2) {
           const alpha = imgData[(y * off.width + x) * 4 + 3];
@@ -75,11 +110,10 @@ const SandTitle = ({ lines, className = '' }) => {
         }
       }
 
-      // Si no hay píxeles (ej. texto no cargado), salir
       if (textPixels.length === 0) return;
 
-      // Inicializar el pool de partículas (2000 granos de arena)
-      const particleCount = 2200;
+      // Inicializar el pool de partículas sopladas por el viento (2600 granos)
+      const particleCount = 2600;
       particles = [];
       for (let i = 0; i < particleCount; i++) {
         const base = textPixels[Math.floor(Math.random() * textPixels.length)];
@@ -90,11 +124,10 @@ const SandTitle = ({ lines, className = '' }) => {
           oy: base.y,
           vx: 0,
           vy: 0,
-          life: Math.random(), // fase inicial aleatoria
-          decay: 0.008 + Math.random() * 0.015,
+          life: Math.random(),
+          decay: 0.007 + Math.random() * 0.015,
           size: Math.random() * 1.5 + 0.5,
-          // Mezcla de tonos grises y arena/naranja muy sutiles para profundidad analógica
-          colorType: Math.random() > 0.85 ? 'accent' : Math.random() > 0.5 ? 'muted' : 'text',
+          colorType: Math.random() > 0.82 ? 'accent' : Math.random() > 0.55 ? 'muted' : 'text',
         });
       }
     };
@@ -102,7 +135,6 @@ const SandTitle = ({ lines, className = '' }) => {
     const frame = (time) => {
       ctx.clearRect(0, 0, width, height);
 
-      // Si el redimensionamiento o la carga no han completado el muestreo, reintentar
       if (textPixels.length === 0) {
         build();
         raf = requestAnimationFrame(frame);
@@ -110,10 +142,8 @@ const SandTitle = ({ lines, className = '' }) => {
       }
 
       for (const p of particles) {
-        // Decrementar vida
         p.life -= p.decay;
 
-        // Si muere, respawnear instantáneamente en un píxel aleatorio del texto original
         if (p.life <= 0) {
           const base = textPixels[Math.floor(Math.random() * textPixels.length)];
           p.ox = base.x;
@@ -125,39 +155,36 @@ const SandTitle = ({ lines, className = '' }) => {
           p.life = 1.0;
         }
 
-        // --- SIMULACIÓN DE VIENTO HACIA LA IZQUIERDA ---
-        // Viento constante a la izquierda + ráfagas/turbulencia basadas en ruido armónico
-        const windX = -1.6;
-        const windY = 0.3; // sopla ligeramente hacia abajo
+        // --- SIMULACIÓN DE VIENTO RECTA / DISPERSIÓN DE ARENA ---
+        // Viento constante a la izquierda y turbulencia armónica
+        const windX = -1.8;
+        const windY = 0.2;
         
-        const turbulenceX = Math.sin(time * 0.0012 + p.y * 0.03) * 0.7;
-        const turbulenceY = Math.cos(time * 0.0008 + p.x * 0.03) * 0.3;
+        const turbulenceX = Math.sin(time * 0.0012 + p.y * 0.02) * 0.8;
+        const turbulenceY = Math.cos(time * 0.0008 + p.x * 0.02) * 0.2;
 
-        // Aplicar aceleración y fricción para fluidez de humo/arena
         p.vx += windX * 0.08 + turbulenceX * 0.1;
         p.vy += windY * 0.08 + turbulenceY * 0.1;
-        p.vx *= 0.93;
-        p.vy *= 0.93;
+        p.vx *= 0.92;
+        p.vy *= 0.92;
 
         p.x += p.vx;
         p.y += p.vy;
 
-        // Opacidad basada en la vida restante y la distancia recorrida desde el origen
         const dx = p.x - p.ox;
         const dy = p.y - p.oy;
         const dist = Math.sqrt(dx * dx + dy * dy);
         
-        // Se desvanecen gradualmente hasta un rango de 140px
-        const maxDist = 140;
+        const maxDist = 160;
         const distanceFade = Math.max(0, 1 - dist / maxDist);
         const alpha = p.life * distanceFade * 0.45;
 
         if (alpha > 0.01) {
-          let fillStyle = `rgba(237, 237, 237, ${alpha})`; // temporal-text
+          let fillStyle = `rgba(237, 237, 237, ${alpha})`;
           if (p.colorType === 'accent') {
-            fillStyle = `rgba(236, 94, 63, ${alpha * 0.85})`; // #ec5e3f (naranja de referencia)
+            fillStyle = `rgba(236, 94, 63, ${alpha * 0.9})`; // #ec5e3f
           } else if (p.colorType === 'muted') {
-            fillStyle = `rgba(136, 136, 136, ${alpha})`; // temporal-muted
+            fillStyle = `rgba(136, 136, 136, ${alpha})`;
           }
 
           ctx.fillStyle = fillStyle;
@@ -168,32 +195,27 @@ const SandTitle = ({ lines, className = '' }) => {
       raf = requestAnimationFrame(frame);
     };
 
-    // Construcción inicial diferida para asegurar la carga de fuentes
-    const timer = setTimeout(() => {
-      build();
-      raf = requestAnimationFrame(frame);
-    }, 120);
-
+    build();
+    raf = requestAnimationFrame(frame);
     window.addEventListener('resize', build);
 
     return () => {
-      clearTimeout(timer);
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', build);
     };
-  }, [key]);
+  }, [line1, line2]);
 
   return (
     <div ref={wrapRef} className="relative w-full">
-      {/* El texto HTML real y original: 100% visible, legible, con su tamaño completo */}
+      {/* El texto HTML real con su tamaño original, alineación y peso */}
       <h1 ref={textRef} className={`${className} select-all relative z-0`}>
-        {lines.map((line, i) => (
-          <span key={i} className={`block ${i === 1 ? 'text-temporal-muted' : ''}`}>
+        {wrappedLines.lines.map((line, i) => (
+          <span key={i} className={`block ${i >= wrappedLines.line1Count ? 'text-temporal-muted' : ''}`}>
             {line}
           </span>
         ))}
       </h1>
-      {/* Canvas superpuesto que dibuja las estelas de arena/humo granulado */}
+      {/* Canvas superpuesto que dibuja las estelas de arena */}
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" aria-hidden="true" />
     </div>
   );

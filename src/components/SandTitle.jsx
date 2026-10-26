@@ -1,16 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 /**
- * SandTitle - Un componente que mantiene el texto HTML original 100% visible, legible
- * y del tamaño original, garantizando la consistencia del salto de línea entre el HTML
- * y el Canvas de partículas mediante un algoritmo de word-wrap unificado.
+ * SandTitle - Un componente de alto impacto visual inspirado en la referencia.
+ * Mantiene el texto HTML en su posición original, pero con un color transparente
+ * para que el Canvas dibuje las letras con una textura orgánica de grano denso (carbón/spray),
+ * y un campo de flujo (Flow Field) de partículas de viento que se desintegran y ondulan de forma natural.
+ * Además, añade un foco visual de círculo naranja-rojo en la primera letra "O" de "Yo", imitando la referencia.
  */
 const SandTitle = ({ line1, line2, className = '' }) => {
   const wrapRef = useRef(null);
   const textRef = useRef(null);
   const canvasRef = useRef(null);
 
-  // Guardamos las líneas formateadas en el estado para que el HTML se redibuje al redimensionar
+  // Líneas formateadas para que el HTML ocupe el espacio físico real en el layout
   const [wrappedLines, setWrappedLines] = useState({ lines: [line1, line2], line1Count: 1 });
 
   useEffect(() => {
@@ -34,16 +36,14 @@ const SandTitle = ({ line1, line2, className = '' }) => {
       const weight = style.fontWeight;
       const letterSpacing = style.letterSpacing;
 
-      // Medir el ancho disponible para el contenedor
       width = wrap.clientWidth;
       if (width <= 0) return;
 
-      // Crear contexto de medición
       const measurer = document.createElement('canvas').getContext('2d');
       const fontStr = `${weight} ${fontSize}px ${family}`;
       measurer.font = fontStr;
 
-      // Función de ajuste de línea (greedy word-wrap)
+      // Word-wrap unificado entre HTML y Canvas
       const wrapText = (txt) => {
         const words = txt.split(' ');
         const result = [];
@@ -68,10 +68,8 @@ const SandTitle = ({ line1, line2, className = '' }) => {
       const wrappedL2 = wrapText(line2);
       const finalLines = [...wrappedL1, ...wrappedL2];
 
-      // Actualizar el estado para que el HTML renderice exactamente las mismas líneas
       setWrappedLines({ lines: finalLines, line1Count: wrappedL1.length });
 
-      // Configurar dimensiones de canvas con soporte para alta densidad (DPR)
       const dpr = window.devicePixelRatio || 1;
       const lineHeight = fontSize * 1.1;
       height = finalLines.length * lineHeight;
@@ -82,29 +80,49 @@ const SandTitle = ({ line1, line2, className = '' }) => {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // 2. Dibujar en el canvas offscreen para muestrear los píxeles de las letras
+      // 2. Renderizar offscreen para leer la silueta de los píxeles
       const off = document.createElement('canvas');
       off.width = width;
       off.height = height;
       const octx = off.getContext('2d');
 
       octx.font = fontStr;
-      octx.fillStyle = '#ffffff';
       octx.textBaseline = 'top';
       octx.letterSpacing = letterSpacing;
 
+      // Dibujar silueta en blanco sobre negro para leer máscara de píxeles
+      octx.fillStyle = '#ffffff';
       finalLines.forEach((line, i) => {
-        octx.fillText(line, 0, i * lineHeight);
+        let currentX = 0;
+        const lineY = i * lineHeight;
+
+        for (let j = 0; j < line.length; j++) {
+          const char = line[j];
+          const charWidth = octx.measureText(char).width;
+
+          // Si es la primera 'o' en la primera línea de 'Yo defino...', dibujamos silueta circular
+          if (i === 0 && j === 1 && char.toLowerCase() === 'o' && line.toLowerCase().startsWith('yo')) {
+            const radius = octx.measureText('M').width * 0.65;
+            const centerX = currentX + charWidth / 2;
+            const centerY = lineY + radius * 0.85;
+
+            octx.beginPath();
+            octx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            octx.fill();
+          } else {
+            octx.fillText(char, currentX, lineY);
+          }
+          currentX += charWidth;
+        }
       });
 
-      // Leer píxeles para el muestreo de las partículas
       const imgData = octx.getImageData(0, 0, off.width, off.height).data;
       textPixels = [];
 
       for (let y = 0; y < off.height; y += 2) {
         for (let x = 0; x < off.width; x += 2) {
           const alpha = imgData[(y * off.width + x) * 4 + 3];
-          if (alpha > 120) {
+          if (alpha > 100) {
             textPixels.push({ x, y });
           }
         }
@@ -112,12 +130,34 @@ const SandTitle = ({ line1, line2, className = '' }) => {
 
       if (textPixels.length === 0) return;
 
-      // Inicializar el pool de partículas sopladas por el viento (2600 granos)
-      const particleCount = 2600;
+      // 3. Inicializar pool de partículas (total: 3500)
+      // - 1500 partículas estáticas/carbón que dan textura a la letra
+      // - 2000 partículas voladoras (Flow Field) que se estiran con el viento
+      const textGrainsCount = 1500;
+      const flyingGrainsCount = 2000;
       particles = [];
-      for (let i = 0; i < particleCount; i++) {
+
+      // Granos de textura estática (carbón)
+      for (let i = 0; i < textGrainsCount; i++) {
         const base = textPixels[Math.floor(Math.random() * textPixels.length)];
         particles.push({
+          type: 'grain',
+          x: base.x,
+          y: base.y,
+          ox: base.x,
+          oy: base.y,
+          life: 1.0,
+          decay: 0,
+          size: Math.random() * 1.2 + 0.4,
+          colorType: Math.random() > 0.85 ? 'accent' : Math.random() > 0.4 ? 'muted' : 'text',
+        });
+      }
+
+      // Granos voladores (humo/viento)
+      for (let i = 0; i < flyingGrainsCount; i++) {
+        const base = textPixels[Math.floor(Math.random() * textPixels.length)];
+        particles.push({
+          type: 'fly',
           x: base.x,
           y: base.y,
           ox: base.x,
@@ -125,9 +165,9 @@ const SandTitle = ({ line1, line2, className = '' }) => {
           vx: 0,
           vy: 0,
           life: Math.random(),
-          decay: 0.007 + Math.random() * 0.015,
-          size: Math.random() * 1.5 + 0.5,
-          colorType: Math.random() > 0.82 ? 'accent' : Math.random() > 0.55 ? 'muted' : 'text',
+          decay: 0.005 + Math.random() * 0.012,
+          size: Math.random() * 1.4 + 0.4,
+          colorType: Math.random() > 0.82 ? 'accent' : Math.random() > 0.5 ? 'muted' : 'text',
         });
       }
     };
@@ -141,54 +181,117 @@ const SandTitle = ({ line1, line2, className = '' }) => {
         return;
       }
 
-      for (const p of particles) {
-        p.life -= p.decay;
+      // 1. Dibujar el texto base con su textura densa de carbón/spray en el canvas
+      const style = getComputedStyle(text);
+      const fontSize = parseFloat(style.fontSize);
+      const family = style.fontFamily;
+      const weight = style.fontWeight;
+      const letterSpacing = style.letterSpacing;
+      const lineHeight = fontSize * 1.1;
 
-        if (p.life <= 0) {
-          const base = textPixels[Math.floor(Math.random() * textPixels.length)];
-          p.ox = base.x;
-          p.oy = base.y;
-          p.x = base.x;
-          p.y = base.y;
-          p.vx = 0;
-          p.vy = 0;
-          p.life = 1.0;
+      ctx.font = `${weight} ${fontSize}px ${family}`;
+      ctx.textBaseline = 'top';
+      ctx.letterSpacing = letterSpacing;
+
+      wrappedLines.lines.forEach((line, i) => {
+        let currentX = 0;
+        const lineY = i * lineHeight;
+
+        for (let j = 0; j < line.length; j++) {
+          const char = line[j];
+          const charWidth = ctx.measureText(char).width;
+
+          // Si es la primera 'o' de 'Yo...', dibujar círculo de foco naranja
+          if (i === 0 && j === 1 && char.toLowerCase() === 'o' && line.toLowerCase().startsWith('yo')) {
+            const radius = ctx.measureText('M').width * 0.65;
+            const centerX = currentX + charWidth / 2;
+            const centerY = lineY + radius * 0.85;
+
+            // Círculo sólido naranja-rojo
+            ctx.fillStyle = '#ec5e3f';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Dibujar la 'o' calada en negro
+            ctx.fillStyle = '#050505';
+            ctx.fillText(char, currentX, lineY);
+          } else {
+            // Letras del texto con tono temporal-text o temporal-muted
+            ctx.fillStyle = i >= wrappedLines.line1Count ? '#888888' : '#ededed';
+            ctx.fillText(char, currentX, lineY);
+          }
+          currentX += charWidth;
         }
+      });
 
-        // --- SIMULACIÓN DE VIENTO RECTA / DISPERSIÓN DE ARENA ---
-        // Viento constante a la izquierda y turbulencia armónica
-        const windX = -1.8;
-        const windY = 0.2;
-        
-        const turbulenceX = Math.sin(time * 0.0012 + p.y * 0.02) * 0.8;
-        const turbulenceY = Math.cos(time * 0.0008 + p.x * 0.02) * 0.2;
+      // 2. Simular y dibujar partículas
+      for (const p of particles) {
+        if (p.type === 'grain') {
+          // Las partículas de grano tiemblan muy sutilmente alrededor de su origen (efecto spray)
+          p.x = p.ox + (Math.random() - 0.5) * 1.4;
+          p.y = p.oy + (Math.random() - 0.5) * 1.4;
 
-        p.vx += windX * 0.08 + turbulenceX * 0.1;
-        p.vy += windY * 0.08 + turbulenceY * 0.1;
-        p.vx *= 0.92;
-        p.vy *= 0.92;
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        const dx = p.x - p.ox;
-        const dy = p.y - p.oy;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        
-        const maxDist = 160;
-        const distanceFade = Math.max(0, 1 - dist / maxDist);
-        const alpha = p.life * distanceFade * 0.45;
-
-        if (alpha > 0.01) {
+          const alpha = 0.45;
           let fillStyle = `rgba(237, 237, 237, ${alpha})`;
           if (p.colorType === 'accent') {
-            fillStyle = `rgba(236, 94, 63, ${alpha * 0.9})`; // #ec5e3f
+            fillStyle = `rgba(236, 94, 63, ${alpha * 0.95})`; // grano de arena naranja
           } else if (p.colorType === 'muted') {
             fillStyle = `rgba(136, 136, 136, ${alpha})`;
           }
-
           ctx.fillStyle = fillStyle;
           ctx.fillRect(p.x, p.y, p.size, p.size);
+        } else {
+          // Partícula voladora (Flow Field / Campo de flujo)
+          p.life -= p.decay;
+
+          if (p.life <= 0) {
+            const base = textPixels[Math.floor(Math.random() * textPixels.length)];
+            p.ox = base.x;
+            p.oy = base.y;
+            p.x = base.x;
+            p.y = base.y;
+            p.vx = 0;
+            p.vy = 0;
+            p.life = 1.0;
+          }
+
+          // Campo de vectores ondulante (Flow Field): el viento fluye como ondas de humo
+          const baseWindX = -1.8; // viento hacia la izquierda
+          const baseWindY = 0.25; // ligera caída hacia abajo
+
+          // Turbulencias senoidales cruzadas (simula vórtices de fluido)
+          const angle = Math.sin(time * 0.001 + p.y * 0.02) * 0.8 + Math.cos(time * 0.0006 + p.x * 0.015) * 0.4;
+          const forceX = Math.cos(angle) * 1.2;
+          const forceY = Math.sin(angle) * 0.4;
+
+          p.vx += baseWindX * 0.08 + forceX * 0.12;
+          p.vy += baseWindY * 0.08 + forceY * 0.12;
+          p.vx *= 0.91; // fricción
+          p.vy *= 0.91;
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          const dx = p.x - p.ox;
+          const dy = p.y - p.oy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          const maxDist = 150;
+          const distanceFade = Math.max(0, 1 - dist / maxDist);
+          const alpha = p.life * distanceFade * 0.4;
+
+          if (alpha > 0.01) {
+            let fillStyle = `rgba(237, 237, 237, ${alpha})`;
+            if (p.colorType === 'accent') {
+              fillStyle = `rgba(236, 94, 63, ${alpha * 0.95})`; // #ec5e3f
+            } else if (p.colorType === 'muted') {
+              fillStyle = `rgba(136, 136, 136, ${alpha})`;
+            }
+
+            ctx.fillStyle = fillStyle;
+            ctx.fillRect(p.x, p.y, p.size, p.size);
+          }
         }
       }
 
@@ -207,15 +310,15 @@ const SandTitle = ({ line1, line2, className = '' }) => {
 
   return (
     <div ref={wrapRef} className="relative w-full">
-      {/* El texto HTML real con su tamaño original, alineación y peso */}
-      <h1 ref={textRef} className={`${className} select-all relative z-0`}>
+      {/* El texto HTML real con color transparente: mantiene el layout y la selección exacta de texto */}
+      <h1 ref={textRef} className={`${className} select-all relative z-0 text-transparent selection:bg-[#ec5e3f]/30`}>
         {wrappedLines.lines.map((line, i) => (
-          <span key={i} className={`block ${i >= wrappedLines.line1Count ? 'text-temporal-muted' : ''}`}>
+          <span key={i} className="block">
             {line}
           </span>
         ))}
       </h1>
-      {/* Canvas superpuesto que dibuja las estelas de arena */}
+      {/* Canvas superpuesto que dibuja las letras con grano de carbón y las estelas de humo */}
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" aria-hidden="true" />
     </div>
   );

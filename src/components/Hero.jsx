@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PerlinWarpGL from './PerlinWarpGL';
 import MusicPlayer from './MusicPlayer';
+import SandTitle from './SandTitle';
 import { useTranslation } from '../i18n/LanguageContext';
 
 // Componente para el efecto de HUMO (smoke appear-wave)
@@ -64,10 +65,10 @@ const Hero = () => {
               {t('hero.tag')}
             </div>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-mono tracking-tighter text-temporal-text mb-8 leading-[1.1]">
-            {t('hero.line1')}<br />
-            <span className="text-temporal-muted">{t('hero.line2')}</span>
-          </h1>
+          <SandTitle 
+            lines={[t('hero.line1'), t('hero.line2')]} 
+            className="text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-mono tracking-tighter text-temporal-text mb-8 leading-[1.1]" 
+          />
           <p className="text-lg md:text-xl text-temporal-muted max-w-xl leading-relaxed mb-12">
             {t('hero.desc')}
           </p>

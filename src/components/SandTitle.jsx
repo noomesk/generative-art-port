@@ -91,27 +91,7 @@ const SandTitle = ({ line1, line2, className = '' }) => {
       octx.fillStyle = '#ffffff';
 
       finalLines.forEach((line, i) => {
-        let currentX = 0;
-        const lineY = i * lineHeight;
-
-        for (let j = 0; j < line.length; j++) {
-          const char = line[j];
-          const charWidth = octx.measureText(char).width;
-
-          // Silueta del círculo para la primera 'o' en el muestreo
-          if (i === 0 && j === 1 && char.toLowerCase() === 'o' && line.toLowerCase().startsWith('yo')) {
-            const radius = octx.measureText('M').width * 0.65;
-            const centerX = currentX + charWidth / 2;
-            const centerY = lineY + radius * 0.85;
-
-            octx.beginPath();
-            octx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-            octx.fill();
-          } else {
-            octx.fillText(char, currentX, lineY);
-          }
-          currentX += charWidth;
-        }
+        octx.fillText(line, 0, i * lineHeight);
       });
 
       const imgData = octx.getImageData(0, 0, off.width, off.height).data;
@@ -182,13 +162,13 @@ const SandTitle = ({ line1, line2, className = '' }) => {
             const centerX = currentX + charWidth / 2;
             const centerY = lineY + radius * 0.85;
 
-            // Círculo sólido naranja-rojo del foco
-            ctx.fillStyle = '#ec5e3f';
+            // Círculo translúcido naranja-rojo detrás de la letra o para dar el foco
+            ctx.fillStyle = 'rgba(236, 94, 63, 0.8)';
             ctx.beginPath();
             ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
             ctx.fill();
 
-            // Letra calada en negro
+            // Dibujar la 'o' calada en negro encima del círculo
             ctx.fillStyle = '#050505';
             ctx.fillText(char, currentX, lineY);
           }
@@ -263,25 +243,13 @@ const SandTitle = ({ line1, line2, className = '' }) => {
 
   return (
     <div ref={wrapRef} className="relative w-full">
-      {/* El texto HTML real: 100% visible, sólido y perfectamente legible */}
+      {/* El texto HTML real: 100% visible, sólido y perfectamente legible, sin trucos de slicing */}
       <h1 ref={textRef} className={`${className} select-all relative z-0`}>
-        {wrappedLines.lines.map((line, i) => {
-          // El foco de la 'o' lo dibujamos en canvas para que sea calado, 
-          // así que en HTML la ocultamos con opacidad cero para que no se superpongan.
-          const isLine1 = i < wrappedLines.line1Count;
-          if (isLine1 && line.toLowerCase().startsWith('yo')) {
-            return (
-              <span key={i} className="block text-temporal-text">
-                Y<span className="opacity-0">o</span> {line.slice(3)}
-              </span>
-            );
-          }
-          return (
-            <span key={i} className={`block ${isLine1 ? 'text-temporal-text' : 'text-temporal-muted'}`}>
-              {line}
-            </span>
-          );
-        })}
+        {wrappedLines.lines.map((line, i) => (
+          <span key={i} className={`block ${i >= wrappedLines.line1Count ? 'text-temporal-muted' : 'text-temporal-text'}`}>
+            {line}
+          </span>
+        ))}
       </h1>
       {/* Canvas superpuesto que dibuja el foco (O) y las estelas de viento/arena */}
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" aria-hidden="true" />

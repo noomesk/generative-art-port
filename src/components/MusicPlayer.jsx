@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Play, Pause, SkipBack, SkipForward } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Volume2 } from 'lucide-react';
 import { tracks } from '../data/music';
 
 const pad = (n) => String(Math.floor(n)).padStart(2, '0');
@@ -12,9 +12,14 @@ const MusicPlayer = () => {
   const [current, setCurrent] = useState(0);
   const [duration, setDuration] = useState(0);
   const [error, setError] = useState(false);
+  const [volume, setVolume] = useState(0.8);
 
   const track = tracks[index];
   const hasTracks = tracks.length > 0;
+
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.volume = volume;
+  }, [volume, hasTracks]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -140,6 +145,20 @@ const MusicPlayer = () => {
           <span className="text-[10px] tabular-nums tracking-[0.1em] hidden sm:inline">
             {formatTime(current)} / {formatTime(duration)}
           </span>
+
+          <label className="hidden sm:flex items-center gap-2 text-temporal-muted/70 hover:text-temporal-text transition-colors">
+            <Volume2 size={12} aria-hidden="true" />
+            <span className="sr-only">Volumen</span>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.01}
+              value={volume}
+              onChange={(e) => setVolume(Number(e.target.value))}
+              className="w-16 h-px appearance-none bg-temporal-border cursor-pointer accent-temporal-muted"
+            />
+          </label>
         </div>
       </div>
 

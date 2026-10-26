@@ -13,8 +13,10 @@ También explora bioinformática y procesamiento de audio.
 Proyectos destacados: Motor de autómatas celulares (WebGL/GLSL), Asistente de código con IA (Groq + Llama + Three.js),
 Compañero contra la ansiedad (FastAPI + React + LLM con guardarraíles), Genome Cleaner (CLI de bioinformática),
 Endmoda (galería de moda), Security Anomaly Detector (en progreso), Portfolio Q&A Agent (este agente).
-Experiencia: Junior Software Engineer (Trainee) en EPAM Systems / NEORIS (jun–oct 2026). Enfoque: Web Components
-con Lit/LitElement, Shadow DOM, ecosistema Cells, mixins, i18n y software seguro + IA agéntica aplicada a flujos de desarrollo.
+Experiencia: Junior Software Engineer (Trainee) en EPAM Systems / Neoris, asignada a cliente bancario (junio–presente).
+Desarrollo con JavaScript, HTML y CSS. Enfoque: Web Components con Lit/LitElement, Shadow DOM, mixins, i18n y el ecosistema
+interno de componentes del cliente. Experiencia previa con Polymer. Certificación en desarrollo seguro (Net4Skill).
+Aplicación de IA agéntica a flujos de desarrollo. No menciones el nombre del cliente ni el nombre del framework interno.
 Contacto: disponible desde la sección de contacto del portafolio.
 `.trim();
 

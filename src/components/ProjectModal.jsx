@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight, Github } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
+import { linkProps } from '../utils/linkProps';
 
 const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
@@ -113,9 +114,8 @@ const ProjectModal = ({ project, onClose }) => {
             <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-temporal-border">
               {project.status === 'live' && project.link && project.link !== '#' && (
                 <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...linkProps(project.link)}
+                  onClick={() => project.link.startsWith('#') && onClose?.()}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-temporal-text text-temporal-bg font-mono text-sm hover:bg-temporal-accent transition-colors"
                 >
                   {t('modal.viewDemo')}

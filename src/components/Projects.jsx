@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { projects } from '../data/projects';
 import ProjectModal from './ProjectModal';
+import { linkProps } from '../utils/linkProps';
 
 const Projects = () => {
   const { language, t } = useTranslation();
@@ -165,9 +166,7 @@ const Projects = () => {
                     </button>
                     {project.status === 'live' && project.link && project.link !== '#' && (
                       <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        {...linkProps(project.link)}
                         className="text-xs font-mono text-temporal-accent border border-temporal-accent px-3 py-1 rounded-full hover:bg-temporal-accent hover:text-black transition"
                       >
                         {t('projects.live')}

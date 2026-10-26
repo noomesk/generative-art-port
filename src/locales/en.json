@@ -107,7 +107,7 @@
     "retrieving": "retrieving context...",
     "placeholder": "ask about stack, projects, ai, experience...",
     "send": "Send message",
-    "disclaimer": "*Mock grounded response for demo. Swappable to Groq + embeddings for live RAG.",
+    "disclaimer": "*Answers are AI-generated from my portfolio. They may be wrong; for details, ask via contact.",
     "fallback": "Grounded in my portfolio: I focus on Frontend + AI (agents, RAG, tool calling). Ask about stack, projects, AI work, experience or contact.",
     "kb": [
       {

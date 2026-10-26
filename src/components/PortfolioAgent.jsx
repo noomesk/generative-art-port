@@ -43,18 +43,31 @@ const PortfolioAgent = () => {
     }
   }, [messages, thinking]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim() || thinking) return;
     const userMsg = input.trim();
     setMessages((prev) => [...prev, { role: 'user', text: userMsg }]);
     setInput('');
     setThinking(true);
-    setTimeout(() => {
-      const ans = findAnswer(userMsg);
-      setMessages((prev) => [...prev, { role: 'agent', text: ans }]);
-      setThinking(false);
-    }, 600);
+
+    let ans;
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: userMsg, language }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      ans = data.answer;
+    } catch {
+      // Sin API disponible (dev local, límite de cuota o red): usa la base local
+      ans = findAnswer(userMsg);
+    }
+
+    setMessages((prev) => [...prev, { role: 'agent', text: ans }]);
+    setThinking(false);
   };
 
   return (

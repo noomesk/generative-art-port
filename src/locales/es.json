@@ -107,7 +107,7 @@
     "retrieving": "recuperando contexto...",
     "placeholder": "pregunta sobre stack, proyectos, IA, experiencia...",
     "send": "Enviar mensaje",
-    "disclaimer": "*Respuesta simulada para demo. Intercambiable por Groq + embeddings para RAG real.",
+    "disclaimer": "*Respuestas generadas con IA a partir de mi portafolio. Puede equivocarse; para detalles, pregunta por contacto.",
     "fallback": "Basado en mi portafolio: me enfoco en Frontend + IA (agentes, RAG, llamadas a herramientas). Pregunta por stack, proyectos, trabajo en IA, experiencia o contacto.",
     "kb": [
       {

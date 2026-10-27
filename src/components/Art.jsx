@@ -3,7 +3,7 @@ import { Section } from './Section';
 import { useTranslation } from '../i18n/LanguageContext';
 
 // Separate piece component with zero-JS interaction and hardware-accelerated video
-const ArtPiece = memo(({ id, title, webmPath, mp4Path, description, subtitle, hasSound = false, badgeText, isSquare = false }) => {
+const ArtPiece = memo(({ id, title, webmPath, mp4Path, youtubeId, description, subtitle, hasSound = false, badgeText, isSquare = false }) => {
   const { t } = useTranslation();
 
   return (
@@ -16,21 +16,31 @@ const ArtPiece = memo(({ id, title, webmPath, mp4Path, description, subtitle, ha
           </span>
         </div>
 
-        {/* Hardware-Accelerated Video Layer - Zero Flickering */}
-        <video 
-          className={isSquare ? "art-video-layer" : "w-full h-full object-cover relative z-10"}
-          autoPlay={!hasSound} // Autoplay directo si no tiene sonido; si tiene sonido requiere click del usuario
-          loop 
-          muted={!hasSound} // Muted si no tiene sonido; con sonido permitimos el audio del set
-          controls={hasSound} // Habilitar barra de reproducción, volumen, pantalla completa y play/pausa para VJ
-          playsInline
-        >
-          {webmPath && <source src={webmPath} type="video/webm" />}
-          <source src={mp4Path} type="video/mp4" />
-        </video>
+        {/* Renderizado de YouTube Embed o Video Local según corresponda */}
+        {youtubeId ? (
+          <iframe
+            className="w-full h-full relative z-10 border-0"
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=0&mute=${hasSound ? 0 : 1}&controls=1&rel=0&modestbranding=1&vq=hd2160`}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        ) : (
+          <video 
+            className={isSquare ? "art-video-layer" : "w-full h-full object-cover relative z-10"}
+            autoPlay={!hasSound} // Autoplay directo si no tiene sonido; si tiene sonido requiere click del usuario
+            loop 
+            muted={!hasSound} // Muted si no tiene sonido; con sonido permitimos el audio del set
+            controls={hasSound} // Habilitar barra de reproducción, volumen, pantalla completa y play/pausa para VJ
+            playsInline
+          >
+            {webmPath && <source src={webmPath} type="video/webm" />}
+            <source src={mp4Path} type="video/mp4" />
+          </video>
+        )}
 
         {/* Floating Bio-Art / VJ Badge */}
-        <div className="absolute top-4 right-4 z-20">
+        <div className="absolute top-4 right-4 z-20 pointer-events-none">
           <span className="bg-temporal-bg/80 backdrop-blur-sm border border-temporal-border px-2 py-1 text-[8px] font-mono text-temporal-accent uppercase tracking-widest">
             {badgeText || t('art.badge')}
           </span>
@@ -103,9 +113,9 @@ const ArtSection = () => {
           <ArtPiece 
             id="VJ Set 001"
             title={t('art.vjPiece1.title')}
-            subtitle={t('art.vjPiece1.subtitle')}
+            subtitle={t('art.vjPiece1.subtitle') + " (Recomendado: activar sonido y configurar YouTube en 4K/1080p)"}
             description={t('art.vjPiece1.caption')}
-            mp4Path="/video/FLUIDO.MOV"
+            youtubeId="iZTs5WH32eA"
             hasSound={true}
             badgeText={t('art.vjBadge')}
           />

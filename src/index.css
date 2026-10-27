@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@700;800&family=Megrim&family=Major+Mono+Display&family=Oxanium:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@700;800&family=Megrim&family=Major+Mono+Display&family=Oxanium:wght@700;800&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Prata&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -15,6 +15,8 @@
   --font-megrim: "Megrim", sans-serif;
   --font-major: "Major Mono Display", monospace;
   --font-oxanium: "Oxanium", sans-serif;
+  --font-bodoni: "Bodoni Moda", serif;
+  --font-prata: "Prata", serif;
 }
 
 .translate-z-0 {

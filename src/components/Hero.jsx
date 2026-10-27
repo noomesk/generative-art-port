@@ -64,7 +64,7 @@ const Hero = () => {
               {t('hero.tag')}
             </div>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-megrim tracking-wide mb-8 leading-[1.1] uppercase">
+          <h1 className="text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-bodoni font-bold mb-8 leading-[1.15] tracking-tight">
             <span style={{ color: 'rgba(215, 212, 205, 0.76)' }}>{t('hero.line1')}</span>
             <br />
             <span style={{ color: 'rgba(135, 131, 124, 0.6)' }}>{t('hero.line2')}</span>

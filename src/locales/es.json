@@ -45,7 +45,7 @@
   "ai": {
     "title": "01.5 // Enfoque en ingeniería de IA",
     "heading": "Agentes, RAG e IA aplicada",
-    "desc": "En un mundo en donde la tecnología avanza casi al ritmo de una utopía Leguiniana, hay que estar a la vanguardia, así que bueno. Esta sección va de diseño y despliegue de sistemas de IA prácticos: desde agentes que llaman a herramientas hasta asistentes con recuperación de contexto. El objetivo no es “chatear con todo”, sino resolver un problema específico con el contexto adecuado. Y para ello, cada asunto tiene su propia herramienta, solo hay que saber aplicarla.",
+    "desc": "En un mundo en donde la tecnología avanza casi al ritmo de una utopía Leguiniana, hay que estar a la vanguardia, así que bueno. Esta sección va de diseño y despliegue de sistemas de IA prácticos: desde agentes que llaman a herramientas hasta asistentes con recuperación de contexto. El objetivo no es “chatear con todo”, es más bien resolver un problema específico con el contexto adecuado. Y para ello, cada asunto tiene su propia herramienta, solo hay que saber aplicarla.",
     "items": [
       {
         "title": "Sistemas agénticos",

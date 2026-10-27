@@ -91,10 +91,13 @@ const MarqueeText = () => {
     <div className="flex items-center">
       {items.map((text, i) => (
         <React.Fragment key={i}>
-          <span className={`text-4xl md:text-5xl font-mono font-black mx-12 uppercase whitespace-nowrap tracking-tighter ${i % 2 === 1 ? 'text-temporal-accent' : 'text-temporal-text'}`}>
+          <span 
+            style={{ color: i % 2 === 1 ? 'rgba(135, 131, 124, 0.6)' : 'rgba(215, 212, 205, 0.76)' }}
+            className="text-4xl md:text-5xl font-syne font-extrabold mx-12 uppercase whitespace-nowrap tracking-tight"
+          >
             {text}
           </span>
-          <span className="text-4xl md:text-5xl font-mono font-light text-temporal-muted/30">/</span>
+          <span className="text-4xl md:text-5xl font-syne font-light text-temporal-muted/20">/</span>
         </React.Fragment>
       ))}
     </div>

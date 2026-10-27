@@ -92,9 +92,12 @@ const ArtSection = () => {
         <h3 className="text-3xl md:text-4xl font-prata mb-8 leading-tight tracking-tight uppercase animate-prism-text origin-left">
           {t('art.vjSectionTitle')}
         </h3>
-        <p className="text-lg text-temporal-muted max-w-4xl leading-relaxed mb-12 whitespace-pre-line">
+        <p className="text-lg text-temporal-muted max-w-4xl leading-relaxed whitespace-pre-line">
           {t('art.vjSectionDesc')}
         </p>
+        <span className="text-xs text-temporal-muted/50 font-mono mt-6 block leading-relaxed max-w-4xl">
+          {t('art.vjSectionFooter')}
+        </span>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <ArtPiece 

@@ -142,7 +142,8 @@
     "badge": "Bio-Inspired Generative Art",
     "vjBadge": "Visual DJ (VJ) • Live Performance",
     "vjSectionTitle": "Visual DJ (VJ) • Live Code Set",
-    "vjSectionDesc": "Creation of visual identity and conceptual themes for live musical acts using rhythmic synchronization and real-time live-code improvisation. Rather than relying on commercial visual software, the entire set is programmed from scratch: WebGL shaders, Perlin noise, and Mandelbrot fractals. I act as a live-code performer, manually modulating the mathematical variables and shader parameters via Tweakpane in sync with the beats, melodies, and drops of the sound set. This turns my software into a true live audiovisual instrument.",
+    "vjSectionDesc": "Visual identity and conceptual theme creation for artists who want an immersive live experience, through rhythmic synchronization and real-time live-code improvisation. To achieve this completely unique result, instead of using commercial closed-source software, the entire set is programmed from scratch with pure code (WebGL shaders, Perlin noise, and fractals) that I meticulously produced.\n\nWhat is my role here? (Aside from the intellectual and technical creation of the algorithmic behaviors). I act as a live-code performer, manually modulating the mathematical variables and shader parameters via Tweakpane in sync with the beats, melodies, and drops of the music. This turns my software into a live instrument-audiovisual creation.",
+    "vjSectionFooter": "For more information, head to the contact section at the end of the portfolio.",
     "footer": "Hardware Accelerated Decoder • Bio-Art Sync v5.0",
     "piece1": {
       "id": "Piece 001",

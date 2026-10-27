@@ -17,7 +17,7 @@ const Footer = () => {
           <a href="https://github.com/noomesk" target="_blank" rel="noopener noreferrer" aria-label="Github" className="hover:text-temporal-text transition-colors">
             <Github size={20} />
           </a>
-          <a href="https://www.linkedin.com/in/angie-paola-plazas-a008202a0/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-temporal-text transition-colors">
+          <a href="https://www.linkedin.com/in/angie-plazas-a008202a0/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-temporal-text transition-colors">
             <Linkedin size={20} />
           </a>
           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aplazasn@unal.edu.co" target="_blank" rel="noopener noreferrer" aria-label="Email" className="hover:text-temporal-text transition-colors">

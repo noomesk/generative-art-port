@@ -140,6 +140,9 @@
     "title": "Arte generativo",
     "description": "Explorando los bordes del crecimiento digital, los patrones biológicos y la serendipia algorítmica.",
     "badge": "Arte generativo de inspiración biológica",
+    "vjBadge": "Visual DJ (VJ) • Live Performance",
+    "vjSectionTitle": "Visual DJ (VJ) • Set de Código en Vivo",
+    "vjSectionDesc": "Creación de identidad visual y temática conceptual para artistas en vivo mediante la sincronización rítmica y la mezcla en tiempo real. En lugar de usar software comercial cerrado, todo el set está programado desde cero con código puro: algoritmos de ruido Perlin, fractales de Mandelbrot y shaders WebGL en wtc-gl controlados en vivo con Tweakpane. Los gráficos, colores y transiciones reaccionan y se mueven al compás del beat de los bajos, melodías y drops de las canciones.",
     "footer": "Decodificador acelerado por hardware • Bio-Art Sync v5.0",
     "piece1": {
       "id": "Pieza 001",
@@ -152,6 +155,18 @@
       "title": "Flujo neuronal",
       "subtitle": "Pterois volitans (pez león) en movimiento. Movimiento simulado con conjuntos de Mandelbrot para calcular ciclos rítmicos de desvanecimiento y emergencia. Decodificador por hardware · Bio-Art Sync v5.0",
       "caption": "[ Pieza 002 ] — Arte generativo de inspiración biológica"
+    },
+    "vjPiece1": {
+      "id": "VJ Set 001",
+      "title": "FLUIDO",
+      "subtitle": "Mezcla generativa en vivo sincronizada con el beat. Las transiciones fluidas de color y los vórtices se mueven dinámicamente al compás de las frecuencias bajas y melodías del set.",
+      "caption": "[ VJ Set 001 ] — Mezcla generativa en tiempo real por código"
+    },
+    "vjPiece2": {
+      "id": "VJ Set 002",
+      "title": "Entrópico",
+      "subtitle": "Exploración de la entropía y el caos estructurado en vivo. Los algoritmos fractales y el ruido de Perlin modulan la velocidad y las transiciones de forma en sintonía con los drops del beat.",
+      "caption": "[ VJ Set 002 ] — Mezcla generativa en tiempo real por código"
     }
   },
   "contact": {

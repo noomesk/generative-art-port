@@ -140,6 +140,9 @@
     "title": "Generative Art",
     "description": "Exploring the edges of digital growth, biological patterns, and algorithmic serendipity.",
     "badge": "Bio-Inspired Generative Art",
+    "vjBadge": "Visual DJ (VJ) • Live Performance",
+    "vjSectionTitle": "Visual DJ (VJ) • Live Code Set",
+    "vjSectionDesc": "Creation of visual identity and conceptual themes for live musical acts using rhythmic synchronization and real-time mixing. Rather than relying on commercial visual software, the entire set is coded from scratch: Perlin noise, Mandelbrot fractals, and WebGL custom shaders in wtc-gl modulated live with Tweakpane. Graphics, colors, and transitions morph dynamically, responding to the low frequencies, melodies, and drops of the sound set.",
     "footer": "Hardware Accelerated Decoder • Bio-Art Sync v5.0",
     "piece1": {
       "id": "Piece 001",
@@ -152,6 +155,18 @@
       "title": "Neural Flow",
       "subtitle": "Pterois volitans (lionfish) in motion. Movement simulated using Mandelbrot sets to calculate rhythmic cycles of fading and emergence. Hardware-accelerated decoder · Bio-Art Sync v5.0",
       "caption": "[ Piece 002 ] — Biologically inspired generative art"
+    },
+    "vjPiece1": {
+      "id": "VJ Set 001",
+      "title": "FLUIDO",
+      "subtitle": "Generative live mixing synchronized to the beat. Fluid color transitions and vortex structures react dynamically to the low frequencies and melodies of the sound set.",
+      "caption": "[ VJ Set 001 ] — Real-time coded generative mix"
+    },
+    "vjPiece2": {
+      "id": "VJ Set 002",
+      "title": "Entropic",
+      "subtitle": "Exploration of entropy and structured chaos. Fractal algorithms and Perlin noise modulate speed and shape transitions in sync with the beats and drops.",
+      "caption": "[ VJ Set 002 ] — Real-time coded generative mix"
     }
   },
   "contact": {

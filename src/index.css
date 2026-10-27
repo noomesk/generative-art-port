@@ -184,4 +184,32 @@
   .art-piece-container:hover .art-video-layer {
     @apply opacity-100;
   }
+
+  /* Efecto de Agua / Líquido Prismático Animado para el título de VJ */
+  @keyframes prism-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes liquid-float {
+    0%, 100% { transform: translateY(0px) skewX(-0.5deg) scaleY(0.98); }
+    50% { transform: translateY(-4px) skewX(0.5deg) scaleY(1.02); }
+  }
+
+  .animate-prism-text {
+    background: linear-gradient(
+      120deg, 
+      rgba(215, 212, 205, 0.95) 0%, 
+      rgba(135, 131, 124, 0.70) 30%, 
+      rgba(51, 255, 153, 0.65) 60%, 
+      rgba(215, 212, 205, 0.95) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: prism-flow 6s ease-in-out infinite, liquid-float 5s ease-in-out infinite;
+    display: inline-block;
+    will-change: transform, background-position;
+  }
 }

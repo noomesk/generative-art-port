@@ -89,7 +89,7 @@ const ArtSection = () => {
 
       {/* --- SUBSECCIÓN 2: VISUAL DJ (VJ) • LIVE CODE SET --- */}
       <div className="pt-16 border-t border-temporal-border/30 mb-16">
-        <h3 className="text-3xl md:text-4xl text-temporal-text font-prata mb-8 leading-tight tracking-tight uppercase" style={{ color: 'rgba(215, 212, 205, 0.76)' }}>
+        <h3 className="text-3xl md:text-4xl font-prata mb-8 leading-tight tracking-tight uppercase animate-prism-text origin-left">
           {t('art.vjSectionTitle')}
         </h3>
         <p className="text-lg text-temporal-muted max-w-4xl leading-relaxed mb-12 whitespace-pre-line">

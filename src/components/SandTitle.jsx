@@ -1,19 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 /**
- * SandTitle - Un componente de alto impacto visual inspirado en la referencia.
- * Mantiene el texto HTML original 100% visible y sólido (con legibilidad y definición perfectas),
- * y superpone un canvas que emite continuamente partículas de arena/humo granulado
- * sopladas por un campo de flujo (viento ondulatorio hacia la izquierda),
- * logrando el efecto de dispersión sobre todas las letras sin perder legibilidad.
+ * SandTitle - Un componente de alto impacto visual que implementa la especificación técnica de stippling:
+ * 1. Mapea el texto "YO DEFINO LAS REGLAS, LOS SISTEMAS SUEÑAN" (todo en mayúsculas, peso pesado, tracking ajustado) a un canvas offscreen.
+ * 2. Obtiene la máscara de píxeles exacta (alpha > 0).
+ * 3. Rellena el interior de cada letra con miles de partículas de arena muy densas (grano de carbón de 1px a 2px)
+ *    con jitter de posición sutil (±1px) y opacidad variable (0.5 a 1.0) en tiempo real para dar una textura viva de grabado/stipple.
+ * 4. Las siluetas de las letras se mantienen 100% nítidas y legibles porque los granos se generan estrictamente dentro de la máscara.
+ * 5. Destaca la palabra "REGLAS" (y "RULES" en inglés) en color naranja-rojo (#ec5e3f), imitando la referencia.
+ * 6. Añade una estela sutil de viento/humo de arena voladora hacia la izquierda para dar dinamismo.
  */
 const SandTitle = ({ line1, line2, className = '' }) => {
   const wrapRef = useRef(null);
   const textRef = useRef(null);
   const canvasRef = useRef(null);
 
-  // Líneas formateadas por el algoritmo de word-wrap para alineación perfecta
-  const [wrappedLines, setWrappedLines] = useState({ lines: [line1, line2], line1Count: 1 });
+  // Líneas formateadas en mayúsculas por el algoritmo de word-wrap
+  const [wrappedLines, setWrappedLines] = useState({ lines: [line1.toUpperCase(), line2.toUpperCase()], line1Count: 1 });
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -32,8 +35,8 @@ const SandTitle = ({ line1, line2, className = '' }) => {
       const style = getComputedStyle(text);
       const fontSize = parseFloat(style.fontSize);
       const family = style.fontFamily;
-      const weight = style.fontWeight;
-      const letterSpacing = style.letterSpacing;
+      const weight = '900'; // Fuerza peso pesado/black
+      const letterSpacing = '-0.05em'; // Tracking súper ajustado de la especificación
 
       width = wrap.clientWidth;
       if (width <= 0) return;
@@ -44,7 +47,8 @@ const SandTitle = ({ line1, line2, className = '' }) => {
 
       // Word-wrap idéntico para que el canvas y el HTML coincidan
       const wrapText = (txt) => {
-        const words = txt.split(' ');
+        const uppercaseTxt = txt.toUpperCase().replace(/[.,]/g, ''); // Limpiar puntuación para estricto mayúsculas
+        const words = uppercaseTxt.split(' ');
         const result = [];
         let currentLine = words[0] || '';
 
@@ -70,7 +74,7 @@ const SandTitle = ({ line1, line2, className = '' }) => {
       setWrappedLines({ lines: finalLines, line1Count: wrappedL1.length });
 
       const dpr = window.devicePixelRatio || 1;
-      const lineHeight = fontSize * 1.1;
+      const lineHeight = fontSize * 1.05; // Interlineado compacto de la especificación
       height = finalLines.length * lineHeight;
 
       canvas.width = width * dpr;
@@ -88,42 +92,81 @@ const SandTitle = ({ line1, line2, className = '' }) => {
       octx.font = fontStr;
       octx.textBaseline = 'top';
       octx.letterSpacing = letterSpacing;
-      octx.fillStyle = '#ffffff';
 
       finalLines.forEach((line, i) => {
-        octx.fillText(line, 0, i * lineHeight);
+        let currentX = 0;
+        const lineY = i * lineHeight;
+
+        const words = line.split(' ');
+        words.forEach((word, wordIdx) => {
+          const isHighlight = word === 'REGLAS' || word === 'RULES' || word === 'SUEÑAN' || word === 'DREAM';
+          octx.fillStyle = isHighlight ? '#ff0000' : '#00ff00'; // Usamos rojo/verde en offscreen para diferenciar máscaras de color
+          
+          octx.fillText(word, currentX, lineY);
+          currentX += octx.measureText(word + ' ').width;
+        });
       });
 
       const imgData = octx.getImageData(0, 0, off.width, off.height).data;
       textPixels = [];
 
-      for (let y = 0; y < off.height; y += 2) {
-        for (let x = 0; x < off.width; x += 2) {
-          const alpha = imgData[(y * off.width + x) * 4 + 3];
-          if (alpha > 100) {
-            textPixels.push({ x, y });
+      // Muestrear con alta densidad (paso de 1.2px) para rellenar las letras con grano fino
+      for (let y = 0; y < off.height; y += 1.2) {
+        for (let x = 0; x < off.width; x += 1.2) {
+          const idx = (Math.floor(y) * off.width + Math.floor(x)) * 4;
+          const r = imgData[idx];
+          const g = imgData[idx + 1];
+          const alpha = imgData[idx + 3];
+
+          if (alpha > 80) {
+            textPixels.push({
+              x,
+              y,
+              isHighlight: r > 150, // Píxeles de palabras destacadas
+            });
           }
         }
       }
 
       if (textPixels.length === 0) return;
 
-      // Inicializar partículas de arena soplada (3200 granos)
-      const particleCount = 3200;
+      // Inicializar pool de partículas (granos de arena fina)
+      // - 7500 partículas de grano estático que rellenan el interior de las letras con jitter sutil (±1px)
+      // - 1800 partículas voladoras que son arrastradas por el viento a la izquierda
+      const textGrainsCount = 7500;
+      const flyingGrainsCount = 1800;
       particles = [];
-      for (let i = 0; i < particleCount; i++) {
+
+      // Granos de textura interna (carbón comprimido)
+      for (let i = 0; i < textGrainsCount; i++) {
         const base = textPixels[Math.floor(Math.random() * textPixels.length)];
         particles.push({
-          x: base.x,
-          y: base.y,
+          type: 'grain',
           ox: base.x,
           oy: base.y,
+          x: base.x,
+          y: base.y,
+          size: Math.random() * 1.3 + 0.5, // 0.5px a 1.8px de radio (granulado muy fino)
+          opacity: 0.5 + Math.random() * 0.5,
+          isHighlight: base.isHighlight,
+        });
+      }
+
+      // Granos voladores (humo de arena soplada)
+      for (let i = 0; i < flyingGrainsCount; i++) {
+        const base = textPixels[Math.floor(Math.random() * textPixels.length)];
+        particles.push({
+          type: 'fly',
+          ox: base.x,
+          oy: base.y,
+          x: base.x,
+          y: base.y,
           vx: 0,
           vy: 0,
           life: Math.random(),
-          decay: 0.006 + Math.random() * 0.014,
-          size: Math.random() * 1.5 + 0.4,
-          colorType: Math.random() > 0.85 ? 'accent' : Math.random() > 0.5 ? 'muted' : 'text',
+          decay: 0.006 + Math.random() * 0.015,
+          size: Math.random() * 1.2 + 0.4,
+          isHighlight: base.isHighlight,
         });
       }
     };
@@ -137,55 +180,70 @@ const SandTitle = ({ line1, line2, className = '' }) => {
         return;
       }
 
-      // Dibujar las partículas de arena volando
+      // Simular y dibujar partículas granuladas
       for (const p of particles) {
-        p.life -= p.decay;
+        if (p.type === 'grain') {
+          // Jitter de posición sutil (±1px) en tiempo real para textura viva y orgánica
+          const jitterX = (Math.random() - 0.5) * 1.4;
+          const jitterY = (Math.random() - 0.5) * 1.4;
+          const currentX = p.ox + jitterX;
+          const currentY = p.oy + jitterY;
 
-        if (p.life <= 0) {
-          const base = textPixels[Math.floor(Math.random() * textPixels.length)];
-          p.ox = base.x;
-          p.oy = base.y;
-          p.x = base.x;
-          p.y = base.y;
-          p.vx = 0;
-          p.vy = 0;
-          p.life = 1.0;
-        }
+          // Variación de opacidad en tiempo real (0.5 a 1.0) de la especificación
+          const opacity = Math.max(0.5, Math.min(1.0, p.opacity + (Math.random() - 0.5) * 0.15));
 
-        // Simulación física de viento ondeando hacia la izquierda
-        const baseWindX = -1.8;
-        const baseWindY = 0.2;
+          // Color del grano: naranja-rojo destacado (#ec5e3f) o temporal-text (#ededed)
+          ctx.fillStyle = p.isHighlight 
+            ? `rgba(236, 94, 63, ${opacity})` 
+            : `rgba(237, 237, 237, ${opacity})`;
 
-        const angle = Math.sin(time * 0.0012 + p.y * 0.02) * 0.8 + Math.cos(time * 0.0006 + p.x * 0.015) * 0.4;
-        const forceX = Math.cos(angle) * 1.2;
-        const forceY = Math.sin(angle) * 0.4;
+          ctx.fillRect(currentX, currentY, p.size, p.size);
+        } else {
+          // Partículas de viento/humo arrastradas
+          p.life -= p.decay;
 
-        p.vx += baseWindX * 0.08 + forceX * 0.12;
-        p.vy += baseWindY * 0.08 + forceY * 0.12;
-        p.vx *= 0.91;
-        p.vy *= 0.91;
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        const dx = p.x - p.ox;
-        const dy = p.y - p.oy;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        const maxDist = 150;
-        const distanceFade = Math.max(0, 1 - dist / maxDist);
-        const alpha = p.life * distanceFade * 0.5;
-
-        if (alpha > 0.01) {
-          let fillStyle = `rgba(237, 237, 237, ${alpha})`;
-          if (p.colorType === 'accent') {
-            fillStyle = `rgba(236, 94, 63, ${alpha * 0.9})`; // #ec5e3f
-          } else if (p.colorType === 'muted') {
-            fillStyle = `rgba(136, 136, 136, ${alpha})`;
+          if (p.life <= 0) {
+            const base = textPixels[Math.floor(Math.random() * textPixels.length)];
+            p.ox = base.x;
+            p.oy = base.y;
+            p.x = base.x;
+            p.y = base.y;
+            p.vx = 0;
+            p.vy = 0;
+            p.life = 1.0;
           }
 
-          ctx.fillStyle = fillStyle;
-          ctx.fillRect(p.x, p.y, p.size, p.size);
+          // Campo de vectores del viento (Flow Field)
+          const baseWindX = -1.6;
+          const baseWindY = 0.2;
+
+          const angle = Math.sin(time * 0.0012 + p.y * 0.02) * 0.8 + Math.cos(time * 0.0006 + p.x * 0.015) * 0.4;
+          const forceX = Math.cos(angle) * 1.2;
+          const forceY = Math.sin(angle) * 0.4;
+
+          p.vx += baseWindX * 0.08 + forceX * 0.12;
+          p.vy += baseWindY * 0.08 + forceY * 0.12;
+          p.vx *= 0.91;
+          p.vy *= 0.91;
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          const dx = p.x - p.ox;
+          const dy = p.y - p.oy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          const maxDist = 130;
+          const distanceFade = Math.max(0, 1 - dist / maxDist);
+          const alpha = p.life * distanceFade * 0.4;
+
+          if (alpha > 0.01) {
+            ctx.fillStyle = p.isHighlight 
+              ? `rgba(236, 94, 63, ${alpha * 0.95})` 
+              : `rgba(237, 237, 237, ${alpha})`;
+
+            ctx.fillRect(p.x, p.y, p.size, p.size);
+          }
         }
       }
 
@@ -204,15 +262,15 @@ const SandTitle = ({ line1, line2, className = '' }) => {
 
   return (
     <div ref={wrapRef} className="relative w-full">
-      {/* El texto HTML real: 100% visible, sólido y perfectamente legible, sin trucos de slicing */}
-      <h1 ref={textRef} className={`${className} select-all relative z-0`}>
+      {/* Texto HTML real transparente: mantiene posicionamiento, SEO y selección al 100% */}
+      <h1 ref={textRef} className={`${className} select-all relative z-0 text-transparent selection:bg-[#ec5e3f]/20 font-black uppercase tracking-[-0.05em] leading-[1.05]`}>
         {wrappedLines.lines.map((line, i) => (
-          <span key={i} className={`block ${i >= wrappedLines.line1Count ? 'text-temporal-muted' : 'text-temporal-text'}`}>
+          <span key={i} className="block">
             {line}
           </span>
         ))}
       </h1>
-      {/* Canvas superpuesto que dibuja el foco (O) y las estelas de viento/arena */}
+      {/* Canvas que dibuja el texto granulado y las estelas de viento con bordes ultra nítidos */}
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" aria-hidden="true" />
     </div>
   );

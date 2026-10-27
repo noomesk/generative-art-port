@@ -114,7 +114,7 @@ const ArtSection = () => {
             id="VJ Set 001"
             title={t('art.vjPiece1.title')}
             subtitle={t('art.vjPiece1.subtitle')}
-            description={t('art.vjPiece1.caption') + " — (Recomendado: activar audio y reproducir en 4K en el icono de ⚙️ de YouTube)"}
+            description={t('art.vjPiece1.caption') + " — (Recomendado: activar audio y reproducir en 4K en los ajustes de YouTube)"}
             youtubeId="iZTs5WH32eA"
             hasSound={true}
             badgeText={t('art.vjBadge')}
@@ -123,7 +123,7 @@ const ArtSection = () => {
             id="VJ Set 002"
             title={t('art.vjPiece2.title')}
             subtitle={t('art.vjPiece2.subtitle')}
-            description={t('art.vjPiece2.caption') + " — (Recomendado: activar audio y reproducir en 4K en el icono de ⚙️ de YouTube)"}
+            description={t('art.vjPiece2.caption') + " — (Recomendado: activar audio y reproducir en 4K en los ajustes de YouTube)"}
             youtubeId="JtvYXMPi9Kg"
             hasSound={true}
             badgeText={t('art.vjBadge')}

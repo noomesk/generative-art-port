@@ -46,7 +46,7 @@ const Projects = () => {
             <h2 className="text-sm font-mono text-temporal-accent uppercase tracking-widest mb-4">
               {t('projects.title')}
             </h2>
-            <h3 className="text-4xl text-temporal-text font-prata tracking-tight uppercase">
+            <h3 className="text-4xl font-prata tracking-tight uppercase" style={{ color: 'rgba(215, 212, 205, 0.76)' }}>
               {t('projects.heading')}
             </h3>
             {activeFocus && (

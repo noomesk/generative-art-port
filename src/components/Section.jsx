@@ -12,6 +12,7 @@ export const Section = ({ id, title, description, children, className = "" }) =>
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-prata tracking-tighter uppercase mb-6"
+            style={{ color: 'rgba(215, 212, 205, 0.76)' }}
           >
             {title}
           </motion.h2>

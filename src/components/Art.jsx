@@ -92,7 +92,7 @@ const ArtSection = () => {
         <h3 className="text-3xl md:text-4xl text-temporal-text font-prata mb-8 leading-tight tracking-tight uppercase" style={{ color: 'rgba(215, 212, 205, 0.76)' }}>
           {t('art.vjSectionTitle')}
         </h3>
-        <p className="text-lg text-temporal-muted max-w-4xl leading-relaxed mb-12">
+        <p className="text-lg text-temporal-muted max-w-4xl leading-relaxed mb-12 whitespace-pre-line">
           {t('art.vjSectionDesc')}
         </p>
 

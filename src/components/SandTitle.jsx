@@ -168,12 +168,11 @@ const SandTitle = ({ line1, line2, className = '' }) => {
       // Simular y dibujar partículas granuladas
       for (const p of particles) {
         if (p.type === 'grain') {
-          // MOVIMIENTO ALEATORIO/BROWNIANO CON RESORTE:
-          // Las partículas de la letra tienen un movimiento aleatorio continuo un poquitín mayor,
-          // pero son atraídas fuertemente a su posición original (ox, oy) mediante un resorte (fuerza elástica),
-          // simulando micro-corrientes activas sin perder la definición ni la nitidez de los bordes.
-          p.x += (p.ox - p.x) * 0.12 + (Math.random() - 0.5) * 1.8;
-          p.y += (p.oy - p.y) * 0.12 + (Math.random() - 0.5) * 1.8;
+          // MOVIMIENTO ALEATORIO CON RESORTE (TÉRMINO MEDIO):
+          // Reducimos el coeficiente de empuje y aumentamos la fuerza del resorte,
+          // de manera que los granos vibren con sutileza y nunca deformen las siluetas.
+          p.x += (p.ox - p.x) * 0.22 + (Math.random() - 0.5) * 1.1;
+          p.y += (p.oy - p.y) * 0.22 + (Math.random() - 0.5) * 1.1;
 
           // Variación de opacidad en tiempo real (0.5 a 1.0) de la especificación
           const opacity = Math.max(0.5, Math.min(1.0, p.opacity + (Math.random() - 0.5) * 0.15));

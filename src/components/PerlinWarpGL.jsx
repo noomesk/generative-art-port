@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 // ─── Vertex Shader ────────────────────────────────────────────────────────────
 const VERT_SRC = `
@@ -59,30 +59,28 @@ const FRAG_SRC = `
   }
 
   void main() {
-    float margin = 0.12; // 12% safety buffer on each side
-    // Map center of canvas to the 0..1 range of the texture, effectively shrinking it
+    float margin = 0.06; // 6% safety buffer on each side for the static seed
     vec2 centeredUV = (v_uv - margin) / (1.0 - 2.0 * margin);
 
     vec2 p  = centeredUV * 3.5;
     vec2 p2 = centeredUV * 1.2;
-    float t  = u_time * 0.30;
-    float t2 = u_time * 0.10;
+    float t  = u_time * 0.22; // sutilmente más pausada
+    float t2 = u_time * 0.08;
 
     float dx1 = fbm(p  + vec2(0.0, 0.0) + t);
     float dy1 = fbm(p  + vec2(5.1, 5.1) + t);
-    float dx2 = fbm(p2 + vec2(10.0,  0.0) + t2) * 1.4;
-    float dy2 = fbm(p2 + vec2( 0.0, 10.0) + t2) * 1.4;
-    float pulse = sin(u_time * 0.18) * 0.012;
+    float dx2 = fbm(p2 + vec2(10.0,  0.0) + t2) * 1.2;
+    float dy2 = fbm(p2 + vec2( 0.0, 10.0) + t2) * 1.2;
+    float pulse = sin(u_time * 0.12) * 0.008;
 
-    float ampFine    = 0.040;
-    float ampBreath  = 0.095;
+    float ampFine    = 0.035;
+    float ampBreath  = 0.080;
 
     vec2 finalUV = centeredUV
       + vec2(dx1, dy1) * ampFine
       + vec2(dx2, dy2) * ampBreath
       + pulse;
 
-    // Manual clipping: if the warped coordinate is outside [0,1], it's the "dead zone"
     if (finalUV.x < 0.0 || finalUV.x > 1.0 || finalUV.y < 0.0 || finalUV.y > 1.0) {
       gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
     } else {
@@ -119,6 +117,10 @@ function createProgram(gl, vert, frag) {
 // ─── Component ─────────────────────────────────────────────────────────────────
 const PerlinWarpGL = ({ imgSrc }) => {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+
+  // Estado local para guardar los ángulos de rotación 3D sutiles
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -155,14 +157,12 @@ const PerlinWarpGL = ({ imgSrc }) => {
     let startTime = null;
 
     img.onload = () => {
-      // Set canvas size to match image aspect at target display width
       const DW = 900;
       const DH = Math.round(DW * img.naturalHeight / img.naturalWidth);
       canvas.width  = DW;
       canvas.height = DH;
       gl.viewport(0, 0, DW, DH);
 
-      // Upload texture
       gl.bindTexture(gl.TEXTURE_2D, texture);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -172,7 +172,7 @@ const PerlinWarpGL = ({ imgSrc }) => {
 
       const render = (ts) => {
         if (!startTime) startTime = ts;
-        const t = (ts - startTime) * 0.001; // seconds
+        const t = (ts - startTime) * 0.001;
 
         gl.useProgram(program);
 
@@ -194,6 +194,38 @@ const PerlinWarpGL = ({ imgSrc }) => {
 
     img.src = imgSrc;
 
+    // --- MANEJO DE INTERACCIÓN 3D (MOUSE / TOUCH TILT) ---
+    const handlePointerMove = (e) => {
+      const rect = containerRef.current?.getBoundingClientRect();
+      if (!rect) return;
+
+      const clientX = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+      const clientY = e.clientY ?? e.touches?.[0]?.clientY ?? 0;
+
+      // Calcular coordenadas relativas al centro del elemento (-0.5 a 0.5)
+      const x = (clientX - rect.left) / rect.width - 0.5;
+      const y = (clientY - rect.top) / rect.height - 0.5;
+
+      // Limitar rotación sutil: máx 18 grados en Y, y máx 14 grados en X
+      setTilt({
+        x: -y * 28, // inclinación arriba/abajo
+        y: x * 36,  // inclinación izquierda/derecha
+      });
+    };
+
+    const handlePointerLeave = () => {
+      // Regresar al origen de forma elástica
+      setTilt({ x: 0, y: 0 });
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('pointermove', handlePointerMove);
+      container.addEventListener('pointerleave', handlePointerLeave);
+      container.addEventListener('touchmove', handlePointerMove, { passive: true });
+      container.addEventListener('touchend', handlePointerLeave);
+    }
+
     return () => {
       cancelAnimationFrame(animId);
       gl.deleteProgram(program);
@@ -201,17 +233,31 @@ const PerlinWarpGL = ({ imgSrc }) => {
       gl.deleteShader(frag);
       gl.deleteBuffer(buf);
       gl.deleteTexture(texture);
+      if (container) {
+        container.removeEventListener('pointermove', handlePointerMove);
+        container.removeEventListener('pointerleave', handlePointerLeave);
+        container.removeEventListener('touchmove', handlePointerMove);
+        container.removeEventListener('touchend', handlePointerLeave);
+      }
     };
   }, [imgSrc]);
 
   return (
-    <div className="relative inline-block w-full max-w-[650px] scale-[1.25] md:scale-[1.40] xl:scale-[1.65] -translate-x-8 md:-translate-x-16 xl:-translate-x-24 flex items-center justify-center mix-blend-screen origin-center">
+    <div
+      ref={containerRef}
+      style={{
+        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.15)`,
+        transition: 'transform 0.12s ease-out', // Inercia física amortiguada
+        transformStyle: 'preserve-3d',
+      }}
+      className="relative inline-block w-full max-w-[650px] scale-[1.25] md:scale-[1.40] xl:scale-[1.65] -translate-x-8 md:-translate-x-16 xl:-translate-x-24 flex items-center justify-center mix-blend-screen origin-center cursor-grab active:cursor-grabbing"
+    >
       <canvas
         ref={canvasRef}
         className="block w-full h-auto rounded-md opacity-90 transition-opacity duration-1000 hover:opacity-100"
       />
       <span className="absolute bottom-6 right-8 text-[10px] tracking-widest text-temporal-muted/30 pointer-events-none select-none font-mono">
-        GLSL fBm
+        GPU fBm • 3D Tilt
       </span>
     </div>
   );

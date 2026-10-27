@@ -139,7 +139,7 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          <PerlinWarpGL imgSrc="/p3.PNG" />
+          <PerlinWarpGL imgSrc="/ref/semilla.png" />
 
           <div className="mt-8 md:mt-24 text-[10px] md:text-xs uppercase tracking-[0.2em] text-temporal-muted/50 font-mono text-center max-w-[300px] md:max-w-md pointer-events-none">
             {t('hero.caption')}<br />

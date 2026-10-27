@@ -119,8 +119,12 @@
         "a": "Core: TypeScript, Next.js, React, Tailwind CSS, Node.js. Creative: WebGL/GLSL, Three.js, P5.js. AI: LLMs, Groq API, Vercel AI SDK, Agents, RAG, Tool Calling, MCP, local AI with Ollama. Also exploring bioinformatics & audio processing."
       },
       {
-        "q": ["proyecto", "trabajo", "project", "work", "vj", "visual", "live coding"],
-        "a": "Highlights: Lit Component Forge (MCP server + Lit generator), Cellular Automata Engine (WebGL/GLSL), live Visual DJ sets (manual real-time modulation of WebGL shaders via Tweakpane in sync with the beats), Genome Cleaner (bioinformatics CLI), and Anxiety Companion (FastAPI + React)."
+        "q": ["proyecto", "trabajo", "project", "work"],
+        "a": "Featured projects: Lit Component Forge (MCP server + Lit generator), Cellular Automata Engine (WebGL/GLSL), live Visual DJ sets (FLUIDO & Entropic), Genome Cleaner (bioinformatics CLI), and Anxiety Companion (FastAPI + React)."
+      },
+      {
+        "q": ["vj", "visual", "live coding", "creative", "performance", "improv", "music", "art", "artist"],
+        "a": "As a Visual DJ (VJ) and Creative Coder, I program my own custom 3D visual instruments using WebGL shaders, Perlin noise, and fractals (wtc-gl, JS, Tweakpane). Instead of using commercial closed-source software, I improvise and manually modulate the mathematical variables and parameters of the shader in real time in sync with the beats, melodies, and drops during my live shows, creating immersive sets like 'FLUIDO' and 'Entropic'."
       },
       {
         "q": ["ai", "agent", "rag"],

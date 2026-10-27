@@ -119,8 +119,12 @@
         "a": "Núcleo: TypeScript, Next.js, React, Tailwind CSS, Node.js. Creativo: WebGL/GLSL, Three.js, P5.js. IA: LLMs, Groq API, Vercel AI SDK, agentes, RAG, llamadas a herramientas, MCP e IA local con Ollama. También exploro bioinformática y procesamiento de audio."
       },
       {
-        "q": ["proyecto", "trabajo", "project", "work", "vj", "visual", "live coding"],
-        "a": "Destacados: Lit Component Forge (servidor MCP + generador Lit), Motor de autómatas celulares (WebGL/GLSL), sets de Visual DJ en vivo (improvisación y modulación manual de shaders WebGL con Tweakpane al ritmo del beat), Genome Cleaner (CLI de bioinformática) y Compañero contra la ansiedad (FastAPI + React)."
+        "q": ["proyecto", "trabajo", "project", "work"],
+        "a": "Proyectos destacados: Lit Component Forge (servidor MCP + generador Lit), Motor de autómatas celulares (WebGL/GLSL), sets de Visual DJ en vivo (FLUIDO y Entrópico), Genome Cleaner (CLI de bioinformática) y Compañero contra la ansiedad (FastAPI + React)."
+      },
+      {
+        "q": ["vj", "visual", "live coding", "creativ", "performance", "improv", "música", "musica", "arte", "artista"],
+        "a": "Como Visual DJ (VJ) y Coder Creativa, programo mis propios instrumentos visuales en 3D con shaders WebGL, ruido Perlin y fractales (wtc-gl, JS, Tweakpane). En lugar de usar software comercial cerrado, improviso y modulo los parámetros matemáticos manualmente en tiempo real al ritmo de la música en mis espectáculos en vivo, logrando sets inmersivos como 'FLUIDO' y 'Entrópico'."
       },
       {
         "q": ["experiencia", "epam", "neoris", "experience"],

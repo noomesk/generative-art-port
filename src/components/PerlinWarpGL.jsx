@@ -81,10 +81,17 @@ const FRAG_SRC = `
       + vec2(dx2, dy2) * ampBreath
       + pulse;
 
+    vec4 bgColor = vec4(5.0/255.0, 5.0/255.0, 5.0/255.0, 1.0); // #050505
+
     if (finalUV.x < 0.0 || finalUV.x > 1.0 || finalUV.y < 0.0 || finalUV.y > 1.0) {
-      gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
+      gl_FragColor = bgColor;
     } else {
-      gl_FragColor = texture2D(u_image, finalUV);
+      vec4 texColor = texture2D(u_image, finalUV);
+      float brightness = max(texColor.r, max(texColor.g, texColor.b));
+      
+      // Fundido suave de los negros de la imagen de la semilla con el fondo #050505
+      float blend = smoothstep(0.015, 0.055, brightness);
+      gl_FragColor = mix(bgColor, texColor, blend);
     }
   }
 `;
@@ -243,19 +250,21 @@ const PerlinWarpGL = ({ imgSrc }) => {
   }, [imgSrc]);
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.15)`,
-        transition: 'transform 0.12s ease-out', // Inercia física amortiguada
-        transformStyle: 'preserve-3d',
-      }}
-      className="relative inline-block w-full max-w-[650px] scale-[1.25] md:scale-[1.40] xl:scale-[1.65] -translate-x-8 md:-translate-x-16 xl:-translate-x-24 flex items-center justify-center mix-blend-screen origin-center cursor-grab active:cursor-grabbing"
-    >
-      <canvas
-        ref={canvasRef}
-        className="block w-full h-auto rounded-md opacity-90 transition-opacity duration-1000 hover:opacity-100"
-      />
+    <div className="relative inline-block w-full max-w-[650px] scale-[1.25] md:scale-[1.40] xl:scale-[1.65] -translate-x-8 md:-translate-x-16 xl:-translate-x-24 flex items-center justify-center mix-blend-screen origin-center">
+      <div
+        ref={containerRef}
+        style={{
+          transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.15)`,
+          transition: 'transform 0.12s ease-out', // Inercia física amortiguada
+          transformStyle: 'preserve-3d',
+        }}
+        className="w-full h-auto cursor-grab active:cursor-grabbing"
+      >
+        <canvas
+          ref={canvasRef}
+          className="block w-full h-auto rounded-md opacity-90 transition-opacity duration-1000 hover:opacity-100"
+        />
+      </div>
       <span className="absolute bottom-6 right-8 text-[10px] tracking-widest text-temporal-muted/30 pointer-events-none select-none font-mono">
         GPU fBm • 3D Tilt
       </span>

@@ -3,12 +3,12 @@ import { Section } from './Section';
 import { useTranslation } from '../i18n/LanguageContext';
 
 // Separate piece component with zero-JS interaction and hardware-accelerated video
-const ArtPiece = memo(({ id, title, webmPath, mp4Path, description, subtitle, hasSound = false, badgeText }) => {
+const ArtPiece = memo(({ id, title, webmPath, mp4Path, description, subtitle, hasSound = false, badgeText, isSquare = false }) => {
   const { t } = useTranslation();
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="art-piece-container relative overflow-hidden bg-black/40 border border-temporal-border/50 aspect-video flex items-center justify-center">
+      <div className={isSquare ? "art-piece-container" : "art-piece-container relative overflow-hidden bg-black/40 border border-temporal-border/50 aspect-video flex items-center justify-center"}>
         {/* Background Fallback Label (visible while loading or if missing) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
           <span className="text-temporal-muted/30 font-mono text-xs uppercase tracking-widest transition-colors">
@@ -18,7 +18,7 @@ const ArtPiece = memo(({ id, title, webmPath, mp4Path, description, subtitle, ha
 
         {/* Hardware-Accelerated Video Layer - Zero Flickering */}
         <video 
-          className="w-full h-full object-cover relative z-10"
+          className={isSquare ? "art-video-layer" : "w-full h-full object-cover relative z-10"}
           autoPlay={!hasSound} // Autoplay directo si no tiene sonido; si tiene sonido requiere click del usuario
           loop 
           muted={!hasSound} // Muted si no tiene sonido; con sonido permitimos el audio del set
@@ -74,6 +74,7 @@ const ArtSection = () => {
           description={t('art.piece1.caption')}
           webmPath="/seeds_fractal.webm"
           mp4Path="/seeds_fractal.mp4"
+          isSquare={true}
         />
         <ArtPiece 
           id="Piece 002"
@@ -82,6 +83,7 @@ const ArtSection = () => {
           description={t('art.piece2.caption')}
           webmPath="/fish_bw.webm"
           mp4Path="/fish_bw.mp4"
+          isSquare={true}
         />
       </div>
 

@@ -119,8 +119,8 @@
         "a": "Núcleo: TypeScript, Next.js, React, Tailwind CSS, Node.js. Creativo: WebGL/GLSL, Three.js, P5.js. IA: LLMs, Groq API, Vercel AI SDK, agentes, RAG, llamadas a herramientas, MCP e IA local con Ollama. También exploro bioinformática y procesamiento de audio."
       },
       {
-        "q": ["proyecto", "trabajo", "project", "work"],
-        "a": "Destacados: Motor de autómatas celulares (WebGL/GLSL), Asistente de código con IA (Groq + Llama + Three.js), Compañero contra la ansiedad (FastAPI + React + LLM con guardarraíles), Genome Cleaner (CLI de bioinformática), Endmoda (galería de moda)."
+        "q": ["proyecto", "trabajo", "project", "work", "vj", "visual", "live coding"],
+        "a": "Destacados: Lit Component Forge (servidor MCP + generador Lit), Motor de autómatas celulares (WebGL/GLSL), sets de Visual DJ en vivo (improvisación y modulación manual de shaders WebGL con Tweakpane al ritmo del beat), Genome Cleaner (CLI de bioinformática) y Compañero contra la ansiedad (FastAPI + React)."
       },
       {
         "q": ["experiencia", "epam", "neoris", "experience"],
@@ -142,7 +142,7 @@
     "badge": "Arte generativo de inspiración biológica",
     "vjBadge": "Visual DJ (VJ) • Live Performance",
     "vjSectionTitle": "Visual DJ (VJ) • Set de Código en Vivo",
-    "vjSectionDesc": "Creación de identidad visual y temática conceptual para artistas en vivo mediante la sincronización rítmica y la mezcla en tiempo real. En lugar de usar software comercial cerrado, todo el set está programado desde cero con código puro: algoritmos de ruido Perlin, fractales de Mandelbrot y shaders WebGL en wtc-gl controlados en vivo con Tweakpane. Los gráficos, colores y transiciones reaccionan y se mueven al compás del beat de los bajos, melodías y drops de las canciones.",
+    "vjSectionDesc": "Creación de identidad visual y temática conceptual para artistas en vivo mediante la sincronización rítmica y la improvisación de código en tiempo real. En lugar de usar software comercial cerrado, todo el set está programado desde cero con código puro (shaders WebGL, ruido Perlin y fractales). Actúo como intérprete del código en vivo, manipulando manualmente las variables matemáticas y parámetros del shader con Tweakpane en sintonía con los bajos, melodías y drops de la música. Esto convierte mi software en un verdadero instrumento audiovisual en vivo.",
     "footer": "Decodificador acelerado por hardware • Bio-Art Sync v5.0",
     "piece1": {
       "id": "Pieza 001",
@@ -159,13 +159,13 @@
     "vjPiece1": {
       "id": "VJ Set 001",
       "title": "FLUIDO",
-      "subtitle": "Mezcla generativa en vivo sincronizada con el beat. Las transiciones fluidas de color y los vórtices se mueven dinámicamente al compás de las frecuencias bajas y melodías del set.",
+      "subtitle": "Interpretación generativa en vivo. Las transiciones fluidas de color y los vórtices son modulados y sincronizados manualmente al ritmo de los bajos y las melodías durante la presentación.",
       "caption": "[ VJ Set 001 ] — Mezcla generativa en tiempo real por código"
     },
     "vjPiece2": {
       "id": "VJ Set 002",
       "title": "Entrópico",
-      "subtitle": "Exploración de la entropía y el caos estructurado en vivo. Los algoritmos fractales y el ruido de Perlin modulan la velocidad y las transiciones de forma en sintonía con los drops del beat.",
+      "subtitle": "Exploración de la entropía en vivo. Los algoritmos de ruido Perlin y fractales son modulados manualmente al compás de los drops y la energía de la música en tiempo real.",
       "caption": "[ VJ Set 002 ] — Mezcla generativa en tiempo real por código"
     }
   },

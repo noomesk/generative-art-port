@@ -119,8 +119,8 @@
         "a": "Core: TypeScript, Next.js, React, Tailwind CSS, Node.js. Creative: WebGL/GLSL, Three.js, P5.js. AI: LLMs, Groq API, Vercel AI SDK, Agents, RAG, Tool Calling, MCP, local AI with Ollama. Also exploring bioinformatics & audio processing."
       },
       {
-        "q": ["projects", "work"],
-        "a": "Featured: Cellular Automata Engine (WebGL/GLSL), AI Code Assistant (Groq + Llama + Three.js), Anxiety Companion (FastAPI + React + LLM with guardrails), Genome Cleaner (bioinformatics CLI), Endmoda (fashion gallery)."
+        "q": ["proyecto", "trabajo", "project", "work", "vj", "visual", "live coding"],
+        "a": "Highlights: Lit Component Forge (MCP server + Lit generator), Cellular Automata Engine (WebGL/GLSL), live Visual DJ sets (manual real-time modulation of WebGL shaders via Tweakpane in sync with the beats), Genome Cleaner (bioinformatics CLI), and Anxiety Companion (FastAPI + React)."
       },
       {
         "q": ["ai", "agent", "rag"],
@@ -142,7 +142,7 @@
     "badge": "Bio-Inspired Generative Art",
     "vjBadge": "Visual DJ (VJ) • Live Performance",
     "vjSectionTitle": "Visual DJ (VJ) • Live Code Set",
-    "vjSectionDesc": "Creation of visual identity and conceptual themes for live musical acts using rhythmic synchronization and real-time mixing. Rather than relying on commercial visual software, the entire set is coded from scratch: Perlin noise, Mandelbrot fractals, and WebGL custom shaders in wtc-gl modulated live with Tweakpane. Graphics, colors, and transitions morph dynamically, responding to the low frequencies, melodies, and drops of the sound set.",
+    "vjSectionDesc": "Creation of visual identity and conceptual themes for live musical acts using rhythmic synchronization and real-time live-code improvisation. Rather than relying on commercial visual software, the entire set is programmed from scratch: WebGL shaders, Perlin noise, and Mandelbrot fractals. I act as a live-code performer, manually modulating the mathematical variables and shader parameters via Tweakpane in sync with the beats, melodies, and drops of the sound set. This turns my software into a true live audiovisual instrument.",
     "footer": "Hardware Accelerated Decoder • Bio-Art Sync v5.0",
     "piece1": {
       "id": "Piece 001",
@@ -159,13 +159,13 @@
     "vjPiece1": {
       "id": "VJ Set 001",
       "title": "FLUIDO",
-      "subtitle": "Generative live mixing synchronized to the beat. Fluid color transitions and vortex structures react dynamically to the low frequencies and melodies of the sound set.",
+      "subtitle": "Generative live mixing and performance. Fluid color transitions and vortex structures are manually modulated and synchronized to the beats and melodies in real time.",
       "caption": "[ VJ Set 001 ] — Real-time coded generative mix"
     },
     "vjPiece2": {
       "id": "VJ Set 002",
       "title": "Entropic",
-      "subtitle": "Exploration of entropy and structured chaos. Fractal algorithms and Perlin noise modulate speed and shape transitions in sync with the beats and drops.",
+      "subtitle": "Exploration of entropy and live structured chaos. Perlin noise and fractal algorithms are manually modulated in sync with the drops and raw energy of the live show.",
       "caption": "[ VJ Set 002 ] — Real-time coded generative mix"
     }
   },

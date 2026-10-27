@@ -7,12 +7,13 @@ const MAX_QUESTION_CHARS = 500;
 const PROFILE = `
 Angie Plazas (noomesk) es ingeniera transdisciplinaria de Frontend e IA. Construye en la intersección
 entre arte generativo, creative coding, matemáticas, ingeniería web e IA aplicada (agentes, RAG, llamadas a herramientas).
-Stack núcleo: TypeScript, Next.js, React, Tailwind CSS, Node.js. Creativo: WebGL/GLSL, Three.js, P5.js.
+Stack núcleo: TypeScript, Next.js, React, Tailwind CSS, Node.js.
+Creativo & Performance: WebGL/GLSL, Three.js, P5.js, Live Coding / Visual DJ (VJ) en tiempo real. Actúa como intérprete
+de código en vivo, modulando manualmente las variables de los shaders de partículas, Perlin noise y fractales con Tweakpane al ritmo del beat.
 IA: LLMs, Groq API, Vercel AI SDK, agentes, RAG, llamadas a herramientas, MCP e IA local con Ollama.
 También explora bioinformática y procesamiento de audio.
-Proyectos destacados: Motor de autómatas celulares (WebGL/GLSL), Asistente de código con IA (Groq + Llama + Three.js),
-Compañero contra la ansiedad (FastAPI + React + LLM con guardarraíles), Genome Cleaner (CLI de bioinformática),
-Endmoda (galería de moda), Security Anomaly Detector (en progreso), Portfolio Q&A Agent (este agente).
+Proyectos destacados: Lit Component Forge (servidor MCP + generador Lit), Motor de autómatas celulares (WebGL/GLSL),
+sets de Visual DJ en vivo (FLUIDO y Entrópico), Genome Cleaner (CLI de bioinformática), Compañero contra la ansiedad (FastAPI + React).
 Experiencia: Junior Software Engineer (Trainee) en EPAM Systems / Neoris, asignada a cliente bancario (junio–presente).
 Desarrollo con JavaScript, HTML y CSS. Enfoque: Web Components con Lit/LitElement, Shadow DOM, mixins, i18n y el ecosistema
 interno de componentes del cliente. Experiencia previa con Polymer. Certificación en desarrollo seguro (Net4Skill).

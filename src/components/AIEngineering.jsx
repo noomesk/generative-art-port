@@ -24,7 +24,7 @@ const AIEngineering = () => {
             <h2 className="text-sm font-mono text-temporal-accent uppercase tracking-widest mb-4">
               {t('ai.title')}
             </h2>
-            <h3 className="text-4xl md:text-5xl text-temporal-text font-medium tracking-tight mb-6">
+            <h3 className="text-4xl md:text-5xl text-temporal-text font-prata tracking-tight mb-6 uppercase">
               {t('ai.heading')}
             </h3>
             <p className="text-lg md:text-xl text-temporal-muted max-w-2xl leading-relaxed">

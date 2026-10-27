@@ -11,7 +11,7 @@ export const Section = ({ id, title, description, children, className = "" }) =>
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-mono font-bold tracking-tighter uppercase mb-6"
+            className="text-4xl md:text-5xl font-prata tracking-tighter uppercase mb-6"
           >
             {title}
           </motion.h2>

@@ -35,7 +35,7 @@ const About = () => {
             <h2 className="text-sm font-mono text-temporal-accent uppercase tracking-widest mb-6">
               {t('about.title')}
             </h2>
-            <h3 className="text-3xl md:text-4xl text-temporal-text font-medium mb-8 leading-tight tracking-tight">
+            <h3 className="text-3xl md:text-4xl text-temporal-text font-prata mb-8 leading-tight tracking-tight uppercase">
               {t('about.heading')}
             </h3>
             

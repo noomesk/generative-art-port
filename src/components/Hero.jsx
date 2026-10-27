@@ -64,10 +64,10 @@ const Hero = () => {
               {t('hero.tag')}
             </div>
           </div>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-sans font-black tracking-[-0.055em] text-temporal-text mb-8 leading-[0.95] [transform:scaleY(0.96)] origin-left">
-            <span>{t('hero.line1')}</span>
+          <h1 className="text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-mono tracking-tighter mb-8 leading-[1.1]">
+            <span style={{ color: 'rgba(215, 212, 205, 0.76)' }}>{t('hero.line1')}</span>
             <br />
-            <span className="text-temporal-muted">{t('hero.line2')}</span>
+            <span style={{ color: 'rgba(135, 131, 124, 0.6)' }}>{t('hero.line2')}</span>
           </h1>
           <p className="text-lg md:text-xl text-temporal-muted max-w-xl leading-relaxed mb-12">
             {t('hero.desc')}

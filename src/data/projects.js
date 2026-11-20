@@ -144,10 +144,10 @@ export const projects = [
   {
     id: 'bioacoustic-soundscapes',
     title: 'Bioacoustic Soundscapes',
-    tags: ['React', 'Python', 'Audio Processing'],
-    link: '#',
-    github: '#',
-    status: 'in-progress',
+    tags: ['Vanilla JS', 'Python', 'FastAPI', 'Audio Processing'],
+    link: 'https://sonicnaturalist-frontend.vercel.app/',
+    github: 'https://github.com/noomesk/Sonic_Naturalist',
+    status: 'live',
     focusCategories: ['cr', 'ai'],
     year: '2026',
     copy: {

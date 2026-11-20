@@ -113,7 +113,7 @@ const MarqueeText = () => {
         initial={{ x: 0 }}
         animate={{ x: "-50%" }}
         transition={{
-          duration: 40,
+          duration: 90, // más lento para que se pueda leer (antes 40 s)
           ease: "linear",
           repeat: Infinity,
           repeatType: "loop"

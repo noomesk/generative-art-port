@@ -163,6 +163,22 @@ const PerlinWarpGL = ({ imgSrc }) => {
     let animId;
     let startTime = null;
 
+    // Solo se dibuja cuando el canvas está en pantalla (evita gastar GPU/CPU mientras lees otra sección)
+    let loaded = false;
+    let visible = true;
+    let running = false;
+    let drawFrame = null;
+
+    const startLoop = () => {
+      if (running || !loaded || !visible) return;
+      running = true;
+      animId = requestAnimationFrame(drawFrame);
+    };
+    const stopLoop = () => {
+      running = false;
+      cancelAnimationFrame(animId);
+    };
+
     img.onload = () => {
       const DW = 900;
       const DH = Math.round(DW * img.naturalHeight / img.naturalWidth);
@@ -177,7 +193,8 @@ const PerlinWarpGL = ({ imgSrc }) => {
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 
-      const render = (ts) => {
+      drawFrame = (ts) => {
+        if (!running) return;
         if (!startTime) startTime = ts;
         const t = (ts - startTime) * 0.001;
 
@@ -193,11 +210,19 @@ const PerlinWarpGL = ({ imgSrc }) => {
         gl.uniform1f(timeLoc, t);
 
         gl.drawArrays(gl.TRIANGLES, 0, 6);
-        animId = requestAnimationFrame(render);
+        animId = requestAnimationFrame(drawFrame);
       };
 
-      animId = requestAnimationFrame(render);
+      loaded = true;
+      startLoop();
     };
+
+    const io = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible) startLoop();
+      else stopLoop();
+    }, { threshold: 0 });
+    if (containerRef.current) io.observe(containerRef.current);
 
     img.src = imgSrc;
 
@@ -234,7 +259,8 @@ const PerlinWarpGL = ({ imgSrc }) => {
     }
 
     return () => {
-      cancelAnimationFrame(animId);
+      io.disconnect();
+      stopLoop();
       gl.deleteProgram(program);
       gl.deleteShader(vert);
       gl.deleteShader(frag);

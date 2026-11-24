@@ -50,16 +50,8 @@ const HollowMetaballs = () => {
       }
     }
 
-    const init = () => {
-      resize();
-      dots = [];
-      for (let i = 0; i < dotCount; i++) {
-        dots.push(new Dot());
-      }
-      animate();
-    };
-
     const animate = () => {
+      if (!running) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       dots.forEach(dot => {
         dot.update();
@@ -68,15 +60,43 @@ const HollowMetaballs = () => {
       animationFrameId = requestAnimationFrame(animate);
     };
 
+    // Pausa el bucle cuando la sección no está visible (evita competir con el carrusel)
+    let running = false;
+    const startLoop = () => {
+      if (running || dots.length === 0) return;
+      running = true;
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    const stopLoop = () => {
+      running = false;
+      cancelAnimationFrame(animationFrameId);
+    };
+
+    const init = () => {
+      resize();
+      dots = [];
+      for (let i = 0; i < dotCount; i++) {
+        dots.push(new Dot());
+      }
+      startLoop();
+    };
+
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) startLoop();
+      else stopLoop();
+    }, { threshold: 0 });
+    if (containerRef.current) io.observe(containerRef.current);
+
     window.addEventListener('resize', resize);
     
     // Slight delay to ensure layout is complete before sizing canvas
     const timer = setTimeout(init, 50);
 
     return () => {
+      io.disconnect();
+      stopLoop();
       window.removeEventListener('resize', resize);
       clearTimeout(timer);
-      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

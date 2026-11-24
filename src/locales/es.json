@@ -7,8 +7,8 @@
   },
   "hero": {
     "tag": "AP — Frontend Engineer · Creative Coder · AI Explorer",
-    "line1": "Yo defino las reglas,",
-    "line2": "los sistemas sueñan.",
+    "line1": "Ingeniería frontend",
+    "line2": "y arte generativo.",
     "desc": "Hola. Soy Angie Plazas, dev frontend transdisciplinaria. Me muevo entre el arte generativo, la programación creativa, las matemáticas y la ingeniería web moderna; desde ahí construyo experiencias digitales inmersivas que traducen ideas en interacción.",
     "ctaProjects": "Ver proyectos",
     "ctaContact": "Contacto",
@@ -23,7 +23,7 @@
     "p1": "Mi camino hacia el desarrollo no empezó con el boom tecnológico ni con la idea de crear apps convencionales. Empezó hace mucho tiempo, con un interés genuino por entender cómo reglas computacionales simples pueden generar patrones infinitamente complejos y hermosos.",
     "p2": "Como creative coder, trabajo con JavaScript, P5.js, WebGL, Three.js, React y algoritmos matemáticos (Python); también exploro agentes, sistemas generativos y material científico, los cuales son herramientas, con las que puedo jugar y darme la libertad creativa y/o colectiva de generar experiencias digitales nuevas. A lo largo del camino me ha gustado explorar el mundo de lo complejo: tomar sistemas abstractos, darles una forma sensible, visual y, a veces, ¿por qué no? ... interactiva o útil.",
     "focus": "Creo que el software bien diseñado también puede ser artístico, atípico, original y que las experiencias estéticas pueden elevar enormemente lo que usamos a diario.",
-    "p3": "Me parece interesante ver el código como un sistema vivo: poder seguir sus patrones, alterar sus reglas y dejar espacio para que se produzca algo que no estaba completamente planeado. En esa pequeña deriva, casi entrópica, es donde suelo encontrar parte de mi proceso creativo.",
+    "p3": "Me parece interesante ver el código como un sistema vivo: poder seguir sus patrones, alterar sus reglas y dejar espacio para que se produzca algo que no estaba completamente planeado. En esa pequeña deriva es donde suelo encontrar parte de mi proceso creativo.",
     "p3Meta": "Sistemas vivos · Emergencia · Algoritmos orgánicos",
     "creativeLens": "Cómo pienso el código",
     "coreStack": "Stack principal y herramientas",
@@ -45,7 +45,7 @@
   "ai": {
     "title": "01.5 // Enfoque en ingeniería de IA",
     "heading": "Agentes, RAG e IA aplicada",
-    "desc": "En un mundo en donde la tecnología avanza casi al ritmo de una utopía Leguiniana, hay que estar a la vanguardia, así que bueno. Esta sección va de diseño y despliegue de sistemas de IA prácticos: desde agentes que llaman a herramientas hasta asistentes con recuperación de contexto. El objetivo no es “chatear con todo”, es más bien resolver un problema específico con el contexto adecuado. Y para ello, cada asunto tiene su propia herramienta, solo hay que saber aplicarla.",
+    "desc": "En un mundo en donde la tecnología avanza casi al ritmo de una utopía Leguiniana, hay que estar a la vanguardia, así que bueno. Esta sección va de diseño y despliegue de sistemas de IA prácticos: desde agentes que llaman a herramientas hasta asistentes con recuperación de contexto. El objetivo no es “chatear con todo”, es más bien resolver un problema específico con el contexto adecuado. Y para ello, cada asunto tiene su propia herramienta.",
     "items": [
       {
         "title": "Sistemas agénticos",
@@ -146,7 +146,7 @@
     "badge": "Arte generativo de inspiración biológica",
     "vjBadge": "Visual DJ (VJ) • Live Performance",
     "vjSectionTitle": "Visual DJ (VJ) • Set de Código en Vivo",
-    "vjSectionDesc": "Creación de identidad visual y temática conceptual para artistas que quieran una experiencia inmersiva en vivo, mediante la sincronización rítmica y la improvisación de código en tiempo real. Para lograr este resultado totalmente único en lugar de usar software comercial cerrado, todo el set está programado desde cero con código puro (shaders WebGL, ruido Perlin y fractales) que detalladamente produje.\n\n¿Cuál es mi papel aquí? (Aparte de la creación intelectual y técnica del comportamiento de los algoritmos). Actúo como intérprete del código en vivo, manipulando manualmente las variables matemáticas y parámetros del shader con Tweakpane en sintonía con los bajos, melodías y drops de la música. Esto convierte mi software en una creación instrumento-audiovisual en vivo.",
+    "vjSectionDesc": "Creación de identidad visual y temática conceptual para artistas que quieran una experiencia inmersiva en vivo, mediante la sincronización rítmica y la improvisación de código en tiempo real. Para lograr este resultado totalmente único en lugar de usar software comercial cerrado, todo el set está programado desde cero con código puro (shaders WebGL, ruido Perlin y fractales).\n\n¿Cuál es mi papel aquí? (Aparte de la creación intelectual y técnica del comportamiento de los algoritmos). Actúo como intérprete del código en vivo, manipulando manualmente las variables matemáticas y parámetros del shader con Tweakpane en sintonía con los bajos, melodías y drops de la música. Esto convierte mi software en una creación instrumento-audiovisual en vivo.",
     "vjSectionFooter": "Para más información, dirígete a la sección de contacto al final del portafolio.",
     "footer": "Decodificador acelerado por hardware • Bio-Art Sync v5.0",
     "piece1": {
@@ -177,7 +177,7 @@
   "contact": {
     "title": "Iniciar una conexión",
     "description": "Ya sea que tengas un proyecto en mente, quieras conversar sobre la intersección entre arte y código, o simplemente explorar ideas complejas y estimulantes, tu mensaje empieza aquí.",
-    "marquee": ["SISTEMAS SOÑANDO EN CÓDIGO", "¿SUEÑAN LOS ANDROIDES CON OVEJAS ELÉCTRICAS?", "¿Pueden unas tantas líneas de código (en conjunto e interactuando) llegar a ser tan complejas como un cerebro?", "COMPLEJIDAD QUE RESPIRA"],
+    "marquee": ["¿TIENES UN PROYECTO EN MENTE? HABLEMOS", "DISPONIBLE PARA NUEVOS PROYECTOS Y COLABORACIONES", "CREAMOS ARTE GENERATIVO A MEDIDA PARA TU MARCA O EVENTO", "ESCRÍBEME Y CONVERSAMOS SOBRE TU IDEA"],
     "queryTitle": "Terminal de consulta",
     "queryDesc": "Completa los campos para enviar una transmisión segura.",
     "name": "Nombre completo",

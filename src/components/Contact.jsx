@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useForm, ValidationError } from '@formspree/react';
 import { Send, Star, Loader2, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
@@ -82,26 +82,27 @@ const Button = ({ children, onClick, type = "button", disabled, className = "" }
 
 // --- Marquee Text ---
 
+// Definido fuera del componente para que no se remonte en cada render (causaba tirones)
+const MarqueeContent = ({ items }) => (
+  <div className="flex items-center">
+    {items.map((text, i) => (
+      <React.Fragment key={i}>
+        <span
+          style={{ color: i % 2 === 1 ? 'rgba(135, 131, 124, 0.6)' : 'rgba(215, 212, 205, 0.76)' }}
+          className="text-4xl md:text-5xl font-syne font-extrabold mx-12 uppercase whitespace-nowrap tracking-tight"
+        >
+          {text}
+        </span>
+        <span className="text-4xl md:text-5xl font-syne font-light text-temporal-muted/20">/</span>
+      </React.Fragment>
+    ))}
+  </div>
+);
+
 const MarqueeText = () => {
   const { t } = useTranslation();
   const itemsTranslation = t('contact.marquee');
   const items = Array.isArray(itemsTranslation) ? itemsTranslation : [];
-
-  const Content = () => (
-    <div className="flex items-center">
-      {items.map((text, i) => (
-        <React.Fragment key={i}>
-          <span 
-            style={{ color: i % 2 === 1 ? 'rgba(135, 131, 124, 0.6)' : 'rgba(215, 212, 205, 0.76)' }}
-            className="text-4xl md:text-5xl font-syne font-extrabold mx-12 uppercase whitespace-nowrap tracking-tight"
-          >
-            {text}
-          </span>
-          <span className="text-4xl md:text-5xl font-syne font-light text-temporal-muted/20">/</span>
-        </React.Fragment>
-      ))}
-    </div>
-  );
 
   if (items.length === 0) return null;
 
@@ -113,14 +114,14 @@ const MarqueeText = () => {
         initial={{ x: 0 }}
         animate={{ x: "-50%" }}
         transition={{
-          duration: 90, // más lento para que se pueda leer (antes 40 s)
+          duration: 60, // velocidad intermedia: legible sin ir lento (antes 90 s, original 40 s)
           ease: "linear",
           repeat: Infinity,
           repeatType: "loop"
         }}
       >
-        <Content />
-        <Content />
+        <MarqueeContent items={items} />
+        <MarqueeContent items={items} />
       </motion.div>
     </div>
   );

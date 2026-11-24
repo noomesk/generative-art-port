@@ -64,7 +64,7 @@ const Hero = () => {
               {t('hero.tag')}
             </div>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-7xl xl:text-8xl font-prata mb-8 leading-[1.15] tracking-tight uppercase">
+          <h1 className="text-4xl md:text-5xl lg:text-[3.75rem] xl:text-[4.375rem] font-prata mb-8 leading-[1.15] tracking-tight uppercase">
             <span style={{ color: 'rgba(215, 212, 205, 0.76)' }}>{t('hero.line1')}</span>
             <br />
             <span style={{ color: 'rgba(135, 131, 124, 0.6)' }}>{t('hero.line2')}</span>
@@ -145,7 +145,7 @@ const Hero = () => {
             <span className="opacity-60 text-[9px] md:text-[10px]">{t('hero.captionMeta')}</span>
           </div>
 
-          <div className="w-full max-w-md mt-[calc(2rem+3cm)]">
+          <div className="w-full max-w-md mt-8">
             <MusicPlayer />
           </div>
         </motion.div>

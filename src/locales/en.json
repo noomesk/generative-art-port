@@ -7,8 +7,8 @@
   },
   "hero": {
     "tag": "AP — Frontend Engineer · Creative Coder · AI Explorer",
-    "line1": "I define the rules,",
-    "line2": "the systems dream.",
+    "line1": "Frontend engineering",
+    "line2": "and generative art.",
     "desc": "Hey. I'm Angie Plazas, a transdisciplinary Fullstack Developer operating at the intersection of generative art, creative coding, mathematics, and modern web engineering. I explore digital aesthetics the way one studies a living organism — with curiosity, with code, and with a bit of chaos.",
     "ctaProjects": "View Projects",
     "ctaContact": "Get in Touch",
@@ -23,7 +23,7 @@
     "p1": "My path into development didn't start with the tech boom or the desire to build standard apps. It started long ago, with a genuine interest in how simple computational rules can generate infinitely complex and beautiful patterns.",
     "p2": "As a creative coder, I work with JavaScript, P5.js, WebGL, Three.js, and React, along with mathematical algorithms (Python); I also explore agents, generative systems and scientific material to build interactive experiences that blur the line between utility and art. I think of myself as an explorer of complexity: I take abstract systems and give them a sensitive, visual and, at times, interactive form.",
     "focus": "My approach is clean, modular and alive: I look for clarity in structure and creative freedom. I believe well-designed software has something intrinsically attractive, and that aesthetic experiences can greatly elevate what we use every day.",
-    "p3": "I find it interesting to see code as a living system: being able to follow its patterns, alter its rules and leave room for something not fully planned to emerge. In that small, almost entropic drift is where I tend to find the creative.",
+    "p3": "I find it interesting to see code as a living system: being able to follow its patterns, alter its rules and leave room for something not fully planned to emerge. In that small drift is where I tend to find the creative.",
     "p3Meta": "Living systems · Emergence · Organic algorithms",
     "creativeLens": "How I think about code",
     "coreStack": "Core stack & tools",
@@ -177,7 +177,7 @@
   "contact": {
     "title": "Start a connection",
     "description": "Whether you have a latent project in mind, want to discuss the intersection of art and code, or simply feel like exploring complex and stimulating ideas — your message starts here.",
-    "marquee": ["SYSTEMS DREAMING IN CODE", "DO ANDROIDS DREAM OF ELECTRIC SHEEP?", "Can a few lines of code (acting together and interacting) become as complex as a brain?", "COMPLEXITY THAT BREATHES"],
+    "marquee": ["GOT A PROJECT IN MIND? LET'S TALK", "AVAILABLE FOR NEW PROJECTS AND COLLABORATIONS", "I CREATE CUSTOM GENERATIVE ART FOR YOUR BRAND OR EVENT", "WRITE TO ME AND LET'S DISCUSS YOUR IDEA"],
     "queryTitle": "Query Terminal",
     "queryDesc": "Fill in the fields below to send a secure transmission.",
     "name": "Full name",

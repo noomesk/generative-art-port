@@ -250,7 +250,7 @@ const PerlinWarpGL = ({ imgSrc }) => {
   }, [imgSrc]);
 
   return (
-    <div className="relative inline-block w-full max-w-[650px] scale-[1.25] md:scale-[1.40] xl:scale-[1.65] -translate-x-8 md:-translate-x-16 xl:-translate-x-24 flex items-center justify-center mix-blend-screen origin-center">
+    <div className="relative inline-block w-full max-w-[650px] scale-[1.25] md:scale-[1.40] xl:scale-[1.65] -translate-x-8 md:-translate-x-16 xl:-translate-x-24 flex items-center justify-center mix-blend-lighten origin-center">
       <div
         ref={containerRef}
         style={{

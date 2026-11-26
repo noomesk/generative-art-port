@@ -290,6 +290,39 @@
     50% { transform: translateY(-4px) skewX(0.5deg) scaleY(1.02); }
   }
 
+  /* Palabra resaltada tipo marcador en vino tinto (Trayectoria: "lógica").
+     Respira igual que el titulo de VJ: flujo del degradado + balanceo suave. */
+  .about-highlight {
+    display: inline-block;
+    background: linear-gradient(120deg, rgba(122, 22, 40, 0.95), rgba(168, 40, 64, 0.85), rgba(122, 22, 40, 0.95));
+    background-size: 200% auto;
+    color: #f3e9ea;
+    padding: 0 0.18em;
+    margin: 0 -0.02em;
+    border-radius: 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    animation: prism-flow 6s ease-in-out infinite, liquid-float 5s ease-in-out infinite;
+    will-change: transform, background-position;
+  }
+
+  /* Variante vino tinto para el subtitulo de Visual DJ */
+  .animate-wine-text {
+    background: linear-gradient(
+      120deg,
+      rgba(122, 22, 40, 0.95) 0%,
+      rgba(74, 12, 24, 0.80) 30%,
+      rgba(168, 40, 64, 0.85) 60%,
+      rgba(122, 22, 40, 0.95) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: prism-flow 6s ease-in-out infinite, liquid-float 5s ease-in-out infinite;
+    display: inline-block;
+    will-change: transform, background-position;
+  }
+
   .animate-prism-text {
     background: linear-gradient(
       120deg,

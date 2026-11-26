@@ -3,6 +3,21 @@ import { motion } from 'framer-motion';
 import HollowMetaballs from './HollowMetaballs';
 import { useTranslation } from '../i18n/LanguageContext';
 
+// Resalta solo la palabra clave ("lógica" / "logic") con el tono vino tinto
+const HIGHLIGHT_RE = /(lógica|logica|logic)/i;
+
+const renderHeading = (text) => {
+  if (typeof text !== 'string') return text;
+  const parts = text.split(HIGHLIGHT_RE);
+  return parts.map((part, i) =>
+    HIGHLIGHT_RE.test(part) && part.length ? (
+      <span key={i} className="about-highlight">{part}</span>
+    ) : (
+      <React.Fragment key={i}>{part}</React.Fragment>
+    )
+  );
+};
+
 const About = () => {
   const { t } = useTranslation();
 
@@ -36,7 +51,7 @@ const About = () => {
               {t('about.title')}
             </h2>
             <h3 className="text-3xl md:text-4xl font-prata mb-8 leading-tight tracking-tight uppercase" style={{ color: 'rgba(215, 212, 205, 0.76)' }}>
-              {t('about.heading')}
+              {renderHeading(t('about.heading'))}
             </h3>
             
             <div className="space-y-6 text-temporal-muted text-lg leading-relaxed max-w-3xl">

@@ -290,6 +290,40 @@
     50% { transform: translateY(-4px) skewX(0.5deg) scaleY(1.02); }
   }
 
+  /* Logo AP del header: al pasar el cursor se tiñe de amarillo decolorado
+     (tono tomado de la semilla inicial). */
+  .nav-logo {
+    color: rgb(233, 230, 223);
+    transition: color 0.4s ease;
+  }
+
+  .nav-logo:hover {
+    color: #d6cc9e;
+    text-shadow: 0 0 14px rgba(214, 204, 158, 0.35);
+  }
+
+  /* Palabras del tagline del Hero: al pasar el cursor toman el degradado vino
+     del titulo de VJ (sin fondo, solo color del texto). */
+  .hero-word {
+    cursor: default;
+  }
+
+  .hero-word:hover {
+    background-image: linear-gradient(
+      120deg,
+      rgba(122, 22, 40, 0.95) 0%,
+      rgba(74, 12, 24, 0.80) 30%,
+      rgba(168, 40, 64, 0.85) 60%,
+      rgba(122, 22, 40, 0.95) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: prism-flow 6s ease-in-out infinite;
+  }
+
   /* Palabra resaltada tipo marcador en vino tinto (Trayectoria: "lógica").
      Respira igual que el titulo de VJ: flujo del degradado + balanceo suave. */
   .about-highlight {

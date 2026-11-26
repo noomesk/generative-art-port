@@ -61,7 +61,13 @@ const Hero = () => {
         >
           <div className="relative mb-8">
             <div className="font-mono text-temporal-accent tracking-wide text-sm md:text-base uppercase relative z-20">
-              {t('hero.tag')}
+              {t('hero.tag').split(/(\s+)/).map((part, i) =>
+                /\s+/.test(part) ? (
+                  <React.Fragment key={i}>{part}</React.Fragment>
+                ) : (
+                  <span key={i} className="hero-word">{part}</span>
+                )
+              )}
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-[3.75rem] xl:text-[4.375rem] font-prata mb-8 leading-[1.15] tracking-tight uppercase">

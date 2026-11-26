@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-temporal-border bg-temporal-bg/85 backdrop-blur-md">
       <div className="container mx-auto px-6 h-16 flex items-center justify-between sm:border-x border-temporal-border">
-        <a href="#hero" className="font-mono text-xl font-bold tracking-tighter hover:text-temporal-accent transition-colors text-temporal-text">
+        <a href="#hero" className="nav-logo font-mono text-xl font-bold tracking-tighter cursor-pointer">
           AP
         </a>
 

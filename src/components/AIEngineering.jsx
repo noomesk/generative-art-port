@@ -86,6 +86,20 @@ const AIEngineering = () => {
         </div>
       </div>
 
+      {/* Imagen decorativa (pez) en el costado derecho de la sección */}
+      <div className="absolute inset-y-0 right-0 w-[45vw] max-w-[520px] hidden md:flex items-center justify-end p-[1cm] pointer-events-none z-[1]">
+        <picture>
+          <source srcSet="/ref/pez.webp" type="image/webp" />
+          <img
+            src="/ref/pez.jpg"
+            alt="pez generativo"
+            loading="lazy"
+            decoding="async"
+            className="w-full h-auto opacity-80 drop-shadow-[0_8px_28px_rgba(0,0,0,0.35)] select-none"
+          />
+        </picture>
+      </div>
+
       <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none opacity-5 z-0 flex justify-end">
         <div className="w-[60vw] h-[60vw] bg-gradient-to-tr from-temporal-accent/10 to-transparent blur-[140px] transform translate-x-1/4 -translate-y-1/3 rounded-full" />
       </div>

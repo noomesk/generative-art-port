@@ -65,9 +65,9 @@ const Hero = () => {
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-[3.75rem] xl:text-[4.375rem] font-prata mb-8 leading-[1.15] tracking-tight uppercase">
-            <span style={{ color: 'rgba(215, 212, 205, 0.76)' }}>{t('hero.line1')}</span>
+            <span className="text-temporal-warm/75">{t('hero.line1')}</span>
             <br />
-            <span style={{ color: 'rgba(135, 131, 124, 0.6)' }}>{t('hero.line2')}</span>
+            <span className="text-temporal-warm-muted/60">{t('hero.line2')}</span>
           </h1>
           <p className="text-lg md:text-xl text-temporal-muted max-w-xl leading-relaxed mb-12">
             {t('hero.desc')}
@@ -138,7 +138,7 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          <PerlinWarpGL imgSrc="/ref/semilla.png" />
+          <PerlinWarpGL imgSrc="/ref/semilla.webp" />
 
           <div className="mt-8 md:mt-24 text-[10px] md:text-xs uppercase tracking-[0.2em] text-temporal-muted/50 font-mono text-center max-w-[300px] md:max-w-md pointer-events-none">
             {t('hero.caption')}<br />

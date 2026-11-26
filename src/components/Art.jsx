@@ -30,6 +30,7 @@ const ArtPiece = memo(({ id, title, webmPath, mp4Path, youtubeId, description, s
             className={isSquare ? "art-video-layer" : "w-full h-full object-cover relative z-10"}
             autoPlay={!hasSound} // Autoplay directo si no tiene sonido; si tiene sonido requiere click del usuario
             loop 
+            preload={hasSound ? "none" : "metadata"}
             muted={!hasSound} // Muted si no tiene sonido; con sonido permitimos el audio del set
             controls={hasSound} // Habilitar barra de reproducción, volumen, pantalla completa y play/pausa para VJ
             playsInline

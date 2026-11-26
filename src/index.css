@@ -3,10 +3,12 @@
 
 @theme {
   --color-temporal-bg: #050505;
-  --color-temporal-text: #ededed;
-  --color-temporal-accent: #33ff99;
-  --color-temporal-muted: #888888;
-  --color-temporal-border: #222222;
+  --color-temporal-text: #e9e6df;
+  --color-temporal-accent: #cfd6dd;
+  --color-temporal-muted: #8c877e;
+  --color-temporal-border: #1f1f1d;
+  --color-temporal-warm: rgb(215, 212, 205);
+  --color-temporal-warm-muted: rgb(135, 131, 124);
   
   --font-mono: "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
   --font-sans: "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif";
@@ -29,6 +31,65 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
     background-repeat: repeat;
   }
+
+  /* Imagenes con look de pelicula. Los videos no llevan filtro: forzarlo
+     procesa cada frame y pesa en la carga. */
+  img {
+    filter: saturate(1.3) contrast(1.06);
+  }
+}
+
+/* Titulos con reflejo metalico (cromo): brillo que recorre el texto */
+.chrome-text {
+  background: linear-gradient(
+    110deg,
+    #6b7178 0%,
+    #c9ced4 22%,
+    #f2f4f6 35%,
+    #9aa1a8 50%,
+    #e4e8ec 68%,
+    #7a8088 85%,
+    #b8bec5 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: chrome-sheen 9s ease-in-out infinite;
+}
+
+@keyframes chrome-sheen {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Grano de pelicula global (capa fija, estatica, sin blend mode).
+   Se usa una textura fija con opacidad baja: no se recompone la pagina por frame. */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* Viñeta suave tipo lente antiguo */
+.film-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 44;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); }
+  75% { transform: translate(-2%, -1%); }
+  100% { transform: translate(0, 0); }
 }
 
 @keyframes smoke-fade {
@@ -172,7 +233,7 @@
   .art-piece-container:hover {
     @apply border-temporal-accent/50;
     transform: scale(1.02) translateY(-5px) translateZ(0);
-    box-shadow: 0 0 40px rgba(51, 255, 153, 0.15);
+    box-shadow: 0 0 40px rgba(174, 181, 189, 0.12);
   }
 
   .art-video-layer {
@@ -199,10 +260,10 @@
 
   .animate-prism-text {
     background: linear-gradient(
-      120deg, 
-      rgba(215, 212, 205, 0.95) 0%, 
-      rgba(135, 131, 124, 0.70) 30%, 
-      rgba(51, 255, 153, 0.65) 60%, 
+      120deg,
+      rgba(215, 212, 205, 0.95) 0%,
+      rgba(135, 131, 124, 0.70) 30%,
+      rgba(174, 181, 189, 0.75) 60%,
       rgba(215, 212, 205, 0.95) 100%
     );
     background-size: 200% auto;

@@ -26,6 +26,8 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-temporal-bg text-temporal-text selection:bg-temporal-accent selection:text-temporal-bg">
+      <div className="film-grain" aria-hidden="true" />
+      <div className="film-vignette" aria-hidden="true" />
       <Navbar />
       <main className="flex-grow">
         <Hero />

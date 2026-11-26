@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from '../i18n/LanguageContext';
 import { motion } from 'framer-motion';
 import { Cpu, Database, Workflow, PlugZap } from 'lucide-react';
+import { useTilt } from '../utils/useTilt';
 
 const icons = [
   <Workflow size={18} />,
@@ -9,6 +10,30 @@ const icons = [
   <PlugZap size={18} />,
   <Cpu size={18} />
 ];
+
+// Tarjeta de interfaz con tilt 3D que sigue el cursor (efecto ENDModa)
+const InterfaceCard = ({ icon, title, desc }) => {
+  const { ref, onMouseMove, onMouseLeave } = useTilt(8);
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      className="tilt-card relative bg-temporal-bg p-8 group flex flex-col h-full"
+    >
+      <div className="flex items-center gap-3 mb-4">
+        <div className="text-temporal-accent">{icon}</div>
+        <h4 className="text-temporal-text font-medium group-hover:text-temporal-accent transition-colors">
+          {title}
+        </h4>
+      </div>
+      <p className="text-temporal-muted text-sm leading-relaxed">
+        {desc}
+      </p>
+    </div>
+  );
+};
+
 
 const AIEngineering = () => {
   const { t } = useTranslation();
@@ -41,17 +66,9 @@ const AIEngineering = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="bg-temporal-bg p-8 group hover:bg-temporal-bg/80 transition-colors flex flex-col h-full"
+              className="h-full"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="text-temporal-accent">{icons[index % icons.length]}</div>
-                <h4 className="text-temporal-text font-medium group-hover:text-temporal-accent transition-colors">
-                  {item.title}
-                </h4>
-              </div>
-              <p className="text-temporal-muted text-sm leading-relaxed">
-                {item.desc}
-              </p>
+              <InterfaceCard icon={icons[index % icons.length]} title={item.title} desc={item.desc} />
             </motion.div>
           ))}
         </div>

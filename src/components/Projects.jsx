@@ -3,8 +3,25 @@ import { useTranslation } from '../i18n/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { projects } from '../data/projects';
+import { useTilt } from '../utils/useTilt';
 import ProjectModal from './ProjectModal';
 import { linkProps } from '../utils/linkProps';
+
+// Wrapper con tilt 3D que sigue el cursor (efecto ENDModa)
+const TiltCard = ({ children, className = '' }) => {
+  const { ref, onMouseMove, onMouseLeave } = useTilt(8);
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      className={`tilt-card relative h-full flex flex-col ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
+
 
 const Projects = () => {
   const { language, t } = useTranslation();
@@ -83,10 +100,10 @@ const Projects = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
-                  whileHover={{ scale: 1.01, y: -5 }}
-                  className="group relative bg-temporal-bg p-8 md:p-12 hover:border-temporal-accent/50 transition-all flex flex-col h-full"
+                  whileHover={{ y: -5 }}
+                  className="group relative flex flex-col h-full"
                 >
-
+                  <TiltCard className="bg-temporal-bg p-8 md:p-12">
                   {/* IN PROGRESS OVERLAY */}
                   {project.status === 'in-progress' && (
                     <div className="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20">
@@ -184,6 +201,7 @@ const Projects = () => {
                     )}
                   </div>
 
+                  </TiltCard>
                 </motion.div>
               );
             })}

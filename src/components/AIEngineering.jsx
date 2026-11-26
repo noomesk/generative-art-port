@@ -11,15 +11,18 @@ const icons = [
   <Cpu size={18} />
 ];
 
+// Tarjetas de IA: cada una usa su textura en hover (orden: agentes, RAG, MCP, IA aplicada)
+const TEXTURE_CLASSES = ['ai-texture-3', 'ai-texture-4', 'ai-texture-5', 'ai-texture-6'];
+
 // Tarjeta de interfaz con tilt 3D que sigue el cursor (efecto ENDModa)
-const InterfaceCard = ({ icon, title, desc }) => {
+const InterfaceCard = ({ icon, title, desc, texture }) => {
   const { ref, onMouseMove, onMouseLeave } = useTilt(8);
   return (
     <div
       ref={ref}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className="tilt-card relative bg-temporal-bg p-8 group flex flex-col h-full"
+      className={`tilt-card ${texture || ''} relative bg-temporal-bg p-8 group flex flex-col h-full`}
     >
       <div className="flex items-center gap-3 mb-4">
         <div className="text-temporal-accent">{icon}</div>
@@ -68,7 +71,7 @@ const AIEngineering = () => {
               transition={{ duration: 0.5, delay: index * 0.05 }}
               className="h-full"
             >
-              <InterfaceCard icon={icons[index % icons.length]} title={item.title} desc={item.desc} />
+              <InterfaceCard icon={icons[index % icons.length]} title={item.title} desc={item.desc} texture={TEXTURE_CLASSES[index % TEXTURE_CLASSES.length]} />
             </motion.div>
           ))}
         </div>

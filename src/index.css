@@ -97,6 +97,13 @@
     url("/ref/textura_cards.webp");
 }
 
+/* Tarjetas de IA: textura propia en hover (agentes, RAG, MCP, IA aplicada).
+   Mismo degradado oscuro que en Proyectos para mantener la legibilidad. */
+.ai-texture-3:hover { background-image: linear-gradient(180deg, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.85) 100%), url("/ref/textura_cards3.webp"); background-size: cover, cover; background-position: center, center; }
+.ai-texture-4:hover { background-image: linear-gradient(180deg, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.85) 100%), url("/ref/textura_cards4.webp"); background-size: cover, cover; background-position: center, center; }
+.ai-texture-5:hover { background-image: linear-gradient(180deg, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.85) 100%), url("/ref/textura_cards5.webp"); background-size: cover, cover; background-position: center, center; }
+.ai-texture-6:hover { background-image: linear-gradient(180deg, rgba(5,5,5,0.6) 0%, rgba(5,5,5,0.85) 100%), url("/ref/textura_cards6.webp"); background-size: cover, cover; background-position: center, center; }
+
 /* Tarjetas con tilt 3D y tono gris plateado en hover (interfaces) */
 .tilt-card {
   border: 1px solid transparent;

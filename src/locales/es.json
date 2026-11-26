@@ -104,11 +104,12 @@
     "introC": "frente a un chat genérico.",
     "tags": "Agentes • RAG • Herramientas",
     "ready": "portfolio-agent:~$ listo. whoami:Pregúntame lo que quieras sobre Angie: stack, proyectos, creaciones artísticas y visuales, trabajo en IA, experiencia...",
+    "greeting": "¡Hola! Angie me diseñó como un RAG (generación aumentada por recuperación): no soy un chatbot que sepa de todo, sino que busco respuestas en el contexto de este portafolio. Puedes preguntarme por su stack, su experiencia, sus proyectos, el arte generativo, sus sets como Visual DJ o sus intereses creativos. ¿Qué te gustaría saber?",
     "retrieving": "recuperando contexto...",
     "placeholder": "pregunta sobre stack, proyectos, IA, experiencia...",
     "send": "Enviar mensaje",
     "disclaimer": "*Respuestas generadas con IA a partir de mi portafolio. Puede equivocarse; para detalles, pregunta por contacto.",
-    "fallback": "Basado en mi portafolio: me enfoco en Frontend + IA (agentes, RAG, llamadas a herramientas). Pregunta por stack, proyectos, trabajo en IA, experiencia o contacto.",
+    "fallback": "Jaja, esa pregunta se me sale del contexto. Angie me diseñó para conversar sobre lo que comparte en su portafolio: sus proyectos, su trabajo, las herramientas que usa y su experiencia.\n\nSoy un RAG (generación aumentada por recuperación): no soy un chatbot que sepa de todo, sino un sistema que busca respuestas dentro de un contexto concreto. En este caso, mi contexto es este portafolio, así que no puedo responder con fundamento preguntas personales ni otros temas que se salgan de él.\n\nSi necesitas más información, déjame un mensaje en el formulario de contacto. Angie con gusto te leerá y te responderá lo más rápido posible.\n\nSi quieres, pregúntame por mi stack, mi experiencia, mis proyectos, el arte generativo, mis sets como Visual DJ o mis intereses creativos. Por ejemplo: ¿qué tecnologías uso?, ¿qué hago como Visual DJ? o ¿qué temas me interesan?",
     "kb": [
       {
         "q": ["quién", "quien", "sobre", "angie"],

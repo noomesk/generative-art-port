@@ -104,11 +104,12 @@
     "introC": "over generic chat.",
     "tags": "Agents • RAG • Tooling",
     "ready": "portfolio-agent:~$ ready. Ask me anything about Angie Plazas — stack, projects, AI work, experience...",
+    "greeting": "Hi! Angie designed me as a RAG (retrieval-augmented generation) system: I'm not a general-purpose chatbot; I look for answers in the context of this portfolio. You can ask me about her tech stack, experience, projects, generative art, Visual DJ sets, or creative interests. What would you like to know?",
     "retrieving": "retrieving context...",
     "placeholder": "ask about stack, projects, ai, experience...",
     "send": "Send message",
     "disclaimer": "*Answers are AI-generated from my portfolio. They may be wrong; for details, ask via contact.",
-    "fallback": "Grounded in my portfolio: I focus on Frontend + AI (agents, RAG, tool calling). Ask about stack, projects, AI work, experience or contact.",
+    "fallback": "Haha, that question is outside my context. Angie designed me to talk about what she shares in her portfolio: her projects, her work, the tools she uses, and her experience.\n\nI'm a RAG (retrieval-augmented generation) system: I'm not a general-purpose chatbot; I look for answers within a specific context. Here, that context is this portfolio, so I can't reliably answer personal questions or other topics outside it.\n\nIf you need more information, leave a message in the contact form. Angie will be happy to read it and get back to you as soon as she can.\n\nIf you'd like, ask me about my stack, experience, projects, generative art, Visual DJ sets, or creative interests. For example: what technologies do I use, what do I do as a Visual DJ, or what topics interest me?",
     "kb": [
       {
         "q": ["who", "about", "angie"],

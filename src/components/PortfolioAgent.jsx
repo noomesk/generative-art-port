@@ -3,6 +3,83 @@ import { motion } from 'framer-motion';
 import { Terminal, Send, Sparkles } from 'lucide-react';
 import { useTranslation } from '../i18n/LanguageContext';
 
+const normalizeQuestion = (question) => question
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[¿?¡!.,;:]/g, '')
+  .trim();
+
+const INTRO_QUESTIONS = new Set([
+  'que haces',
+  'que haces tu',
+  'que hace',
+  'que hace el agente',
+  'que hace este agente',
+  'que puedes hacer',
+  'que puede hacer este agente',
+  'para que sirves',
+  'como funcionas',
+  'que eres',
+  'que es esto',
+  'que es un rag',
+  'que puedo preguntarte',
+  'que puedo preguntarte a ti',
+  'que puedes responder',
+  'what do you do',
+  'what can you do',
+  'what can this agent do',
+  'what does the agent do',
+  'what are you',
+  'what is this',
+  'what is a rag',
+  'what can i ask',
+  'what can i ask you',
+  'what can you answer',
+  'how do you work',
+  'como estas',
+  'que tal',
+  'que mas',
+  'todo bien',
+  'how are you',
+  'how is it going',
+  'how are things',
+  'whats up',
+  "what's up",
+]);
+
+const GREETINGS = new Set([
+  'hola',
+  'buenas',
+  'buenas tardes',
+  'buenas noches',
+  'buenos dias',
+  'buen dia',
+  'hey',
+  'hi',
+  'hello',
+  'saludos',
+  'good morning',
+  'good afternoon',
+  'good evening',
+]);
+
+const GREETING_PREFIX = /^(?:hola|buenas(?: (?:tardes|noches|dias))?|buenos dias|buen dia|hey|hi|hello|saludos|good morning|good afternoon|good evening)\s+(?:y\s+)?/;
+
+const isGreetingOrIntro = (question) => {
+  let normalized = normalizeQuestion(question);
+  if (GREETINGS.has(normalized)) return true;
+
+  let withoutGreeting = normalized.replace(GREETING_PREFIX, '').trim();
+  while (withoutGreeting !== normalized) {
+    if (!withoutGreeting || GREETINGS.has(withoutGreeting)) return true;
+    normalized = withoutGreeting;
+    withoutGreeting = normalized.replace(GREETING_PREFIX, '').trim();
+  }
+
+  return INTRO_QUESTIONS.has(withoutGreeting);
+};
+
 const PortfolioAgent = () => {
   const { t, language } = useTranslation();
   const [messages, setMessages] = useState([]);
@@ -52,18 +129,22 @@ const PortfolioAgent = () => {
     setThinking(true);
 
     let ans;
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: userMsg, language }),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-      ans = data.answer;
-    } catch {
-      // Sin API disponible (dev local, límite de cuota o red): usa la base local
-      ans = findAnswer(userMsg);
+    if (isGreetingOrIntro(userMsg)) {
+      ans = t('agent.greeting');
+    } else {
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: userMsg, language }),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        ans = data.answer;
+      } catch {
+        // Sin API disponible (dev local, límite de cuota o red): usa la base local
+        ans = findAnswer(userMsg);
+      }
     }
 
     setMessages((prev) => [...prev, { role: 'agent', text: ans }]);

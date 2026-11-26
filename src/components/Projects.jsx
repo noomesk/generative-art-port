@@ -7,6 +7,14 @@ import { useTilt } from '../utils/useTilt';
 import ProjectModal from './ProjectModal';
 import { linkProps } from '../utils/linkProps';
 
+// Proyectos que usan la textura alterna (textura_cards) en hover; el resto usa textura_cards2
+const ALT_TEXTURE_TITLES = new Set([
+  'Cellular Automata Engine',
+  'Lit Component Forge',
+  'Genome Cleaner',
+  'Interactive Fashion Gallery',
+]);
+
 // Wrapper con tilt 3D que sigue el cursor (efecto ENDModa)
 const TiltCard = ({ children, className = '' }) => {
   const { ref, onMouseMove, onMouseLeave } = useTilt(8);
@@ -103,7 +111,7 @@ const Projects = () => {
                   whileHover={{ y: -5 }}
                   className="group relative flex flex-col h-full"
                 >
-                  <TiltCard className="project-card-tilt p-8 md:p-12">
+                  <TiltCard className={`project-card-tilt ${ALT_TEXTURE_TITLES.has(project.title) ? 'project-card-alt' : ''} p-8 md:p-12`}>
                   {/* IN PROGRESS OVERLAY */}
                   {project.status === 'in-progress' && (
                     <div className="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20">

@@ -90,6 +90,13 @@
   background-position: center, center;
 }
 
+/* Variante alterna en patron ajedrez: textura_cards en hover */
+.project-card-alt:hover {
+  background-image:
+    linear-gradient(180deg, rgba(5, 5, 5, 0.6) 0%, rgba(5, 5, 5, 0.85) 100%),
+    url("/ref/textura_cards.webp");
+}
+
 /* Tarjetas con tilt 3D y tono gris plateado en hover (interfaces) */
 .tilt-card {
   border: 1px solid transparent;

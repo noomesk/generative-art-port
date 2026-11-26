@@ -103,7 +103,7 @@ const Projects = () => {
                   whileHover={{ y: -5 }}
                   className="group relative flex flex-col h-full"
                 >
-                  <TiltCard className="bg-temporal-bg p-8 md:p-12">
+                  <TiltCard className="project-card-tilt p-8 md:p-12">
                   {/* IN PROGRESS OVERLAY */}
                   {project.status === 'in-progress' && (
                     <div className="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20">
